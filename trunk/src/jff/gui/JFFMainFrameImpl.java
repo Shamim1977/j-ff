@@ -5,7 +5,13 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -89,11 +95,52 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		public RestartableThread Executor;
 		public RestartableThread Refresher;
 		
-		public JFFBundledItems(){
+		public JFFBundledItems(String filePath) {
+			
+			try {
+				
+				FileReader fstream=new FileReader(filePath);
+				BufferedReader b=new BufferedReader(fstream);
+			
+				Files=new JFFGroupSelectableVideoFileImpl(b);
+			
+				b.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Tasks=new FFMultipleGroupTaskImpl("Tutti i processi"); 
+			
+			try {
+			
+				FileReader fstream3=new FileReader(filePath);
+				BufferedReader b3=new BufferedReader(fstream3);
+			
+						
+				Options=new FFOptionsImpl(b3);
+	        
+				b3.close();
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	        
+	        Executor=new RestartableThread(Tasks);
+			Executor.restart();
+			
+			   
+		}
+
+
+	public JFFBundledItems(){
 			
 			Files=new JFFGroupSelectableVideoFileImpl();
 	        Tasks=new FFMultipleGroupTaskImpl("Tutti i processi"); 
-	        Options=new FFOptionsImpl("IPOD",new File(System.getProperty("user.dir")),false);
+	        Options=new FFOptionsImpl("iPhone4",new File(System.getProperty("user.dir")),false);
 	        Executor=new RestartableThread(Tasks);
 			Executor.restart();
 			
@@ -103,15 +150,20 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	
 	public JFFMainFrameImpl(){
 			
-			super("JFF");
+			super("j-ff");
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	      //Create the app items
-	        Items=new JFFBundledItems();
 	        
+			
+	        if (new File("init.txt").isFile())
+				Items=new JFFBundledItems("init.txt");
+	        else
+				Items=new JFFBundledItems();	        
 
 	      //Create the Table
 	        Table = new JFFTableImpl(Items);
+	        ((JFFTableImpl)Table).rebuild();
 	        JScrollPane scrollpane = new JScrollPane((JTable)Table);
 	        
 	        

@@ -1,18 +1,32 @@
 package jff.task;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Vector;
 
 public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 
+	
+	
 	private Vector<FFGroupTask> Tasks;
 	
 	private boolean Running=false;
 	private String Name="";
-	
+	private boolean Verbose=true;
 	
 	
 	public FFMultipleGroupTaskImpl(String n){
 		Tasks=new Vector<FFGroupTask>();
+		Name=n;
+	}
+
+	public FFMultipleGroupTaskImpl(String n, boolean isVerbose){
+		Tasks=new Vector<FFGroupTask>();
+		Verbose=isVerbose;
 		Name=n;
 	}
 
@@ -70,29 +84,82 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 			Running=true;
 		
 			Thread t;
-
+			BufferedWriter out=null;
+			
+			if (Verbose) try {
+			
+				FileWriter fstream = new FileWriter("debug_info_tasks.txt",true);
+				out= new BufferedWriter(fstream);
+				out.write("== All Tasks ==");
+				out.newLine();
+				out.write("[number of Tasks: "+sizeInTasks()+" ]");
+				out.newLine();
+				out.write("[number of Files: "+sizeInFiles()+" ]");
+				out.newLine();
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				out.write("Started at "+sdf.format(cal.getTime()));
+				out.newLine();
+				out.newLine();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			for (int i=0;i<Tasks.size()&&!Thread.currentThread().isInterrupted();i++){
 					
-				t=new Thread(Tasks.get(i)); 
+				Tasks.get(i).setOutputDebugInfo(out);
+				t=new Thread(Tasks.get(i));
 				t.start();
 				
 				try {
 					t.join();
 				} catch (InterruptedException e) {
-					System.out.println("interruppppppppppppppp");
+										
 					t.interrupt();
+					
+					if (out!=null) try {
+						
+						try {
+							t.join();
+						} catch (InterruptedException e2) {}
+						
+						
+						Calendar cal = Calendar.getInstance();
+					    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					    
+						out.write("Interrupted at "+sdf.format(cal.getTime()));
+						out.newLine();
+						out.newLine();
+						out.close();
+					
+					} catch (IOException e1) {
+							// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						
 					Thread.currentThread().interrupt();
 					
-					
-				}
+						
+					}
 				
 			}
 		
-			System.out.println("finittttttttttttt");
-			
 			
 			Running=false;
+			if (out!=null&&!Thread.currentThread().isInterrupted()) try {
+				
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    
+				out.write("Ended at "+sdf.format(cal.getTime()));
+				out.newLine();
+				out.newLine();
+				out.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 		}
 		
