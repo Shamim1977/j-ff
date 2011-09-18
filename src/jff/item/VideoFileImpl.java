@@ -54,10 +54,7 @@ public class VideoFileImpl implements VideoFile {
 		    String line =in.readLine();  
 		            
 		    while (line!=null ) { 
-		            	
-		    	System.out.println(line);
-	        	
-		    	
+		        
 		    	checkWidthHeightPARDAR(line);
 		    	checkDuration(line);
 		                        
@@ -65,6 +62,7 @@ public class VideoFileImpl implements VideoFile {
 		    } 
 		            
 		    if(Verbose){
+		    	
 		    	System.out.println("Aspect ratio detected: "+Width+" x "+Height);
 		    	System.out.println("PAR detected: "+PAR);
 		    	System.out.println("DAR detected: "+DAR);

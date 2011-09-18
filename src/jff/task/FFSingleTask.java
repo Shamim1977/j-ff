@@ -1,5 +1,7 @@
 package jff.task;
 
+import java.io.BufferedWriter;
+
 import jff.item.FFCommandLine;
 
 public interface FFSingleTask extends Runnable {
@@ -12,4 +14,8 @@ public interface FFSingleTask extends Runnable {
 	boolean isRunning();
 	
 	FFCommandLine commandLine();
+	
+	public final static String S="        ";
+
+	void setOutputDebugInfo(BufferedWriter bw);
 }

@@ -1,5 +1,8 @@
 package jff.item;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.util.Vector;
 
 public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoFile {
@@ -9,6 +12,35 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 
 	public JFFGroupSelectableVideoFileImpl(){
 		Files=new Vector<JFFSelectableVideoFile>();
+	}
+
+	public JFFGroupSelectableVideoFileImpl(BufferedReader b) {
+		
+		Files=new Vector<JFFSelectableVideoFile>();
+		
+		String line=null;
+		
+		do{
+		
+		try {
+			line=b.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (line!=null&&line.split(":")[0].equals("file")){
+			
+			File f=new File(line.split(":")[1].trim());
+			
+			if (f.isFile())
+				Files.add(new JFFSelectableVideoFileImpl(f,true));
+		}
+		
+		} while (line!=null);
+		
+
+		
 	}
 
 	@Override

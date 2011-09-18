@@ -23,7 +23,7 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 			
 			Format=format;
 			
-			if (format=="IPOD"){// set IPOD data
+			if (format.equals("iPhone4")){// set IPOD data
 				
 				VideoCodec="libx264";
 				VideoPreset="iphone";

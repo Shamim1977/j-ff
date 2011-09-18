@@ -1,15 +1,21 @@
 package jff.task;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Vector;
 
 public class FFGroupTaskImpl implements FFGroupTask, Runnable {
-
-	private Vector<FFSingleTask> Tasks;
 	
+	private Vector<FFSingleTask> Tasks;
 	private boolean Running=false;
 	private boolean Converted=false;	
 	private int ConvertedFiles=0;
 	private String Name="";
+	private boolean Verbose=false;
+	private BufferedWriter DebugFile=null;
 	
 	public FFGroupTaskImpl(String n){
 		Tasks=new Vector<FFSingleTask>();
@@ -68,11 +74,30 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 			
 			Running=true;
 			Thread t;
+			
+			if (Verbose) try {
+				
+				DebugFile.write(S+"-- Task "+Name+" --");
+				DebugFile.newLine();
+				DebugFile.write(S+"[number of Files: "+Tasks.size()+" ]");
+				DebugFile.newLine();
+
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    DebugFile.write(S+"Started at "+sdf.format(cal.getTime()));
+				DebugFile.newLine();
+			    DebugFile.newLine();
+			  
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		
 			for (int i=0;i<Tasks.size()&&!Thread.currentThread().isInterrupted();i++){
 				
 				if (!Tasks.get(i).isDone()){
 				
+					Tasks.get(i).setOutputDebugInfo(DebugFile);
 					t=new Thread(Tasks.get(i)); 
 					t.start();
 				
@@ -82,8 +107,29 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 					
 						t.interrupt();
 
-						Thread.currentThread().interrupt();
 						ConvertedFiles--;
+						
+						if (Verbose) try {
+							
+							try {
+								t.join();
+							} catch (InterruptedException e2) {}	
+							
+							Calendar cal = Calendar.getInstance();
+						    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						    
+						    DebugFile.write(S+"Interrupted at "+sdf.format(cal.getTime()));
+							DebugFile.newLine();
+							DebugFile.newLine();
+							
+						
+						} catch (IOException e1) {
+								// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						Thread.currentThread().interrupt();
+
 					}
 				
 					ConvertedFiles++;
@@ -91,6 +137,19 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 			}
 		
 			Running=false;
+			
+			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
+				
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    DebugFile.write(S+"Ended at "+sdf.format(cal.getTime()));
+			    DebugFile.newLine();
+			    DebugFile.newLine();
+			    
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			if (Tasks.size()==ConvertedFiles)
 				Converted=true;
 		}
@@ -115,6 +174,13 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		if (!r.isRunning())
 			Tasks.remove(r);
 		
+	}
+
+	@Override
+	public void setOutputDebugInfo(BufferedWriter bw) {
+		
+		Verbose=true;
+		DebugFile=bw;
 	}
 	
 	

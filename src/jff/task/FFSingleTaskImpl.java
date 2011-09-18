@@ -1,8 +1,11 @@
 package jff.task;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import jff.item.FFCommandLine;
 import jff.item.VideoFile.ValueNotFoundException;
@@ -15,6 +18,10 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 	private boolean Converted=false;	
 	private int CurrentPass=1;
 	private float ConvertedTime=0;
+
+	private boolean Verbose=false;
+
+	private BufferedWriter DebugFile=null;
 	
 	public FFSingleTaskImpl(FFCommandLine c){
 		
@@ -107,6 +114,24 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 		if (!Running&&!Converted&&!Thread.currentThread().isInterrupted()){
 		
 			Running=true;
+			
+			if (Verbose) try {
+				
+				DebugFile.write(S+"** File "+CommandLine.input().file().getAbsolutePath()+" **");
+				DebugFile.newLine();
+				DebugFile.write(S+"[.....]");
+				DebugFile.newLine();
+
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    DebugFile.write(S+"Started at "+sdf.format(cal.getTime()));
+				DebugFile.newLine();
+			  
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
 		try {
 			
 			ProcessBuilder pb = new ProcessBuilder(CommandLine.getCommandLine(1));
@@ -176,8 +201,38 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			
 			if (!Thread.currentThread().isInterrupted())
 				Converted=true;
+			else {
+				
+				if (Verbose) try {
+					
+					Calendar cal = Calendar.getInstance();
+				    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				    
+				    DebugFile.write(S+"Interrupted at "+sdf.format(cal.getTime()));
+				    DebugFile.newLine();
+				    DebugFile.newLine();
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				
+			}
+			
 			
 			Running=false;
+			
+			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
+				
+				Calendar cal = Calendar.getInstance();
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			    DebugFile.write(S+"Ended at "+sdf.format(cal.getTime()));
+			    DebugFile.newLine();
+			    DebugFile.newLine();
+			    
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -200,5 +255,12 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 	public boolean isRunning() {
 		// TODO Auto-generated method stub
 		return Running;
+	}
+	
+	@Override
+	public void setOutputDebugInfo(BufferedWriter bw) {
+		
+		Verbose=true;
+		DebugFile=bw;
 	}
 }

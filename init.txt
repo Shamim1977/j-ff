@@ -1,0 +1,20 @@
+
+!! init file with the parameters to create the application
+!!modify this at your own risk.
+!!delete the file itself for a fresh start. 
+
+
+
+file: /home/francesco/Scaricati/input R.flv
+file: /home/francesco/Scaricati/input B2.3gp
+
+file: /topolino
+
+outputformat: iPhone4
+outputdir: /home/francesco/Scaricati/final
+
+optionthreads: 4
+optiontwopasses: true
+optionpads: false
+optionsmall: false
+optiondebug: false
