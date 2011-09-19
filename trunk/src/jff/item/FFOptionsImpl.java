@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
+import jff.utility.JFFParser;
+import jff.utility.JFFParserImpl;
+
 
 
 public class FFOptionsImpl implements FFOptions {
@@ -52,79 +55,52 @@ public class FFOptionsImpl implements FFOptions {
 	public FFOptionsImpl(BufferedReader b) {
 
 		
-		String line=null;
+		JFFParser p;
 		
 		do{
 		
-		try {
-			line=b.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		if (line!=null&&line.split(":")[0].equals("outputformat")){
-			
-			
-			OutputOptions=new FFOutputOptionsImpl(line.split(":")[1].trim(),Verbose);
-		}
-		
-		else if (line!=null&&line.split(":")[0].equals("outputdir")){
-			
-			File f=new File(line.split(":")[1].trim());
-			
-			
-			if (f.isDirectory())
-				Output=f;
-			else
-				Output=new File(System.getProperty("user.dir"));
-				
-		}
-
-		else if (line!=null&&line.split(":")[0].equals("optionthreads")){
-			
 			try {
-				int t=Integer.parseInt(line.split(":")[1].trim());
-				setThreads(t);
+				p=new JFFParserImpl(b.readLine());
+			} catch (IOException e) {
+			
+				p=new JFFParserImpl(null);
+				e.printStackTrace();
+			}
+		
+		
+			if (p.find("outputformat"))
+				OutputOptions=new FFOutputOptionsImpl(p.getString(),Verbose);
+			else if (p.find("outputdir")){
+			
+				File f=new File(p.getString());
+			
+				if (f.isDirectory())
+					Output=f;
+				else
+					Output=new File(System.getProperty("user.dir"));
 				
-			} catch (NumberFormatException e){}
-		}
-
-		else if (line!=null&&line.split(":")[0].equals("optiontwopasses")){
+				}
+			else if (p.find("optionthreads")){
 			
-			if (line.split(":")[1].trim().equals("true"))
-				setTwoPasses(true);
-			else if (line.split(":")[1].trim().equals("false"))
-					setTwoPasses(false);
+				try {
 			
-		}
-
-		else if (line!=null&&line.split(":")[0].equals("optionpads")){
+					setThreads(p.getInt());	
 			
-			if (line.split(":")[1].trim().equals("true"))
-				setPads(true);
-			else if (line.split(":")[1].trim().equals("false"))
-					setPads(false);
+				} catch (NumberFormatException e){}
+			}
+			else if (p.find("optiontwopasses"))
+				setTwoPasses(p.getBoolean());
 			
-		}
-
-		else if (line!=null&&line.split(":")[0].equals("optionsmall")){
+			else if (p.find("optionpads"))
+				setPads(p.getBoolean());
 			
-			if (line.split(":")[1].trim().equals("true"))
-				setSmallFiles(true);
-			else if (line.split(":")[1].trim().equals("false"))
-					setSmallFiles(false);
-		}
-
-		else if (line!=null&&line.split(":")[0].equals("optiondebug")){
-			
-			if (line.split(":")[1].trim().equals("true"))
-				setVerbose(true);
-			else if (line.split(":")[1].trim().equals("false"))
-					setVerbose(false);
-		}
-
-		} while (line!=null);
+			else if (p.find("optionsmall"))
+				setSmallFiles(p.getBoolean());
+		
+			else if (p.find("optiondebug"))
+				setVerbose(p.getBoolean());
+		
+		} while (!p.isEmpty());
 		
 		constructorInfo();
 		

@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 
+import jff.utility.JFFParser;
+import jff.utility.JFFParserImpl;
+
 public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoFile {
 
 	private Vector<JFFSelectableVideoFile> Files;
@@ -18,26 +21,27 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 		
 		Files=new Vector<JFFSelectableVideoFile>();
 		
-		String line=null;
+		JFFParser p;
 		
 		do{
 		
 		try {
-			line=b.readLine();
+			p=new JFFParserImpl(b.readLine());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
+			p=new JFFParserImpl(null);
 			e.printStackTrace();
 		}
 		
-		if (line!=null&&line.split(":")[0].equals("file")){
+		if (!p.isEmpty()&&p.find("file")){
 			
-			File f=new File(line.split(":")[1].trim());
+			File f=new File(p.getString());
 			
 			if (f.isFile())
 				Files.add(new JFFSelectableVideoFileImpl(f,true));
 		}
 		
-		} while (line!=null);
+		} while (!p.isEmpty());
 		
 
 		

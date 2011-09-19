@@ -8,6 +8,10 @@ import jff.item.VideoFile.ValueNotFoundException;
 
 public class FFCommandLineImpl implements FFCommandLine {
 
+	private enum OS {LINUX, WINDOWS};
+	
+	private OS CurrentOS=null;
+	
 	private VideoFile Input;
 	private File Output;
 	private FFOptions Options;
@@ -24,6 +28,22 @@ public class FFCommandLineImpl implements FFCommandLine {
 	
 		CommandLine=new Vector<String>();
 		CommandLine2=new Vector<String>();
+		
+		String s=System.getProperty( "os.name" );
+		
+		if (s.matches("(.*)(?i)linux(.*)")){
+			System.out.println("linux!!!");
+			CurrentOS=OS.LINUX;
+		}
+		
+		if (s.matches("(.*)(?i)windows(.*)")){
+			System.out.println("windows!!!");
+			CurrentOS=OS.WINDOWS;
+		}
+			
+		if (CurrentOS==null){
+			//throw an exception TODO
+		}
 		
 		Input=f;
 		Output=options.outputFolder();
@@ -61,12 +81,23 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 	private void setCommand(){
 		
-		CommandLine.add("ffmpeg");
+		if (CurrentOS==OS.LINUX)
+			CommandLine.add("ffmpeg");
+		
+		if (CurrentOS==OS.WINDOWS)
+			CommandLine.add("ffmpeg.exe");
+		
+		
 		CommandLine.add("-y");
 	
 		if (Options.twoPasses()){
 		
-			CommandLine2.add("ffmpeg");
+			if (CurrentOS==OS.LINUX)
+				CommandLine2.add("ffmpeg");
+			
+			if (CurrentOS==OS.WINDOWS)
+				CommandLine2.add("ffmpeg.exe");
+			
 			CommandLine2.add("-y");
 		}
 		
@@ -441,7 +472,12 @@ public class FFCommandLineImpl implements FFCommandLine {
 			
 				CommandLine.add("-f");
 				CommandLine.add("rawvideo");
-				CommandLine.add("/dev/null");
+				
+				if (CurrentOS==OS.LINUX)
+					CommandLine.add("/dev/null");
+				
+				if (CurrentOS==OS.WINDOWS)
+						CommandLine.add("nul");
 			
 				CommandLine2.add(output().getAbsolutePath());
 		}
