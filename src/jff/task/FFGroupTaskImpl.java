@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
+import jff.utility.JFFTime;
+
 public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 	
 	private Vector<FFSingleTask> Tasks;
@@ -82,9 +84,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 				DebugFile.write(S+"[number of Files: "+Tasks.size()+" ]");
 				DebugFile.newLine();
 
-				Calendar cal = Calendar.getInstance();
-			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			    DebugFile.write(S+"Started at "+sdf.format(cal.getTime()));
+				DebugFile.write(S+"Started at "+JFFTime.now());
 				DebugFile.newLine();
 			    DebugFile.newLine();
 			  
@@ -115,10 +115,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 								t.join();
 							} catch (InterruptedException e2) {}	
 							
-							Calendar cal = Calendar.getInstance();
-						    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						    
-						    DebugFile.write(S+"Interrupted at "+sdf.format(cal.getTime()));
+							DebugFile.write(S+"Interrupted at "+JFFTime.now());
 							DebugFile.newLine();
 							DebugFile.newLine();
 							
@@ -140,9 +137,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 			
 			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
 				
-				Calendar cal = Calendar.getInstance();
-			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			    DebugFile.write(S+"Ended at "+sdf.format(cal.getTime()));
+				DebugFile.write(S+"Ended at "+JFFTime.now());
 			    DebugFile.newLine();
 			    DebugFile.newLine();
 			    

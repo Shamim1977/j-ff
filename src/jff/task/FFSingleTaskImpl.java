@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 import jff.item.FFCommandLine;
 import jff.item.VideoFile.ValueNotFoundException;
+import jff.utility.JFFTime;
 
 public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 
@@ -122,9 +123,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 				DebugFile.write(S+"[.....]");
 				DebugFile.newLine();
 
-				Calendar cal = Calendar.getInstance();
-			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			    DebugFile.write(S+"Started at "+sdf.format(cal.getTime()));
+				DebugFile.write(S+"Started at "+JFFTime.now());
 				DebugFile.newLine();
 			  
 			} catch (IOException e) {
@@ -205,10 +204,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 				
 				if (Verbose) try {
 					
-					Calendar cal = Calendar.getInstance();
-				    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				    
-				    DebugFile.write(S+"Interrupted at "+sdf.format(cal.getTime()));
+					DebugFile.write(S+"Interrupted at "+JFFTime.now());
 				    DebugFile.newLine();
 				    DebugFile.newLine();
 					
@@ -224,9 +220,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			
 			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
 				
-				Calendar cal = Calendar.getInstance();
-			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			    DebugFile.write(S+"Ended at "+sdf.format(cal.getTime()));
+				DebugFile.write(S+"Ended at "+JFFTime.now());
 			    DebugFile.newLine();
 			    DebugFile.newLine();
 			    

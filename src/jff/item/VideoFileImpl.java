@@ -7,8 +7,13 @@ import java.io.InputStreamReader;
 
 
 
+
 public class VideoFileImpl implements VideoFile {
 
+	private enum OS {LINUX, WINDOWS};
+	private OS CurrentOS=null;
+	
+	
 	private File Path; 
 	private boolean Verbose=false;
 	
@@ -33,6 +38,23 @@ public class VideoFileImpl implements VideoFile {
 		
 		Path=f;
 		Verbose=isVerbose;
+		
+		String s=System.getProperty( "os.name" );
+		
+		if (s.matches("(.*)(?i)linux(.*)")){
+			System.out.println("linux!!!");
+			CurrentOS=OS.LINUX;
+		}
+		
+		if (s.matches("(.*)(?i)windows(.*)")){
+			System.out.println("windows!!!");
+			CurrentOS=OS.WINDOWS;
+		}
+			
+		if (CurrentOS==null){
+			//throw an exception TODO
+		}
+		
 		checkData();
 	}
 	
@@ -44,7 +66,16 @@ public class VideoFileImpl implements VideoFile {
 		
 		try {
 			
-			ProcessBuilder pb = new ProcessBuilder("ffmpeg","-i",Path.getAbsolutePath());
+			String s=null;
+			
+			if (CurrentOS==OS.LINUX)
+				s="ffmpeg";
+			
+			if (CurrentOS==OS.WINDOWS)
+				s="ffmpeg.exe";
+			
+			
+			ProcessBuilder pb = new ProcessBuilder(s,"-i",Path.getAbsolutePath());
 			pb.redirectErrorStream(true);
 		    
 			Process p=pb.start();
