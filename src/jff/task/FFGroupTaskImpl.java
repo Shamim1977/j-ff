@@ -83,12 +83,12 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 			
 			if (Verbose) try {
 				
-				DebugFile.write(S+"-- Task "+Name+" --");
+				DebugFile.write(T+"-- Task "+Name+" --");
 				DebugFile.newLine();
-				DebugFile.write(S+"[number of Files: "+Tasks.size()+" ]");
+				DebugFile.write(T+"[number of Files: "+Tasks.size()+" ]");
 				DebugFile.newLine();
 
-				DebugFile.write(S+"Started at "+JFFTime.now());
+				DebugFile.write(T+"Started at "+JFFTime.now());
 				DebugFile.newLine();
 			    DebugFile.newLine();
 			  
@@ -119,7 +119,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 								t.join();
 							} catch (InterruptedException e2) {}	
 							
-							DebugFile.write(S+"Interrupted at "+JFFTime.now());
+							DebugFile.write(T+"Interrupted at "+JFFTime.now());
 							DebugFile.newLine();
 							DebugFile.newLine();
 							
@@ -141,7 +141,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 			
 			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
 				
-				DebugFile.write(S+"Ended at "+JFFTime.now());
+				DebugFile.write(T+"Ended at "+JFFTime.now());
 			    DebugFile.newLine();
 			    DebugFile.newLine();
 			    

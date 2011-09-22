@@ -20,7 +20,7 @@ public class JFFPlayFile extends AbstractAction {
 	private JFFTable Table;
 	
 	public JFFPlayFile(JFFTable t, JFFBundledItems items){
-		super(items.S.playFile(),new ImageIcon("img/playvlc2.png"));
+		super(items.S.playFile(),new ImageIcon("img/playfile.png"));
 		
 		Files=items.Files;
 		Table=t;
@@ -54,20 +54,22 @@ public class JFFPlayFile extends AbstractAction {
 		
 		*************** */
 		
-		java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+		if (((JFFTableImpl)Table).getSelectedRow()!=-1){
+		
+			java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 
-        if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
+			if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
 
-            try {
-				desktop.open(Files.get(((JFFTableImpl)Table).getSelectedRow()).file());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					desktop.open(Files.get(((JFFTableImpl)Table).getSelectedRow()).file());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             
         
-        }
-		
+			}
+		}
 	}
 
 }

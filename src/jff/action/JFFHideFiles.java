@@ -43,18 +43,18 @@ import jff.item.VideoFile;
 import jff.item.VideoFileImpl;
 
 @SuppressWarnings("serial")
-public class JFFHideOptions extends AbstractAction {
+public class JFFHideFiles extends AbstractAction {
 
 	
 	private Component Parent;
 	
-	public JFFHideOptions(Component c, JFFBundledItems items){
-		super(items.S.hideOptions(),new ImageIcon("img/hideoptions.png"));
+	public JFFHideFiles(Component c, JFFBundledItems items){
+		super(items.S.hideFiles(),new ImageIcon("img/hidefiles.png"));
 		
 		Parent=c;
 		
 		
-		putValue(SHORT_DESCRIPTION, items.S.hideOptionsDescription());  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.hideFilesDescription());  // Will appear as tooltip text.
         
 		
 	}
@@ -63,7 +63,7 @@ public class JFFHideOptions extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		
-		((JFFMainFrameImpl)Parent).hideOptions();
+		((JFFMainFrameImpl)Parent).hideFiles();
 		
 		
 	}

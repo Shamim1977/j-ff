@@ -16,6 +16,8 @@ deletefiles: Delete Files
 deletegrouptask: Delete Task
 hideoptions: Hide Options
 showoptions: Show Options
+hidefiles: Hide Files
+showfiles: Show Files
 pausetasks: Pause Tasks
 quit: Quit
 showcredits: Show j-ff Info
@@ -30,6 +32,8 @@ deletefilesdescr: delete selected files (only from the application view)
 deletegrouptaskdescr: delete a Task (only if is not executing)
 hideoptionsdescr: hide the modify options menu
 showoptionsdescr: show the modify options menu
+hidefilesdescr: hide the files table
+showfilesdescr: show the files table
 pausetasksdescr: interrupt conversion operations
 quitdescr: save application status and exit
 showcreditsdescr: developer info

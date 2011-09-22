@@ -11,6 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 
+import jff.gui.JFFMainFrameImpl;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.table.JFFTable;
 import jff.gui.table.JFFTableImpl;
@@ -57,6 +58,11 @@ public class JFFAddFiles extends AbstractAction {
 				Files.add(new JFFSelectableVideoFileImpl(FileChooser.getSelectedFiles()[i],true));
 				System.out.println(FileChooser.getSelectedFiles()[i].getAbsolutePath());
 			}
+			
+			//show the table and the options
+			((JFFMainFrameImpl)Parent).showOptions();
+			((JFFMainFrameImpl)Parent).showFiles();
+			
 		} //else
 			//Files.add(FileChooser.getCurrentDirectory());
 		

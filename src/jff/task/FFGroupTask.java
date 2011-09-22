@@ -18,6 +18,6 @@ public interface FFGroupTask extends Runnable {
 	public void setOutputDebugInfo(BufferedWriter bw);
 	
 	
-	public final static String S="    ";
+	public final static String T="    ";
 	
 }
