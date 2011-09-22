@@ -153,3 +153,560 @@ Started at 2011-09-19 21:29:52
 
 Ended at 2011-09-19 21:31:10
 
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 15:42:22
+
+Ended at 2011-09-20 15:42:22
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-20 15:42:42
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-20 15:42:42
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-20 15:42:42
+        Ended at 2011-09-20 15:43:24
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-09-20 15:43:24
+        Ended at 2011-09-20 15:44:02
+
+    Ended at 2011-09-20 15:44:02
+
+Ended at 2011-09-20 15:44:02
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 15:47:32
+
+Ended at 2011-09-20 15:47:32
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 15:47:40
+
+Ended at 2011-09-20 15:47:40
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 16:44:42
+
+Ended at 2011-09-20 16:44:42
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 16:46:04
+
+Ended at 2011-09-20 16:46:04
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 16:49:10
+
+Ended at 2011-09-20 16:49:10
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 16:54:26
+
+Ended at 2011-09-20 16:54:26
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:03:58
+
+Ended at 2011-09-20 17:03:58
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:05:48
+
+Ended at 2011-09-20 17:05:48
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:12:20
+
+Ended at 2011-09-20 17:12:20
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:30:00
+
+Ended at 2011-09-20 17:30:00
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:33:34
+
+Ended at 2011-09-20 17:33:34
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:35:28
+
+Ended at 2011-09-20 17:35:28
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 17:39:31
+
+Ended at 2011-09-20 17:39:31
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 18:40:31
+
+Ended at 2011-09-20 18:40:31
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 19:12:39
+
+Ended at 2011-09-20 19:12:39
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-20 19:30:07
+
+Ended at 2011-09-20 19:30:07
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:13:29
+
+Ended at 2011-09-21 13:13:29
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:16:20
+
+Ended at 2011-09-21 13:16:20
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:17:11
+
+Ended at 2011-09-21 13:17:11
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:30:44
+
+Ended at 2011-09-21 13:30:44
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:36:34
+
+Ended at 2011-09-21 13:36:34
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:47:42
+
+Ended at 2011-09-21 13:47:42
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:48:12
+
+Ended at 2011-09-21 13:48:12
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 13:49:10
+
+Ended at 2011-09-21 13:49:10
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 14:31:49
+
+Ended at 2011-09-21 14:31:49
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-21 15:18:43
+
+Ended at 2011-09-21 15:18:43
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-21 15:18:47
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-21 15:18:47
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-21 15:18:47
+        Ended at 2011-09-21 15:19:28
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-09-21 15:19:28
+        Ended at 2011-09-21 15:20:04
+
+    Ended at 2011-09-21 15:20:04
+
+Ended at 2011-09-21 15:20:04
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:17:35
+
+Ended at 2011-09-22 15:17:35
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:18:11
+
+Ended at 2011-09-22 15:18:11
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:18:58
+
+Ended at 2011-09-22 15:18:58
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:19:56
+
+Ended at 2011-09-22 15:19:56
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:22:21
+
+Ended at 2011-09-22 15:22:21
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:23:30
+
+Ended at 2011-09-22 15:23:30
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:24:32
+
+Ended at 2011-09-22 15:24:32
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-22 15:35:21
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-22 15:35:21
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-22 15:35:21
+        Ended at 2011-09-22 15:36:04
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-09-22 15:36:04
+        Ended at 2011-09-22 15:36:41
+
+    Ended at 2011-09-22 15:36:41
+
+Ended at 2011-09-22 15:36:41
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:53:41
+
+Ended at 2011-09-22 15:53:41
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:57:55
+
+Ended at 2011-09-22 15:57:55
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 15:58:35
+
+Ended at 2011-09-22 15:58:35
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 16:38:20
+
+Ended at 2011-09-22 16:38:20
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 16:53:07
+
+Ended at 2011-09-22 16:53:07
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 16:58:00
+
+Ended at 2011-09-22 16:58:00
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:02:40
+
+Ended at 2011-09-22 17:02:40
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:04:13
+
+Ended at 2011-09-22 17:04:13
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:05:14
+
+Ended at 2011-09-22 17:05:14
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:06:06
+
+Ended at 2011-09-22 17:06:06
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:06:24
+
+Ended at 2011-09-22 17:06:24
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:06:37
+
+Ended at 2011-09-22 17:06:37
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:27:30
+
+Ended at 2011-09-22 17:27:30
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-22 17:30:11
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-22 17:30:11
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-22 17:30:11
+        Interrupted at 2011-09-22 17:30:17
+
+    Interrupted at 2011-09-22 17:30:17
+
+Interrupted at 2011-09-22 17:30:17
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:36:42
+
+Ended at 2011-09-22 17:36:42
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-22 17:36:55
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-22 17:36:55
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-22 17:36:55
+        Ended at 2011-09-22 17:37:38
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-09-22 17:37:38
+        Ended at 2011-09-22 17:38:14
+
+    Ended at 2011-09-22 17:38:14
+
+Ended at 2011-09-22 17:38:14
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:41:15
+
+Ended at 2011-09-22 17:41:15
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-22 17:41:28
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-22 17:41:28
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-22 17:41:28
+        Ended at 2011-09-22 17:42:11
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-09-22 17:42:11
+        Ended at 2011-09-22 17:42:47
+
+    Ended at 2011-09-22 17:42:47
+
+Ended at 2011-09-22 17:42:47
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:47:07
+
+Ended at 2011-09-22 17:47:07
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 17:57:06
+
+Ended at 2011-09-22 17:57:06
+
+== All Tasks ==
+[number of Tasks: 1 ]
+[number of Files: 2 ]
+Started at 2011-09-22 17:57:15
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-09-22 17:57:15
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-09-22 17:57:15
+        Interrupted at 2011-09-22 17:57:21
+
+    Interrupted at 2011-09-22 17:57:21
+
+Interrupted at 2011-09-22 17:57:21
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:03:31
+
+Ended at 2011-09-22 18:03:31
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:05:21
+
+Ended at 2011-09-22 18:05:21
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:37:26
+
+Ended at 2011-09-22 18:37:26
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:49:32
+
+Ended at 2011-09-22 18:49:32
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:53:10
+
+Ended at 2011-09-22 18:53:10
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 18:56:20
+
+Ended at 2011-09-22 18:56:20
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-22 19:03:12
+
+Ended at 2011-09-22 19:03:12
+

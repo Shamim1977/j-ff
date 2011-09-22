@@ -13,6 +13,9 @@ file: /topolino
 outputformat: iPhone4
 outputdir: /home/francesco/Scaricati/final
 
+language: english
+appdebug: true
+
 optionthreads: 4
 optiontwopasses: true
 optionpads: false

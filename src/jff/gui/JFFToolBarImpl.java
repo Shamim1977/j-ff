@@ -16,9 +16,9 @@ import jff.action.JFFDeleteAllTasks;
 import jff.action.JFFDeleteFiles;
 import jff.action.JFFDeleteGroupTask;
 import jff.action.JFFPauseTasks;
+import jff.action.JFFPlayFile;
 import jff.action.JFFQuit;
 import jff.action.JFFStartTasks;
-import jff.action.JFFVLCPlay;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.JFFMainFrameImpl.RestartableThread;
 import jff.gui.table.JFFTable;
@@ -57,7 +57,7 @@ public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 		Add.setText(null);
 		DeleteFiles=new JButton(new JFFDeleteFiles(Table, items));
 		DeleteFiles.setText(null);
-		PlayVLC=new JButton(new JFFVLCPlay(Table, items));
+		PlayVLC=new JButton(new JFFPlayFile(Table, items));
 		PlayVLC.setText(null);
 		
 		DeleteTask=new JButton(new JFFDeleteGroupTask(TreeTable,items));

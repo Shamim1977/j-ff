@@ -51,6 +51,8 @@ import jff.task.FFMultipleGroupTask;
 import jff.task.FFMultipleGroupTaskImpl;
 import jff.task.FFSingleTask;
 import jff.task.FFSingleTaskImpl;
+import jff.translation.JFFStrings;
+import jff.translation.JFFStringsImpl;
 
 
 
@@ -65,6 +67,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	private JFFTabbedPane TabbedPane; 
 	
 	private JFFBundledItems Items;
+	
 	
 	
 	public class RestartableThread{
@@ -89,6 +92,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	
 	public class JFFBundledItems {
 		
+		public JFFStrings S;
 		public JFFGroupSelectableVideoFile Files;
 		public FFMultipleGroupTask Tasks;
 		public FFOptions Options;
@@ -102,7 +106,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 				FileReader fstream=new FileReader(filePath);
 				BufferedReader b=new BufferedReader(fstream);
 			
-				Files=new JFFGroupSelectableVideoFileImpl(b);
+				S=new JFFStringsImpl(b);
 			
 				b.close();
 				
@@ -111,7 +115,22 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 				e.printStackTrace();
 			}
 			
-			Tasks=new FFMultipleGroupTaskImpl("Tutti i processi"); 
+			
+			try {
+				
+				FileReader fstream=new FileReader(filePath);
+				BufferedReader b1=new BufferedReader(fstream);
+			
+				Files=new JFFGroupSelectableVideoFileImpl(b1);
+			
+				b1.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Tasks=new FFMultipleGroupTaskImpl(S); 
 			
 			try {
 			
@@ -138,8 +157,9 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 
 	public JFFBundledItems(){
 			
+			S=new JFFStringsImpl();
 			Files=new JFFGroupSelectableVideoFileImpl();
-	        Tasks=new FFMultipleGroupTaskImpl("Tutti i processi"); 
+	        Tasks=new FFMultipleGroupTaskImpl(S); 
 	        Options=new FFOptionsImpl("iPhone4",new File(System.getProperty("user.dir")),false);
 	        Executor=new RestartableThread(Tasks);
 			Executor.restart();
@@ -167,7 +187,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	        JScrollPane scrollpane = new JScrollPane((JTable)Table);
 	        
 	        
-			scrollpane.setBorder(BorderFactory.createTitledBorder("Files aperti"));
+			scrollpane.setBorder(BorderFactory.createTitledBorder(Items.S.openedFiles()));
 	        
 	      //Create the tabbed pane
 	        TabbedPane= new JFFTabbedPaneImpl(Items); 
@@ -181,7 +201,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		    
 		    JScrollPane scrollpane2 = new JScrollPane((JTable)TreeTable);
 
-			scrollpane2.setBorder(BorderFactory.createTitledBorder("Processi"));
+			scrollpane2.setBorder(BorderFactory.createTitledBorder(Items.S.processes()));
 		    
 		  //Create the menu bar.
 	        MenuBar = new JFFMenuBarImpl(Table,TabbedPane,TreeTable,Items);
@@ -201,7 +221,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	        
 	        JPanel ppp=new JPanel();
 			ppp.setLayout(new BoxLayout(ppp,BoxLayout.X_AXIS));
-			TitledBorder tb=BorderFactory.createTitledBorder("Opzioni");
+			TitledBorder tb=BorderFactory.createTitledBorder(Items.S.options());
 			tb.setTitleJustification(TitledBorder.RIGHT);
 			ppp.setBorder(tb);
 			ppp.addMouseListener(new MouseAdapter(){

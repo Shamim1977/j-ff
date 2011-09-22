@@ -21,12 +21,12 @@ public class JFFDeleteFiles extends AbstractAction {
 	private JFFTable Table;
 	
 	public JFFDeleteFiles(JFFTable t, JFFBundledItems items){
-		super("Elimina files",new ImageIcon("img/delete.png"));
+		super(items.S.deleteFiles(),new ImageIcon("img/delete.png"));
 		
 		Files=items.Files;
 		Table=t;
 		
-		putValue(SHORT_DESCRIPTION, "elimina i files selezionati (solamente dall'applicazione)");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.deleteFilesDescription());  // Will appear as tooltip text.
         
 	}
 	

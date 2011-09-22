@@ -20,13 +20,13 @@ public class JFFStartTasks extends AbstractAction {
 	private RestartableThread Refresher;
 	
 	public JFFStartTasks(JFFBundledItems items){
-		super("Inizia conversioni",new ImageIcon("img/playtasks.png"));
+		super(items.S.startTasks(),new ImageIcon("img/playtasks.png"));
 		
 		Tasks=items.Tasks;
 		Executor=items.Executor;
 		Refresher=items.Refresher;
 		
-		putValue(SHORT_DESCRIPTION, "inizia le operazioni di conversione");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION,items.S.startTasksDescription());  // Will appear as tooltip text.
         
 	}
 	

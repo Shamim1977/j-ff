@@ -31,6 +31,7 @@ import jff.task.FFGroupTaskImpl;
 import jff.task.FFMultipleGroupTask;
 import jff.task.FFSingleTask;
 import jff.task.FFSingleTaskImpl;
+import jff.translation.JFFStrings;
 
 @SuppressWarnings("serial")
 public class JFFAddTask extends AbstractAction {
@@ -42,23 +43,25 @@ public class JFFAddTask extends AbstractAction {
 	private FFMultipleGroupTask Tasks;
 	private FFOptions Options;
 	
+	private JFFStrings S;
+	
 	public JFFAddTask(JFFTable b, JFFTreeTable tb, JFFBundledItems items){
-		super("Crea processo",new ImageIcon("img/addtask.png"));
+		super(items.S.addTask(),new ImageIcon("img/addtask.png"));
 		
 		Table=b;
 		TreeTable=tb;
 		Files=items.Files;
 		Tasks=items.Tasks;
 		Options=items.Options;
-		
-		putValue(SHORT_DESCRIPTION, "crea un nuovo processo con i files selezionati e lo aggiunge in coda");  // Will appear as tooltip text.
+		S=items.S;
+		putValue(SHORT_DESCRIPTION,items.S.addTaskDescription());  // Will appear as tooltip text.
         
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		FFGroupTask gT=new FFGroupTaskImpl();
+		FFGroupTask gT=new FFGroupTaskImpl(S);
 		
 		FFSingleTask f;
 		

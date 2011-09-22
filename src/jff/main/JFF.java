@@ -12,6 +12,7 @@ import jff.task.FFGroupTask;
 import jff.task.FFGroupTaskImpl;
 import jff.task.FFSingleTask;
 import jff.task.FFSingleTaskImpl;
+import jff.translation.JFFStringsImpl;
 
 public class JFF {
 
@@ -45,7 +46,7 @@ public class JFF {
 		FFSingleTask ff2=new FFSingleTaskImpl(f2);
 		FFSingleTask ff3=new FFSingleTaskImpl(f3);
 		
-		FFGroupTask fff=new FFGroupTaskImpl();
+		FFGroupTask fff=new FFGroupTaskImpl(new JFFStringsImpl());
 		
 		fff.add(ff1);
 		fff.add(ff2);

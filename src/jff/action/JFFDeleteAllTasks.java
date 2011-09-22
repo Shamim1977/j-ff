@@ -21,13 +21,13 @@ public class JFFDeleteAllTasks extends AbstractAction {
 	private RestartableThread Refresher;
 	
 	public JFFDeleteAllTasks(JFFTreeTable tb, JFFBundledItems items){
-		super("Elimina tutti i processi",new ImageIcon("img/deletetasks.png"));
+		super(items.S.deleteAllTasks(),new ImageIcon("img/deletetasks.png"));
 		
 		TreeTable=tb;
 		Tasks=items.Tasks;
 		Refresher=items.Refresher;
 		
-		putValue(SHORT_DESCRIPTION, "elimina tutti i processi (solo se nessuno e\' in esecuzione)");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.deleteAllTasksDescription());  // Will appear as tooltip text.
         
 	}
 	

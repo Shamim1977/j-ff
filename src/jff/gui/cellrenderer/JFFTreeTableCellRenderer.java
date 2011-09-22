@@ -24,6 +24,7 @@ import jff.task.FFSingleTask;
 @SuppressWarnings("serial")
 public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer {
 
+	
 	protected int visibleRow;
 	private JFFTreeTable TreeTable;
 
@@ -51,12 +52,13 @@ public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-		if(isSelected)
+		if (isSelected)
 			setBackground(table.getSelectionBackground());
 		else
 			setBackground(table.getBackground());
    
 		visibleRow = row;
+		
 		return this;
 	}
 

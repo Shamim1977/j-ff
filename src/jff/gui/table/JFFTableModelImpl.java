@@ -5,18 +5,22 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.item.JFFGroupSelectableVideoFile;
+import jff.item.JFFGroupSelectableVideoFileImpl;
 import jff.item.VideoFile.ValueNotFoundException;
+import jff.translation.JFFStrings;
 
 @SuppressWarnings("serial")
 public class JFFTableModelImpl extends AbstractTableModel implements JFFTableModel {
-    static private String[] columnNames = {"Sel","Nome","Durata","Formato","PAR","DAR"};
-    
+  
     private JFFGroupSelectableVideoFile SelectedFiles;
+    private JFFStrings S;
     
-    public JFFTableModelImpl(JFFGroupSelectableVideoFile f){
+    public JFFTableModelImpl(JFFBundledItems items){
     	super();
-		SelectedFiles=f;
+		SelectedFiles=items.Files;
+		S=items.S;
 		
 		//SelectedFiles.add(new VideoFileS(new File("/home/francesco/Scaricati/input 1.mkv"),true));
 		//SelectedFiles.add(new VideoFileS(new VideoFileImpl(new File("/home/francesco/Scaricati/input B2.3gp"),true)));
@@ -24,7 +28,16 @@ public class JFFTableModelImpl extends AbstractTableModel implements JFFTableMod
     	
     };
     
-    public int getColumnCount() {
+    public JFFTableModelImpl(JFFStrings strings, JFFGroupSelectableVideoFileImpl files) {
+    	super();
+		
+	}
+
+	public JFFTableModelImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getColumnCount() {
         return 6;
     }
 
@@ -33,7 +46,23 @@ public class JFFTableModelImpl extends AbstractTableModel implements JFFTableMod
     }
 
     public String getColumnName(int col) {
-        return columnNames[col];
+    	
+    	if (S!=null)
+    		switch (col){
+    		
+    		case 0: return S.tableSel();
+    		case 1: return S.tableName();
+    		case 2: return S.tableLength();
+    		case 3: return S.tableFormat();
+    		case 4: return S.tablePAR();
+    		case 5: return S.tableDAR();
+    	
+    		default: return "???";
+    		
+    		}
+    	
+    	return "???";
+ 
     }
 
     public Object getValueAt(int row, int col) {

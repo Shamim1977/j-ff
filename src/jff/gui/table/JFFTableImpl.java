@@ -21,14 +21,13 @@ public class JFFTableImpl extends JTable implements JFFTable {
 
 	private JFFTextCellRenderer Renderer;
 
-	private JFFGroupSelectableVideoFile Files;
+	private JFFBundledItems Items;
 	
 	public JFFTableImpl(JFFBundledItems items){
 		super();
 	
 		Renderer=new JFFTextCellRenderer();
-		Files=items.Files;
-		
+		Items=items;
 		setColW();
 		
 	}
@@ -55,7 +54,7 @@ public class JFFTableImpl extends JTable implements JFFTable {
 	
 	public void rebuild(){
 		
-		setModel(new JFFTableModelImpl(Files));
+		setModel(new JFFTableModelImpl(Items));
 		setColW();
 		
 		
@@ -64,7 +63,7 @@ public class JFFTableImpl extends JTable implements JFFTable {
 	@Override
 	public TableModel createDefaultDataModel(){
 		
-		return new JFFTableModelImpl(new JFFGroupSelectableVideoFileImpl());
+		return new JFFTableModelImpl();
 	}
 	
 	@Override

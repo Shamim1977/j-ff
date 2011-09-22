@@ -47,12 +47,12 @@ public class JFFHideOptions extends AbstractAction {
 	private JFFTabbedPane TabbedPane;
 	
 	
-	public JFFHideOptions(JFFTabbedPane p){
-		super("Nascondi opzioni",new ImageIcon("img/hideoptions.png"));
+	public JFFHideOptions(JFFTabbedPane p, JFFBundledItems items){
+		super(items.S.hideOptions(),new ImageIcon("img/hideoptions.png"));
 		
 		TabbedPane=p;
 		
-		putValue(SHORT_DESCRIPTION, "nasconde il menu\' di modifica delle opzioni");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.hideOptionsDescription());  // Will appear as tooltip text.
         
 		
 	}
