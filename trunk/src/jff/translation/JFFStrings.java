@@ -21,6 +21,8 @@ public interface JFFStrings {
 	public String deleteGroupTask();
 	public String hideOptions();
 	public String showOptions();
+	public String hideFiles();
+	public String showFiles();
 	public String pauseTasks();
 	public String quit();
 	public String showCredits();
@@ -37,6 +39,8 @@ public interface JFFStrings {
 	public String deleteGroupTaskDescription();
 	public String hideOptionsDescription();
 	public String showOptionsDescription();
+	public String hideFilesDescription();
+	public String showFilesDescription();
 	public String pauseTasksDescription();
 	public String quitDescription();
 	public String showCreditsDescription();

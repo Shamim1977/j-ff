@@ -15,7 +15,7 @@ public interface FFSingleTask extends Runnable {
 	
 	FFCommandLine commandLine();
 	
-	public final static String S="        ";
+	public final static String T="        ";
 
 	void setOutputDebugInfo(BufferedWriter bw);
 }

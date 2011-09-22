@@ -30,6 +30,9 @@ import jff.task.FFMultipleGroupTask;
 @SuppressWarnings("serial")
 public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 
+
+	private Component Parent;
+	
 	private JFFTable Table;
 	private JFFTreeTable TreeTable;
 	
@@ -45,15 +48,16 @@ public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 	private JButton ResumePlay;
 	
 	
-	public JFFToolBarImpl(JFFTable b, JFFTreeTable tb, JFFBundledItems items){
+	public JFFToolBarImpl(Component c, JFFTable b, JFFTreeTable tb, JFFBundledItems items){
 		super();
 		setFloatable(false);
 		
+		Parent=c;
 		
 		Table=b;
 		TreeTable=tb;
 		
-		Add=new JButton(new JFFAddFiles(this.getParent(), Table, items));
+		Add=new JButton(new JFFAddFiles(Parent, Table, items));
 		Add.setText(null);
 		DeleteFiles=new JButton(new JFFDeleteFiles(Table, items));
 		DeleteFiles.setText(null);

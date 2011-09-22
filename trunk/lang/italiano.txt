@@ -14,6 +14,8 @@ deletefiles: Elimina Files
 deletegrouptask: Elimina Processo
 hideoptions: Nascondi opzioni
 showoptions: Mostra opzioni
+hidefiles: Nascondi Files
+showfiles: Mostra Files
 pausetasks: Interrompi Conversioni
 quit: Esci
 showcredits: Informazioni su j-ff
@@ -28,6 +30,8 @@ deletefilesdescr: elimina i files selezionati (solamente dall'applicazione)
 deletegrouptaskdescr: elimina un processo (solo se non è in esecuzione)
 hideoptionsdescr: nasconde il menu\' di modifica delle opzioni
 showoptionsdescr: mostra il menu\' di modifica delle opzioni
+hidefilesdescr: nasconde la tabella dei file
+showfilesdescr: mostra la tabella dei file
 pausetasksdescr: interrompe le operazioni di conversione
 quitdescr: salva lo stato dell'applicazione ed esce
 showcreditsdescr: info sviluppatori

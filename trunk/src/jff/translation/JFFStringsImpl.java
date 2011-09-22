@@ -127,7 +127,15 @@ public class JFFStringsImpl implements JFFStrings {
 
 	private String InPause;
 
-	private String OK; 
+	private String OK;
+
+	private String HideFiles;
+
+	private String ShowFiles;
+
+	private String HideFilesDescr;
+
+	private String ShowFilesDescr; 
 	
 	public JFFStringsImpl(){
 		parseLanguage(new File("lang"+File.separator+Lang+".txt"));
@@ -231,7 +239,13 @@ public class JFFStringsImpl implements JFFStrings {
 			
 			else if (P.find("showoptions"))
 				ShowOptions=P.getString();
-											
+					
+			else if (P.find("hidefiles"))
+				HideFiles=P.getString();
+			
+			else if (P.find("showfiles"))
+				ShowFiles=P.getString();
+			
 			else if (P.find("pausetasks"))
 				PauseTasks=P.getString();
 			
@@ -270,6 +284,12 @@ public class JFFStringsImpl implements JFFStrings {
 												
 			else if (P.find("showoptionsdescr"))
 				ShowOptionsDescr=P.getString();
+			
+			else if (P.find("hidefilesdescr"))
+				HideFilesDescr=P.getString();
+			
+			else if (P.find("showfilesdescr"))
+				ShowFilesDescr=P.getString();
 			
 			else if (P.find("pausetasksdescr"))
 				PauseTasksDescr=P.getString();
@@ -727,6 +747,30 @@ public class JFFStringsImpl implements JFFStrings {
 	public String ok() {
 		
 		return OK;
+	}
+
+	@Override
+	public String hideFiles() {
+		
+		return HideFiles;
+	}
+
+	@Override
+	public String showFiles() {
+		
+		return ShowFiles;
+	}
+
+	@Override
+	public String hideFilesDescription() {
+		
+		return HideFilesDescr;
+	}
+
+	@Override
+	public String showFilesDescription() {
+		
+		return ShowFilesDescr;
 	}
 	
 	

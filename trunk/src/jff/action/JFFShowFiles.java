@@ -11,17 +11,17 @@ import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.tabbedpane.JFFTabbedPane;
 
 @SuppressWarnings("serial")
-public class JFFShowOptions extends AbstractAction {
+public class JFFShowFiles extends AbstractAction {
 
 	private Component Parent;
 	
 	
-	public JFFShowOptions(Component c, JFFBundledItems items){
-		super(items.S.showOptions(),new ImageIcon("img/showoptions.png"));
+	public JFFShowFiles(Component c, JFFBundledItems items){
+		super(items.S.showFiles(),new ImageIcon("img/showfiles.png"));
 	
 		Parent=c;
 		
-		putValue(SHORT_DESCRIPTION, items.S.showOptionsDescription());  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.showFilesDescription());  // Will appear as tooltip text.
         
 		
 	}
@@ -30,7 +30,7 @@ public class JFFShowOptions extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		
-		((JFFMainFrameImpl)Parent).showOptions();
+		((JFFMainFrameImpl)Parent).showFiles();
 		
 		
 		

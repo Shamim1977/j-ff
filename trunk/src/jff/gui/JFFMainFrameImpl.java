@@ -66,6 +66,11 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	private JFFTreeTable TreeTable;
 	private JFFTabbedPane TabbedPane; 
 	
+	private JScrollPane TablePane;
+	private JPanel TabbedPanePane;
+	private JScrollPane TreeTablePane;
+	
+	
 	private JFFBundledItems Items;
 	
 	
@@ -184,10 +189,10 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	      //Create the Table
 	        Table = new JFFTableImpl(Items);
 	        ((JFFTableImpl)Table).rebuild();
-	        JScrollPane scrollpane = new JScrollPane((JTable)Table);
+	        TablePane=new JScrollPane((JTable)Table);
 	        
 	        
-			scrollpane.setBorder(BorderFactory.createTitledBorder(Items.S.openedFiles()));
+			TablePane.setBorder(BorderFactory.createTitledBorder(Items.S.openedFiles()));
 	        
 	      //Create the tabbed pane
 	        TabbedPane= new JFFTabbedPaneImpl(Items); 
@@ -199,52 +204,42 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		    Items.Refresher=new RestartableThread(new JFFProgressRefresherImpl(TreeTable,Items));//"this" is not complete 
 			Items.Refresher.restart();//start the refresher
 		    
-		    JScrollPane scrollpane2 = new JScrollPane((JTable)TreeTable);
+			TreeTablePane=new JScrollPane((JTable)TreeTable);
 
-			scrollpane2.setBorder(BorderFactory.createTitledBorder(Items.S.processes()));
+			TreeTablePane.setBorder(BorderFactory.createTitledBorder(Items.S.processes()));
 		    
 		  //Create the menu bar.
-	        MenuBar = new JFFMenuBarImpl(Table,TabbedPane,TreeTable,Items);
+	        MenuBar = new JFFMenuBarImpl(this,Table,TabbedPane,TreeTable,Items);
   
 	        setJMenuBar((JMenuBar) MenuBar);
 		    
 	      //Create the ToolBar
-	        ToolBar = new JFFToolBarImpl(Table,TreeTable,Items);
+	        ToolBar = new JFFToolBarImpl(this,Table,TreeTable,Items);
 	      
 	        add((JToolBar) ToolBar);
 	        
 	       
 	      
-	        add(scrollpane);
 	        
 	        //add(Box.createVerticalGlue());
 	        
-	        JPanel ppp=new JPanel();
-			ppp.setLayout(new BoxLayout(ppp,BoxLayout.X_AXIS));
+	        TabbedPanePane=new JPanel();
+	        TabbedPanePane.setLayout(new BoxLayout(TabbedPanePane,BoxLayout.X_AXIS));
 			TitledBorder tb=BorderFactory.createTitledBorder(Items.S.options());
 			tb.setTitleJustification(TitledBorder.RIGHT);
-			ppp.setBorder(tb);
-			ppp.addMouseListener(new MouseAdapter(){
-
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					
-					if (TabbedPane.isReduced())
-						TabbedPane.extendPane();
-				
-				}
-
-				});
+			TabbedPanePane.setBorder(tb);
 			
-	        ppp.add((JTabbedPane) TabbedPane);
-			ppp.add(Box.createHorizontalGlue());
-	        
-			add(ppp);
 			
-	        //add(Box.createVerticalGlue());
+			TabbedPanePane.add((JTabbedPane) TabbedPane);
+			//TabbedPanePane.add(Box.createHorizontalGlue());
 	        
-	        add(scrollpane2);
-	        
+			
+			//add the panes in the main layout
+
+			add(TablePane);
+			add(TabbedPanePane);
+			add(TreeTablePane);
+			
 	//        myPanelAdder=new PanelAdderImpl(this);
 	        
 	//        ((JPanel)myPanelAdder).setAlignmentX(LEFT_ALIGNMENT);
@@ -264,10 +259,38 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	        setLocationRelativeTo(null);
 		      
 	        setVisible(true);
+	
 	        
 		}
 
+
+	public void hideOptions(){
 		
+		TabbedPanePane.setVisible(false);
+		pack();
+		repaint();
+	}	
+
+	public void hideFiles(){
+		
+		TablePane.setVisible(false);
+		pack();
+		repaint();
+	}	
+
+	public void showOptions(){
+		
+		TabbedPanePane.setVisible(true);
+		pack();
+		repaint();
+	}	
+
+	public void showFiles(){
+		
+		TablePane.setVisible(true);
+		pack();
+		repaint();
+	}	
 
 	
 	

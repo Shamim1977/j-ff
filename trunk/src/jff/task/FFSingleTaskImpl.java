@@ -118,12 +118,12 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			
 			if (Verbose) try {
 				
-				DebugFile.write(S+"** File "+CommandLine.input().file().getAbsolutePath()+" **");
+				DebugFile.write(T+"** File "+CommandLine.input().file().getAbsolutePath()+" **");
 				DebugFile.newLine();
-				DebugFile.write(S+"[.....]");
+				DebugFile.write(T+"[.....]");
 				DebugFile.newLine();
 
-				DebugFile.write(S+"Started at "+JFFTime.now());
+				DebugFile.write(T+"Started at "+JFFTime.now());
 				DebugFile.newLine();
 			  
 			} catch (IOException e) {
@@ -204,7 +204,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 				
 				if (Verbose) try {
 					
-					DebugFile.write(S+"Interrupted at "+JFFTime.now());
+					DebugFile.write(T+"Interrupted at "+JFFTime.now());
 				    DebugFile.newLine();
 				    DebugFile.newLine();
 					
@@ -220,7 +220,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			
 			if (Verbose&&!Thread.currentThread().isInterrupted()) try {
 				
-				DebugFile.write(S+"Ended at "+JFFTime.now());
+				DebugFile.write(T+"Ended at "+JFFTime.now());
 			    DebugFile.newLine();
 			    DebugFile.newLine();
 			    
