@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
+import jff.translation.JFFStrings;
 import jff.utility.JFFTime;
 
 public class FFGroupTaskImpl implements FFGroupTask, Runnable {
@@ -18,10 +19,12 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 	private String Name="";
 	private boolean Verbose=false;
 	private BufferedWriter DebugFile=null;
+	private JFFStrings S;
 	
-	public FFGroupTaskImpl(String n){
+	public FFGroupTaskImpl(JFFStrings strings, String n){
 		Tasks=new Vector<FFSingleTask>();
 		Name=n;
+		S=strings;
 	}
 	
 	@Override
@@ -30,11 +33,12 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		if ((!Tasks.isEmpty())&&Name.isEmpty())
 			Name=Tasks.get(0).commandLine().output().getParent();
 			
-		return Name+" ["+Tasks.size()+"] "+(Running?">":"||");
+		return Name+" ["+Tasks.size()+"] ["+(Running?S.executing():S.inPause())+"]";
 	}
 
-	public FFGroupTaskImpl(){
+	public FFGroupTaskImpl(JFFStrings strings){
 		Tasks=new Vector<FFSingleTask>();
+		S=strings;
 	}
 
 	@Override

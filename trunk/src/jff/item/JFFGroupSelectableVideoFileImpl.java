@@ -33,7 +33,7 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 			e.printStackTrace();
 		}
 		
-		if (!p.isEmpty()&&p.find("file")){
+		if (p.find("file")){
 			
 			File f=new File(p.getString());
 			

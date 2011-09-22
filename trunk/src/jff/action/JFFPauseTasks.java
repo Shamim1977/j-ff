@@ -18,13 +18,13 @@ public class JFFPauseTasks extends AbstractAction {
 	private RestartableThread Refresher;
 	
 	public JFFPauseTasks(JFFBundledItems items){
-		super("Interrompi conversioni",new ImageIcon("img/pausetasks.png"));
+		super(items.S.pauseTasks(),new ImageIcon("img/pausetasks.png"));
 		
 		Tasks=items.Tasks;
 		Executor=items.Executor;
 		Refresher=items.Refresher;
 		
-		putValue(SHORT_DESCRIPTION, "interrompe le operazioni di conversione");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.pauseTasksDescription());  // Will appear as tooltip text.
         
 	}
 	

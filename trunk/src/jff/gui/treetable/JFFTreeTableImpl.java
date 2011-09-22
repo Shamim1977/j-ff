@@ -41,12 +41,12 @@ public class JFFTreeTableImpl extends JTable implements JFFTreeTable {
 	private JFFProgressBarCellRenderer ProgressBarCellRenderer;
 	private JFFTextCellRenderer TextCellRenderer;
 
-    private FFMultipleGroupTask Tasks;
+    private JFFBundledItems Items;
     
     public JFFTreeTableImpl(JFFBundledItems items) {
     	super();
 	
-    	Tasks=items.Tasks;
+    	Items=items;
 
     	TextCellRenderer=new JFFTextCellRenderer();
     	ProgressBarCellRenderer=new JFFProgressBarCellRenderer();
@@ -73,7 +73,7 @@ public class JFFTreeTableImpl extends JTable implements JFFTreeTable {
     
     public void rebuild(){
     	
-    	JFFTreeTableModel treeTableModel=new JFFTreeTableModelImpl(Tasks);
+    	JFFTreeTableModel treeTableModel=new JFFTreeTableModelImpl(Items);
     	// Create the tree. It will be used as a renderer and editor. 
     	TreeCellRenderer = new JFFTreeTableCellRenderer(this,treeTableModel); 
 

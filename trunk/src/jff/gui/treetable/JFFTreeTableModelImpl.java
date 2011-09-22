@@ -8,10 +8,12 @@ import java.util.Vector;
 import javax.swing.JProgressBar;
 import javax.swing.event.TreeModelListener;
 
+import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.treetable.structure.AbstractTreeTableModel;
 import jff.task.FFGroupTask;
 import jff.task.FFMultipleGroupTask;
 import jff.task.FFSingleTask;
+import jff.translation.JFFStrings;
 
 /**
  * FileSystemModel is a TreeTableModel representing a hierarchical file 
@@ -30,11 +32,15 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     // Names of the columns.
     static protected String[]  columnNames = {"Processi", "Files", "Progresso", "Info"};
 
+    private JFFStrings S;
+    
     // Types of the columns.
-    static protected Class[]  cTypes = {JFFTreeTableModel.class, Integer.class, JProgressBar.class, String.class};
+    static protected Class<?>[]  cTypes = {JFFTreeTableModel.class, Integer.class, JProgressBar.class, String.class};
 
-    public JFFTreeTableModelImpl(FFMultipleGroupTask t) { 
-    	super(t);
+    public JFFTreeTableModelImpl(JFFBundledItems items) { 
+    	super(items.Tasks);
+    	
+    	S=items.S;
     }
 
     //
@@ -89,13 +95,25 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     }
     
     @Override
-    public String getColumnName(int column) {
+    public String getColumnName(int col) {
 	
-    	return columnNames[column];
+    	if (S!=null)
+    		switch (col){
+    		
+    		case 0: return S.treeTableProcesses();
+    		case 1: return S.treeTableFiles();
+    		case 2: return S.treeTableProgress();
+    		case 3: return S.treeTableInfo();
+    	
+    		default: return "???";
+    		
+    		}
+    	
+    	return "???";
     }
 
     @Override
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
 	
     	return cTypes[column];//TODO
     }
@@ -108,8 +126,8 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     		if (column==1)
     	   		return ((FFMultipleGroupTask)node).sizeInFiles();
     		else if (column==2)
-    	   		return ((FFMultipleGroupTask)node).runningTasks()+" in esecuzione, "+
-    	   			   ((FFMultipleGroupTask)node).pausedTasks()+" in pausa";
+    	   		return ((FFMultipleGroupTask)node).runningTasks()+" "+S.executing()+", "+
+    	   			   ((FFMultipleGroupTask)node).pausedTasks()+" "+S.inPause();
     		else if (column==3)
     	   		return null;//info
     	}
@@ -130,7 +148,7 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     	if (node instanceof FFSingleTask ){
     	
     		if (column==1)
-    	   		return ((FFSingleTask)node).isDone()?"ok":null;
+    	   		return ((FFSingleTask)node).isDone()?S.ok():null;
     		else if (column==2)
     	   		return ((FFSingleTask)node).progressPercentOfTheTask();
     		else if (column==3)

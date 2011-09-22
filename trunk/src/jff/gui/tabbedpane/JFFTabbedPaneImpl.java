@@ -28,11 +28,13 @@ import jff.action.JFFChangeOutputPath;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.item.FFOptions;
 import jff.item.JFFSelectableVideoFileImpl;
+import jff.translation.JFFStrings;
 
 @SuppressWarnings("serial")
 public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 
 	private FFOptions Options;
+	private JFFStrings S;
 	
 	private JLabel OutputPath;
 	private JButton OutputChanger;
@@ -49,7 +51,7 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 	public JFFTabbedPaneImpl(JFFBundledItems items){
 		super();
 		Options=items.Options;
-		
+		S=items.S;
 		//getContentPane().setLayout(new BoxLayout(getContentPane(),BoxLayout.Y_AXIS));
 		
 		JPanel p=new JPanel();
@@ -63,10 +65,10 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 		p.add(OutputPath);
 		p.add(Box.createRigidArea(new Dimension(30,1)));
 		OutputChanger=new JButton(new JFFChangeOutputPath(this.getParent(),Options,OutputPath));
-		OutputChanger.setText("Cambia");
+		OutputChanger.setText(S.optionsChangeDestinationFolder());
 		p.add(OutputChanger);
 		
-		addTab("Cartella di destinazione",null,p);
+		addTab(S.optionsDestinationFolder(),null,p);
 		
 		JPanel p2=new JPanel();
 		
@@ -80,10 +82,10 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 		
 		p2.add(Format);
 		p2.add(Box.createRigidArea(new Dimension(30,1)));
-		p2.add(new JLabel("format"));
+		p2.add(new JLabel(S.optionsOutputFormatTag()));
 		p2.add(Box.createHorizontalGlue());
 		
-		addTab("Formato output",null,p2);
+		addTab(S.optionsOutputFormat(),null,p2);
 		
 		
 		JPanel p3=new JPanel();
@@ -97,7 +99,7 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 		
 		p3.add(Threads);
 		p3.add(Box.createRigidArea(new Dimension(30,1)));
-		p3.add(new JLabel("threads"));
+		p3.add(new JLabel(S.optionsThreadsTag()));
 		p3.add(Box.createHorizontalGlue());
 		
 		Threads.addChangeListener(new ChangeListener(){
@@ -108,13 +110,13 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 				
 			}});
 		
-		addTab("Hardware",null,p3);
+		addTab(S.optionsHardware(),null,p3);
 		
 		
 		JPanel p4=new JPanel();
 		p4.setLayout(new BoxLayout(p4,BoxLayout.X_AXIS));
 		
-		TwoPasses=new JCheckBox("2 passi");
+		TwoPasses=new JCheckBox(S.optionsTwoPassesTag());
 		TwoPasses.setSelected(Options.twoPasses());
 		p4.add(TwoPasses);
 		
@@ -126,7 +128,7 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 				Options.setTwoPasses(TwoPasses.isSelected());
 			}});
 
-		Pads=new JCheckBox("pads");
+		Pads=new JCheckBox(S.optionsPadsTag());
 		Pads.setSelected(Options.pads());
 		p4.add(Pads);
 
@@ -139,8 +141,8 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 			}});
 
 		
-		Small=new JCheckBox("piccolo");
-		Small.setSelected(false);
+		Small=new JCheckBox(S.optionsSmallTag());
+		Small.setSelected(Options.smallFiles());
 		p4.add(Small);
 		
 		Small.addChangeListener(new ChangeListener(){
@@ -152,7 +154,7 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 			}});
 
 		
-		Debug=new JCheckBox("debug");
+		Debug=new JCheckBox(S.optionsDebugTag());
 		Debug.setSelected(Options.verbose());
 		p4.add(Debug);
 
@@ -164,7 +166,7 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 				Options.setVerbose(Debug.isSelected());
 			}});
 
-		addTab("Opzioni di conversione",null,p4);
+		addTab(S.optionsConvertOptions(),null,p4);
 		
 		
 		p4.add(Box.createHorizontalGlue());

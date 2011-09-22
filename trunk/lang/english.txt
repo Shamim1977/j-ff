@@ -1,0 +1,81 @@
+!! default language file
+
+!!main
+
+allprocesses: All Processes
+openedfiles: Opened Files
+processes: Processes
+options: Options
+
+!!actions
+
+addfiles: Add Files
+addtask: Add Task
+deletealltasks: Delete All Tasks
+deletefiles: Delete Files
+deletegrouptask: Delete Task
+hideoptions: Hide Options
+showoptions: Show Options
+pausetasks: Pause Tasks
+quit: Quit
+showcredits: Show j-ff Info
+showtutorial: Tutorial
+starttasks: Start Tasks
+playfile: Play File
+
+addfilesdescr: open the files you will convert
+addtaskdescr: create a Task with the selected files and enqueue it
+deletealltasksdescr: delete all the Tasks (only if none is executing)
+deletefilesdescr: delete selected files (only from the application view)
+deletegrouptaskdescr: delete a Task (only if is not executing)
+hideoptionsdescr: hide the modify options menu
+showoptionsdescr: show the modify options menu
+pausetasksdescr: interrupt conversion operations
+quitdescr: save application status and exit
+showcreditsdescr: developer info
+showtutorialdescr: display application tutorial 
+starttasksdescr: start conversion operations
+playfiledescr: open the selected file with the default system player
+
+!!menu voices
+
+filemenu: Files
+optionmenu: Options
+taskmenu: Tasks
+infomenu: Info
+
+!!table headers
+
+tsel: Sel
+tname: Name
+tlenght: Lenght
+tformat: Format
+tpar: PAR
+tdar:DAR
+
+!!treetable headers
+
+ttprocesses: Processes
+ttfiles: Files
+ttprogress: Progress
+ttinfo: Informations
+
+!!options tags
+
+odestfolder: Destination Folder
+ochangedestfolder: Change
+ooutputformat: Output Format
+ooutputformattag: format
+ohardware: Hardware
+othreadstag: threads
+oconvertoptions: Convert Options
+otwopasses: two passes
+opads: pads
+osmall: small
+odebug: debug
+
+!!strings in the treetable(executing and inpause should have the same length)
+
+executing: exec
+inpause: paused
+ok: ok

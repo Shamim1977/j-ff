@@ -35,7 +35,7 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 				//Frame Rate - for 29.97 use 30000/1001 and for 23.976 use 24000/1001
 				VideoFPS="30000/1001";
 				VideoKeyFPS="30";
-				AudioCodec="libfaac";
+				AudioCodec="libfaac";// useless
 				AudioChannels="2";
 				AudioBitrate="128";
 				AudioSamplingFrequency="44100";

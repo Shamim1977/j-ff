@@ -442,8 +442,8 @@ public class FFCommandLineImpl implements FFCommandLine {
 			
 			CommandLine.add("-vcodec");
 			CommandLine.add(Options.outputOptions().videoCodec());
-			CommandLine.add("-acodec");
-			CommandLine.add(Options.outputOptions().audioCodec());
+		//	CommandLine.add("-acodec");
+		//	CommandLine.add(Options.outputOptions().audioCodec());
 		}
 
 		if (Options.twoPasses()){//se i passi sono 2 non serve codec audio tanto non lo converte
@@ -453,8 +453,8 @@ public class FFCommandLineImpl implements FFCommandLine {
 			
 			CommandLine2.add("-vcodec");
 			CommandLine2.add(Options.outputOptions().videoCodec());
-			CommandLine2.add("-acodec");
-			CommandLine2.add(Options.outputOptions().audioCodec());
+		//	CommandLine2.add("-acodec");
+		//	CommandLine2.add(Options.outputOptions().audioCodec());
 		}
 	}
 	

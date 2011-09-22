@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import jff.gui.JFFMainFrameImpl.JFFBundledItems;
+
 @SuppressWarnings("serial")
 public class JFFShowCredits extends AbstractAction {
 
@@ -16,12 +18,12 @@ public class JFFShowCredits extends AbstractAction {
 	
 	private Component Parent;
 	
-	public JFFShowCredits(Component p){
-		super("Informazioni su JFF",I);
+	public JFFShowCredits(Component p, JFFBundledItems items){
+		super(items.S.showCredits(),I);
 	
 		Parent=p;
 		
-		putValue(SHORT_DESCRIPTION, "info sviluppatori");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.showCreditsDescription());  // Will appear as tooltip text.
         
 	}
 	

@@ -1,0 +1,79 @@
+!! italiano
+
+allprocesses: Tutti i Processi
+openedfiles: Files Aperti
+processes: Processi
+options: Opzioni
+
+!!actions
+
+addfiles: Aggiungi Files
+addtask: Crea Processo
+deletealltasks: Elimina tutti i Processi
+deletefiles: Elimina Files
+deletegrouptask: Elimina Processo
+hideoptions: Nascondi opzioni
+showoptions: Mostra opzioni
+pausetasks: Interrompi Conversioni
+quit: Esci
+showcredits: Informazioni su j-ff
+showtutorial: Guida
+starttasks: Inizia Conversioni
+playfile: Riproduci File
+
+addfilesdescr: apre i files da convertire
+addtaskdescr: crea un nuovo processo con i files selezionati e lo aggiunge in coda
+deletealltasksdescr: elimina tutti i processi (solo se nessuno e' in esecuzione)
+deletefilesdescr: elimina i files selezionati (solamente dall'applicazione)
+deletegrouptaskdescr: elimina un processo (solo se non è in esecuzione)
+hideoptionsdescr: nasconde il menu\' di modifica delle opzioni
+showoptionsdescr: mostra il menu\' di modifica delle opzioni
+pausetasksdescr: interrompe le operazioni di conversione
+quitdescr: salva lo stato dell'applicazione ed esce
+showcreditsdescr: info sviluppatori
+showtutorialdescr: mostra la guida per l'utilizzo dell'applicazione 
+starttasksdescr: inizia le operazioni di conversione
+playfiledescr: visualizza il file selezionato con il lettore di default
+
+!!menu voices
+
+filemenu: File
+optionmenu: Opzioni
+taskmenu: Processi
+infomenu: Informazioni
+
+!!table headers
+
+tsel: Sel
+tname: Nome
+tlenght: Durata
+tformat: Formato
+tpar: PAR
+tdar:DAR
+
+!!treetable headers
+
+ttprocesses: Processi
+ttfiles: Files
+ttprogress: Progresso
+ttinfo: Informazioni
+
+!!options tags
+
+odestfolder: Cartella di Destinazione
+ochangedestfolder: Cambia
+ooutputformat: Formato Output
+ooutputformattag: formato
+ohardware: Hardware
+othreadstag: threads
+oconvertoptions: Opzioni di conversione
+otwopasses: due passi
+opads: pads
+osmall: piccolo
+odebug: debug
+
+!!strings in the treetable
+
+executing: eseguono
+inpause: in pausa
+ok: ok

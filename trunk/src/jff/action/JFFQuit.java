@@ -19,11 +19,11 @@ public class JFFQuit extends AbstractAction {
 	private JFFBundledItems Items;
 
 	public JFFQuit(JFFBundledItems items){
-		super("Esci",new ImageIcon("img/quit.png"));
+		super(items.S.quit(),new ImageIcon("img/quit.png"));
 		
 		Items=items;
 		
-		putValue(SHORT_DESCRIPTION, "salva lo stato dell'applicazione ed esce");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION,items.S.quitDescription());  // Will appear as tooltip text.
         
 	}
 	

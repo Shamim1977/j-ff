@@ -31,13 +31,13 @@ public class JFFAddFiles extends AbstractAction {
 	
 	public JFFAddFiles(Component p, JFFTable t, JFFBundledItems items){
 		
-		super("Aggiungi files",new ImageIcon("img/add.png"));
+		super(items.S.addFiles(),new ImageIcon("img/add.png"));
 		
 		Parent=p;
 		Files=items.Files;
 		Table=t;
 		
-		putValue(SHORT_DESCRIPTION, "apre i files da convertire");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION, items.S.addFilesDescription());  // Will appear as tooltip text.
         
 	}
 	

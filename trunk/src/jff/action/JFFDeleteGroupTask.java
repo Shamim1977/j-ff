@@ -27,12 +27,12 @@ public class JFFDeleteGroupTask extends AbstractAction {
 	private FFMultipleGroupTask Tasks;
 	
 	public JFFDeleteGroupTask(JFFTreeTable tb, JFFBundledItems items){
-		super("Elimina processo",new ImageIcon("img/deletetask.png"));
+		super(items.S.deleteGroupTask(),new ImageIcon("img/deletetask.png"));
 		
 		TreeTable=tb;
 		Tasks=items.Tasks;
 		
-		putValue(SHORT_DESCRIPTION, "elimina un processo (solo se non è in esecuzione)");  // Will appear as tooltip text.
+		putValue(SHORT_DESCRIPTION,items.S.deleteGroupTaskDescription());  // Will appear as tooltip text.
         
 	}
 	

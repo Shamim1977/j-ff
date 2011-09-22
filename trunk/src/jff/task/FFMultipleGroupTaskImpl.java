@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
+import jff.translation.JFFStrings;
 import jff.utility.JFFTime;
 
 public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
@@ -17,25 +18,25 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 	private Vector<FFGroupTask> Tasks;
 	
 	private boolean Running=false;
-	private String Name="";
+	private JFFStrings S;
 	private boolean Verbose=true;
 	
 	
-	public FFMultipleGroupTaskImpl(String n){
+	public FFMultipleGroupTaskImpl(JFFStrings strings){
 		Tasks=new Vector<FFGroupTask>();
-		Name=n;
+		S=strings;
 	}
 
-	public FFMultipleGroupTaskImpl(String n, boolean isVerbose){
+	public FFMultipleGroupTaskImpl(JFFStrings strings, boolean isVerbose){
 		Tasks=new Vector<FFGroupTask>();
 		Verbose=isVerbose;
-		Name=n;
+		S=strings;
 	}
 
 	
 	@Override
 	public String toString() {
-		return Name+" ["+Tasks.size()+"]";
+		return S.allProcesses()+" ["+Tasks.size()+"]"+" ["+(Running?S.executing():S.inPause())+"]";
 	}
 
 

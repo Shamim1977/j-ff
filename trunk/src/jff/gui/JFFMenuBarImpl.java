@@ -12,12 +12,12 @@ import jff.action.JFFDeleteFiles;
 import jff.action.JFFDeleteGroupTask;
 import jff.action.JFFHideOptions;
 import jff.action.JFFPauseTasks;
+import jff.action.JFFPlayFile;
 import jff.action.JFFQuit;
 import jff.action.JFFShowCredits;
 import jff.action.JFFShowOptions;
 import jff.action.JFFShowTutorial;
 import jff.action.JFFStartTasks;
-import jff.action.JFFVLCPlay;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.tabbedpane.JFFTabbedPane;
 import jff.gui.table.JFFTable;
@@ -59,10 +59,10 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 		TreeTable=tb;
 		TabbedPane=p;
 		
-		File=new JMenu("File"); 
-		Options=new JMenu("Opzioni");
-		Task=new JMenu("Processi");
-		Info=new JMenu("Informazioni"); 
+		File=new JMenu(items.S.fileMenu()); 
+		Options=new JMenu(items.S.optionMenu());
+		Task=new JMenu(items.S.taskMenu());
+		Info=new JMenu(items.S.infoMenu()); 
         
         //Build the menus.
 		add(File);
@@ -75,10 +75,10 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 		DeleteFile=new JMenuItem(new JFFDeleteFiles(Table,items));
 		
         Quit=new JMenuItem(new JFFQuit(items));
-		PlayVLC=new JMenuItem(new JFFVLCPlay(Table, items));
+		PlayVLC=new JMenuItem(new JFFPlayFile(Table, items));
         
-		ShowOptions=new JMenuItem(new JFFShowOptions(TabbedPane));
-        HideOptions=new JMenuItem(new JFFHideOptions(TabbedPane));
+		ShowOptions=new JMenuItem(new JFFShowOptions(TabbedPane,items));
+        HideOptions=new JMenuItem(new JFFHideOptions(TabbedPane,items));
         AddTask=new JMenuItem(new JFFAddTask(Table,TreeTable,items));
         DeleteTask=new JMenuItem(new JFFDeleteGroupTask(TreeTable,items));
         ClearTasks=new JMenuItem(new JFFDeleteAllTasks(TreeTable,items));
@@ -86,8 +86,8 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
         PauseTasks=new JMenuItem(new JFFPauseTasks(items));
         
         
-        Help=new JMenuItem(new JFFShowTutorial());
-        Credits=new JMenuItem(new JFFShowCredits(this.getParent()));
+        Help=new JMenuItem(new JFFShowTutorial(items));
+        Credits=new JMenuItem(new JFFShowCredits(this.getParent(),items));
         
         File.add(AddFile);
         File.add(DeleteFile);
@@ -103,10 +103,10 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
         
         Task.add(AddTask);
         Task.add(DeleteTask);
-        Task.add(ClearTasks);
         Task.addSeparator();
         Task.add(PlayTasks);
         Task.add(PauseTasks);
+        Task.add(ClearTasks);
         
         
         Info.add(Help);
