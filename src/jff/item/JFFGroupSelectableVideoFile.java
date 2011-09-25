@@ -22,5 +22,10 @@ public interface JFFGroupSelectableVideoFile {
 	public void deselect(int i);
 	public boolean isSelected(int i);
 	
+	public void selectAll();
+	public void deselectAll();
+	public void invertSelection();
+	
+	
 
 }

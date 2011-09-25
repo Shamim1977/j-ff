@@ -175,7 +175,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	
 	public JFFMainFrameImpl(){
 			
-			super("j-ff");
+			super();
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	      //Create the app items
@@ -186,6 +186,8 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	        else
 				Items=new JFFBundledItems();	        
 
+	        setTitle(Items.S.appFrameName());
+	        
 	      //Create the Table
 	        Table = new JFFTableImpl(Items);
 	        ((JFFTableImpl)Table).rebuild();

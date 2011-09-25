@@ -5,6 +5,8 @@ import com.sun.java.swing.*;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -130,6 +132,27 @@ public class JFFTreeTableImpl extends JTable implements JFFTreeTable {
 						     boolean isSelected, int r, int c) {
 	    return TreeCellRenderer;
 	}
+	
+	@Override
+	public boolean isCellEditable(EventObject e) {
+		if (e instanceof MouseEvent) {
+        for (int counter = getColumnCount() - 1; counter >= 0;
+             counter--) {
+            if (getColumnClass(counter) == JFFTreeTableModel.class) {
+            MouseEvent me = (MouseEvent)e;
+            MouseEvent newME = new MouseEvent(tree(), me.getID(),
+                   me.getWhen(), me.getModifiers(),
+                   me.getX() - getCellRect(0, counter, true).x,
+                   me.getY(), me.getClickCount(),
+                                   me.isPopupTrigger());
+            tree().dispatchEvent(newME);
+            break;
+            }
+        }
+        }
+        return false;
+    }
+	
     }
 
 	@Override

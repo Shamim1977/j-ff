@@ -17,7 +17,7 @@ public class FFOptionsImpl implements FFOptions {
 		private int Threads=4;
 		private boolean AddPads=false;
 		private boolean SmallFiles=true;
-		private Boolean Verbose=false;
+		private Boolean Verbose=true;
 		
 		
 		private void constructorInfo(){

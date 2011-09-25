@@ -1,5 +1,14 @@
 package jff.item;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import jff.translation.JFFStringsImpl;
+import jff.utility.JFFParser;
+import jff.utility.JFFParserImpl;
+
 public class FFOutputOptionsImpl implements FFOutputOptions {
 
 		private String Format;
@@ -19,6 +28,7 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 		private String AudioSamplingFrequency;
 		private String OutputExtension; 
 		
+		/* ********* old constructor
 		public FFOutputOptionsImpl(String format, boolean isVerbose){
 			
 			Format=format;
@@ -46,6 +56,86 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 			if (isVerbose)
 				System.out.println(toString());
 		}
+		************************** */
+		
+		public FFOutputOptionsImpl(String format, boolean isVerbose){
+		
+			Format=format;
+			
+			try {
+				
+				FileReader fstream=new FileReader(new File("format"+File.separator+format+".txt"));
+				BufferedReader b=new BufferedReader(fstream);
+			
+				JFFParser p;
+				
+				do{
+				
+					try {
+						p=new JFFParserImpl(b.readLine());
+					} catch (IOException e) {
+					
+						p=new JFFParserImpl(null);
+						e.printStackTrace();
+					}
+				
+					if (p.find("videocodec"))
+						VideoCodec=p.getString();
+					
+					else if (p.find("videopreset"))
+						VideoPreset=p.getString();
+				
+					else if (p.find("videowidth"))
+						VideoWidth=p.getString();
+				
+					else if (p.find("videoheight"))
+						VideoHeight=p.getString();
+				
+					else if (p.find("videoaspect"))
+						VideoAspect=p.getStringWithSeparators();//i espect to find a value with a ":" inside
+				
+					else if (p.find("videobitrate"))
+						VideoBitrate=p.getString();
+				
+					else if (p.find("videomaxbitrate"))
+						VideoMaxBitrate=p.getString();
+				
+					else if (p.find("videofps"))
+						VideoFPS=p.getString();
+				
+					else if (p.find("videokeyfps"))
+						VideoKeyFPS=p.getString();
+				
+					else if (p.find("audiocodec"))
+						AudioCodec=p.getString();
+				
+					else if (p.find("audiochannels"))
+						AudioChannels=p.getString();
+				
+					else if (p.find("audiobitrate"))
+						AudioBitrate=p.getString();
+				
+					else if (p.find("audiosamplingfrequency"))
+						AudioSamplingFrequency=p.getString();
+				
+					else if (p.find("outputextension"))
+						OutputExtension=p.getString();
+					
+					
+				
+				} while (!p.isEmpty());
+			
+				b.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if (isVerbose)
+				System.out.println(toString());
+		}
+		
 		
 		@Override
 		public boolean is(String format){

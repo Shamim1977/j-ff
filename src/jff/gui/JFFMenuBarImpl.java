@@ -14,9 +14,12 @@ import jff.action.JFFDeleteFiles;
 import jff.action.JFFDeleteGroupTask;
 import jff.action.JFFHideFiles;
 import jff.action.JFFHideOptions;
+import jff.action.JFFInvertSelection;
 import jff.action.JFFPauseTasks;
 import jff.action.JFFPlayFile;
 import jff.action.JFFQuit;
+import jff.action.JFFSelectAll;
+import jff.action.JFFSelectNone;
 import jff.action.JFFShowCredits;
 import jff.action.JFFShowFiles;
 import jff.action.JFFShowOptions;
@@ -36,27 +39,31 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 	private JFFTreeTable TreeTable;
 	private JFFTabbedPane TabbedPane;
 	
-	public JMenu File;
-	public JMenu Options;
-	public JMenu Task;
-	public JMenu Info;
+	private JMenu File;
+	private JMenu Select;
+	private JMenu Options;
+	private JMenu Task;
+	private JMenu Info;
 	
 	
-	public JMenuItem AddFile;
-	public JMenuItem DeleteFile;
-	public JMenuItem ShowFiles;
-	public JMenuItem HideFiles;
-	public JMenuItem Quit;
-	public JMenuItem ShowOptions;
-	public JMenuItem HideOptions;
-	public JMenuItem AddTask;
-	public JMenuItem DeleteTask;
-	public JMenuItem PlayTasks;
-	public JMenuItem PauseTasks;
-	public JMenuItem ClearTasks;
-	public JMenuItem Help;
-	public JMenuItem Credits;
-	public JMenuItem PlayVLC;
+	private JMenuItem AddFile;
+	private JMenuItem DeleteFile;
+	private JMenuItem ShowFiles;
+	private JMenuItem HideFiles;
+	private JMenuItem Quit;
+	private JMenuItem SelectAll;
+	private JMenuItem SelectNone;
+	private JMenuItem InvertSelection;
+	private JMenuItem ShowOptions;
+	private JMenuItem HideOptions;
+	private JMenuItem AddTask;
+	private JMenuItem DeleteTask;
+	private JMenuItem PlayTasks;
+	private JMenuItem PauseTasks;
+	private JMenuItem ClearTasks;
+	private JMenuItem Help;
+	private JMenuItem Credits;
+	private JMenuItem PlayFile;
 	
 	
 	public JFFMenuBarImpl(Component c, JFFTable b,JFFTabbedPane p, JFFTreeTable tb, JFFBundledItems items){
@@ -69,12 +76,14 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 		TabbedPane=p;
 		
 		File=new JMenu(items.S.fileMenu()); 
+		Select=new JMenu(items.S.selectMenu()); 
 		Options=new JMenu(items.S.optionMenu());
 		Task=new JMenu(items.S.taskMenu());
 		Info=new JMenu(items.S.infoMenu()); 
         
         //Build the menus.
 		add(File);
+		add(Select);
 		add(Options);
 		add(Task);
 		add(Info);
@@ -86,8 +95,13 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 		HideFiles=new JMenuItem(new JFFHideFiles(Parent,items));
 		
         Quit=new JMenuItem(new JFFQuit(items));
-		PlayVLC=new JMenuItem(new JFFPlayFile(Table, items));
+		PlayFile=new JMenuItem(new JFFPlayFile(Table, items));
         
+		SelectAll=new JMenuItem(new JFFSelectAll(Table,items));
+        SelectNone=new JMenuItem(new JFFSelectNone(Table,items));
+        InvertSelection=new JMenuItem(new JFFInvertSelection(Table,items));
+        
+		
 		ShowOptions=new JMenuItem(new JFFShowOptions(Parent,items));
         HideOptions=new JMenuItem(new JFFHideOptions(Parent,items));
         AddTask=new JMenuItem(new JFFAddTask(Table,TreeTable,items));
@@ -108,9 +122,13 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
         File.add(ShowFiles);
 
         File.addSeparator();
-        File.add(PlayVLC);
+        File.add(PlayFile);
         File.addSeparator();
         File.add(Quit);
+        
+        Select.add(SelectAll);
+        Select.add(SelectNone);
+        Select.add(InvertSelection);
         
         Options.add(ShowOptions);
         Options.add(HideOptions);

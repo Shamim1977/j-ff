@@ -2,6 +2,11 @@ package jff.translation;
 
 public interface JFFStrings {
 
+	public String lang();
+	
+	//frame names
+	public String appFrameName();
+	public String tutorialFrameName();
 	
 	//multiplegroptasks name
 	public String allProcesses();
@@ -19,6 +24,9 @@ public interface JFFStrings {
 	public String deleteAllTasks();
 	public String deleteFiles();
 	public String deleteGroupTask();
+	public String invertSelection();
+	public String selectAll();
+	public String selectNone();
 	public String hideOptions();
 	public String showOptions();
 	public String hideFiles();
@@ -37,6 +45,9 @@ public interface JFFStrings {
 	public String deleteAllTasksDescription();
 	public String deleteFilesDescription();
 	public String deleteGroupTaskDescription();
+	public String invertSelectionDescription();
+	public String selectAllDescription();
+	public String selectNoneDescription();
 	public String hideOptionsDescription();
 	public String showOptionsDescription();
 	public String hideFilesDescription();
@@ -51,6 +62,7 @@ public interface JFFStrings {
 	
 	//menu voices
 	public String fileMenu();
+	public String selectMenu();
 	public String optionMenu(); 
 	public String taskMenu();
 	public String infoMenu();

@@ -10,10 +10,10 @@ file: /home/francesco/Scaricati/input B2.3gp
 
 file: /topolino
 
-outputformat: iPhone4
+outputformat: iphone4
 outputdir: /home/francesco/Scaricati/final
 
-language: english
+language: italiano
 appdebug: true
 
 optionthreads: 4
