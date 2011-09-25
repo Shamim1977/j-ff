@@ -24,5 +24,10 @@ public class JFFSelectableVideoFileImpl extends VideoFileImpl implements JFFSele
     public void deselect(){
     	Checked=false;
     }
+
+	@Override
+	public void invertSelection() {		
+		Checked=!Checked;
+	}
     
 }

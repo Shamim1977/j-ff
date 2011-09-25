@@ -1,5 +1,10 @@
 !! default language file
 
+!! frame names
+
+appframename: j-ff
+tutorialframename: tutorial
+
 !!main
 
 allprocesses: All Processes
@@ -14,6 +19,9 @@ addtask: Add Task
 deletealltasks: Delete All Tasks
 deletefiles: Delete Files
 deletegrouptask: Delete Task
+invertselection: Invert Selection
+selectall: Select All Files
+selectnone: Unselect all files
 hideoptions: Hide Options
 showoptions: Show Options
 hidefiles: Hide Files
@@ -30,6 +38,9 @@ addtaskdescr: create a Task with the selected files and enqueue it
 deletealltasksdescr: delete all the Tasks (only if none is executing)
 deletefilesdescr: delete selected files (only from the application view)
 deletegrouptaskdescr: delete a Task (only if is not executing)
+invertselectiondescr: invert the file selection of the table
+selectalldescr: select all the files in the table
+selectnonedescr: deselect all the files in the table
 hideoptionsdescr: hide the modify options menu
 showoptionsdescr: show the modify options menu
 hidefilesdescr: hide the files table
@@ -44,6 +55,7 @@ playfiledescr: open the selected file with the default system player
 !!menu voices
 
 filemenu: Files
+selectmenu: Select
 optionmenu: Options
 taskmenu: Tasks
 infomenu: Info

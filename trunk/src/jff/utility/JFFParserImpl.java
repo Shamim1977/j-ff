@@ -2,7 +2,6 @@ package jff.utility;
 
 public class JFFParserImpl implements JFFParser {
 
-	private final static String Separator=":"; 
 	private String Line; 
 	
 	public JFFParserImpl(String line){
@@ -28,6 +27,14 @@ public class JFFParserImpl implements JFFParser {
 		return Line.split(Separator)[1].trim();
 	}
 
+	@Override
+	public String getStringWithSeparators(){
+	
+		int lenghtOfTheFistPart=Line.split(Separator)[0].length();
+		
+		return Line.substring(lenghtOfTheFistPart+1).trim();
+	}
+	
 	@Override
 	public boolean getBoolean(){
 		

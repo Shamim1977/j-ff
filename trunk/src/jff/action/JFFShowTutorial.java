@@ -7,14 +7,21 @@ import java.net.URISyntaxException;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
+import jff.gui.JFFMainFrame;
+import jff.gui.JFFMainFrameImpl;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
+import jff.gui.JFFTutorialFrame;
+import jff.gui.JFFTutorialFrameImpl;
 
 @SuppressWarnings("serial")
 public class JFFShowTutorial extends AbstractAction {
 
+	private JFFBundledItems Items;
 	
 	public JFFShowTutorial(JFFBundledItems items){
 		super(items.S.showTutorial(),new ImageIcon("img/tutorial.png"));
+		
+		Items=items;
 		
 		putValue(SHORT_DESCRIPTION, items.S.showTutorialDescription());  // Will appear as tooltip text.
         
@@ -22,6 +29,8 @@ public class JFFShowTutorial extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
+			/* ****
 		
 		 	java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 
@@ -42,7 +51,9 @@ public class JFFShowTutorial extends AbstractAction {
             
 	        }
 
-	        		
+	        		**** */
+		
+		JFFTutorialFrame tf=new JFFTutorialFrameImpl(Items);
 	}
 
 }

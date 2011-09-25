@@ -1,5 +1,12 @@
 !! italiano
 
+!! frame names
+
+appframename: j-ff
+tutorialframename: tutorial
+
+!!main
+
 allprocesses: Tutti i Processi
 openedfiles: Files Aperti
 processes: Processi
@@ -12,6 +19,9 @@ addtask: Crea Processo
 deletealltasks: Elimina tutti i Processi
 deletefiles: Elimina Files
 deletegrouptask: Elimina Processo
+invertselection: Inverti Selezione
+selectall: Seleziona tutti
+selectnone: Deseleziona tutti
 hideoptions: Nascondi opzioni
 showoptions: Mostra opzioni
 hidefiles: Nascondi Files
@@ -28,6 +38,9 @@ addtaskdescr: crea un nuovo processo con i files selezionati e lo aggiunge in co
 deletealltasksdescr: elimina tutti i processi (solo se nessuno e' in esecuzione)
 deletefilesdescr: elimina i files selezionati (solamente dall'applicazione)
 deletegrouptaskdescr: elimina un processo (solo se non è in esecuzione)
+invertselectiondescr: inverte la selezione dei files nella tabella
+selectalldescr: seleziona tutti i file della tabella
+selectnonedescr: deseleziona tutti i files della tabella
 hideoptionsdescr: nasconde il menu\' di modifica delle opzioni
 showoptionsdescr: mostra il menu\' di modifica delle opzioni
 hidefilesdescr: nasconde la tabella dei file
@@ -42,6 +55,7 @@ playfiledescr: visualizza il file selezionato con il lettore di default
 !!menu voices
 
 filemenu: File
+selectmenu: Seleziona
 optionmenu: Opzioni
 taskmenu: Processi
 infomenu: Informazioni
@@ -78,6 +92,6 @@ odebug: debug
 
 !!strings in the treetable
 
-executing: eseguono
+executing: in corso
 inpause: in pausa
 ok: ok

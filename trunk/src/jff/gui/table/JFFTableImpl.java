@@ -77,5 +77,32 @@ public class JFFTableImpl extends JTable implements JFFTable {
 	}
 
 
+	@Override
+	public void invertSelectionOfFiles() {
+		
+		Items.Files.invertSelection();
+		rebuild();
+		
+	}
+
+
+	@Override
+	public void deselectAllFiles() {
+		
+		Items.Files.deselectAll();
+		rebuild();
+		
+	}
+
+
+	@Override
+	public void selectAllFiles() {
+		
+		Items.Files.selectAll();
+		rebuild();
+		
+	}
+
+
 	
 }

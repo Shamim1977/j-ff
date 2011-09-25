@@ -8,5 +8,6 @@ public interface JFFSelectableVideoFile extends VideoFile {
 
 	public void deselect();
 	
+	public void invertSelection();
 
 }

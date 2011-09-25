@@ -135,7 +135,25 @@ public class JFFStringsImpl implements JFFStrings {
 
 	private String HideFilesDescr;
 
-	private String ShowFilesDescr; 
+	private String ShowFilesDescr;
+
+	private String InvertSelection;
+
+	private String SelectAll;
+
+	private String SelectNone;
+
+	private String SelectMenu;
+
+	private String InvertSelectionDescr;
+
+	private String SelectAllDescr;
+
+	private String SelectNoneDescr;
+
+	private String AppFrameName;
+
+	private String TutorialFrameName; 
 	
 	public JFFStringsImpl(){
 		parseLanguage(new File("lang"+File.separator+Lang+".txt"));
@@ -159,13 +177,13 @@ public class JFFStringsImpl implements JFFStrings {
 		
 		if (p.find("language")){
 			
-			File f=new File("lang"+File.separator+p.getString()+".txt");
+			String tempLang=p.getString();
+			File f=new File("lang"+File.separator+tempLang+".txt");
 			
 			if (f.isFile()) {
 				
-				System.out.println("ciaociaociaociaociaociao");
-				
 				parseLanguage(f);
+				Lang=tempLang;
 				findLanguage=true;
 	
 			}
@@ -204,14 +222,20 @@ public class JFFStringsImpl implements JFFStrings {
 				e.printStackTrace();
 			}
 		
-			if (P.find("allprocesses"))
+			if (P.find("appframename"))
+				AppFrameName=P.getString();
+			
+			else if (P.find("tutorialframename"))
+				TutorialFrameName=P.getString();
+			
+			else if (P.find("allprocesses"))
 				AllProcesses=P.getString();
 			
 			else if (P.find("openedfiles"))
-					OpenedFiles=P.getString();
+				OpenedFiles=P.getString();
 				
 			else if (P.find("processes"))
-					Processes=P.getString();
+				Processes=P.getString();
 				
 			else if (P.find("options"))
 				Options=P.getString();
@@ -233,6 +257,15 @@ public class JFFStringsImpl implements JFFStrings {
 			
 			else if (P.find("deletegrouptask"))
 				DeleteGroupTask=P.getString();
+			
+			else if (P.find("invertselection"))
+				InvertSelection=P.getString();
+			
+			else if (P.find("selectall"))
+				SelectAll=P.getString();
+			
+			else if (P.find("selectnone"))
+				SelectNone=P.getString();
 			
 			else if (P.find("hideoptions"))
 				HideOptions=P.getString();
@@ -279,6 +312,15 @@ public class JFFStringsImpl implements JFFStrings {
 			else if (P.find("deletegrouptaskdescr"))
 				DeleteGroupTaskDescr=P.getString();
 													
+			else if (P.find("invertselectiondescr"))
+				InvertSelectionDescr=P.getString();
+			
+			else if (P.find("selectalldescr"))
+				SelectAllDescr=P.getString();
+			
+			else if (P.find("selectnonedescr"))
+				SelectNoneDescr=P.getString();
+			
 			else if (P.find("hideoptionsdescr"))
 				HideOptionsDescr=P.getString();
 												
@@ -311,6 +353,9 @@ public class JFFStringsImpl implements JFFStrings {
 
 			else if (P.find("filemenu"))
 				FileMenu=P.getString();
+			
+			else if (P.find("selectmenu"))
+				SelectMenu=P.getString();
 			
 			else if (P.find("optionmenu"))
 				OptionMenu=P.getString();
@@ -771,6 +816,66 @@ public class JFFStringsImpl implements JFFStrings {
 	public String showFilesDescription() {
 		
 		return ShowFilesDescr;
+	}
+
+	@Override
+	public String invertSelection() {
+		
+		return InvertSelection;
+	}
+
+	@Override
+	public String selectAll() {
+		
+		return SelectAll;
+	}
+
+	@Override
+	public String selectNone() {
+		
+		return SelectNone;
+	}
+
+	@Override
+	public String selectMenu() {
+		
+		return SelectMenu;
+	}
+
+	@Override
+	public String invertSelectionDescription() {
+		
+		return InvertSelectionDescr;
+	}
+
+	@Override
+	public String selectAllDescription() {
+		
+		return SelectAllDescr;
+	}
+
+	@Override
+	public String selectNoneDescription() {
+		
+		return SelectNoneDescr;
+	}
+
+	@Override
+	public String lang() {
+		
+		return Lang;
+	}
+
+	@Override
+	public String appFrameName() {
+		
+		return AppFrameName;
+	}
+
+	@Override
+	public String tutorialFrameName() {
+		
+		return TutorialFrameName;
 	}
 	
 	

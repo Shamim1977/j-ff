@@ -141,5 +141,29 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 			}
 		
 	}
+
+	@Override
+	public void selectAll() {
+		
+		for (int i=0;i<Files.size();i++)
+				Files.get(i).select();
+			
+	}
+
+	@Override
+	public void deselectAll() {
+		
+		for (int i=0;i<Files.size();i++)
+			Files.get(i).deselect();
+	
+	}
+
+	@Override
+	public void invertSelection() {
+		
+		for (int i=0;i<Files.size();i++)
+			Files.get(i).invertSelection();
+	
+	}
 	
 }

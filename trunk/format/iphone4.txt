@@ -1,0 +1,24 @@
+!! settings for the iphone4 format
+
+!!video
+
+videocodec: libx264 
+videopreset: iphone 
+videowidth: 960
+videoheight: 640
+videoaspect: 3:2
+videobitrate: 768
+videomaxbitrate: 2000
+!!Frame Rate - for 29.97 use 30000/1001 and for 23.976 use 24000/1001
+videofps: 30000/1001
+videokeyfps: 30
+
+!!audio
+
+!!audiocodec: libfaac // useless and windows binary of ffmpeg dont include libfaac
+audiochannels: 2
+audiobitrate: 128
+audiosamplingfrequency: 44100
+
+
+outputextension: mp4
