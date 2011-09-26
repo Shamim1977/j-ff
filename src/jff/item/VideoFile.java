@@ -13,6 +13,7 @@ public interface VideoFile {
 	public String DAR() throws ValueNotFoundException;
 	public int Duration() throws ValueNotFoundException;
 	
+	public String detailedToString();
 	
 	@SuppressWarnings("serial")
 	public class ValueNotFoundException extends Exception{}

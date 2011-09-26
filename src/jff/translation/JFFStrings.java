@@ -7,6 +7,7 @@ public interface JFFStrings {
 	//frame names
 	public String appFrameName();
 	public String tutorialFrameName();
+	public String creditsDialogName();
 	
 	//multiplegroptasks name
 	public String allProcesses();
@@ -102,5 +103,9 @@ public interface JFFStrings {
 	public String executing();
 	public String inPause();
 	public String ok();
+	
+	//credits
+	public String credits();
+	
 
 }

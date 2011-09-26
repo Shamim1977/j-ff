@@ -71,8 +71,7 @@ public class JFFAddTask extends AbstractAction {
 					
 					new FFCommandLineImpl(
 							Files.getSelected().get(i),
-							Options.createDuplicate(),
-							true
+							Options.createDuplicate()
 					)
 			);
 			

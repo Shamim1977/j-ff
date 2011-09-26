@@ -55,7 +55,7 @@ public class JFFAddFiles extends AbstractAction {
 		
 		if ((returnVal==JFileChooser.APPROVE_OPTION)&&(FileChooser.getSelectedFile()!=null)){
 			for (int i=0;i<FileChooser.getSelectedFiles().length;i++){
-				Files.add(new JFFSelectableVideoFileImpl(FileChooser.getSelectedFiles()[i],true));
+				Files.add(new JFFSelectableVideoFileImpl(FileChooser.getSelectedFiles()[i]));
 				System.out.println(FileChooser.getSelectedFiles()[i].getAbsolutePath());
 			}
 			

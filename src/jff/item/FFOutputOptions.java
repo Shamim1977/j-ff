@@ -19,4 +19,19 @@ public interface FFOutputOptions {
 	public String audioSamplingFrequency();
 	public String outputExtension(); 
 	
+	public boolean videoCodecFound();
+	public boolean videoPresetFound();
+	public boolean videoWidthFound();
+	public boolean videoHeightFound();
+	public boolean videoAspectFound();
+	public boolean videoBitrateFound();
+	public boolean videoMaxBitrateFound();
+	public boolean videoFPSFound();
+	public boolean videoKeyFPSFound();
+	public boolean audioCodecFound();
+	public boolean audioChannelsFound();
+	public boolean audioBitrateFound();
+	public boolean audioSamplingFrequencyFound();
+	public boolean outputExtensionFound();
+	
 }

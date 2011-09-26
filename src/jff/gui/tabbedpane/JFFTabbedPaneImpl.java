@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -29,6 +32,7 @@ import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.item.FFOptions;
 import jff.item.JFFSelectableVideoFileImpl;
 import jff.translation.JFFStrings;
+import jff.utility.JFFTime;
 
 @SuppressWarnings("serial")
 public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
@@ -76,9 +80,24 @@ public class JFFTabbedPaneImpl extends JTabbedPane implements JFFTabbedPane {
 		
 		
 		Vector<String> v=new Vector<String>();
-		v.add(Options.outputOptions().format());
+		
+		File formatDir = new File("format");
+		for (int i=0;i<formatDir.list().length;i++)
+			if (!(formatDir.list()[i].startsWith("."))&&!formatDir.list()[i].equals("template.txt"))v.add(formatDir.list()[i].split("\\.")[0]);
+		
+		//v.add(Options.outputOptions().format());
 		
 		Format=new JComboBox(v);
+		Format.setSelectedItem(Options.outputOptions().format());
+		
+		Format.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Options.setOutputFormat((String)Format.getSelectedItem());
+				
+			}});
 		
 		p2.add(Format);
 		p2.add(Box.createRigidArea(new Dimension(30,1)));

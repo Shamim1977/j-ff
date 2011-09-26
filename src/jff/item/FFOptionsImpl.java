@@ -20,37 +20,18 @@ public class FFOptionsImpl implements FFOptions {
 		private Boolean Verbose=true;
 		
 		
-		private void constructorInfo(){
-			
-			if (Verbose){
-				
-				System.out.println("Options:");
-				System.out.println("-Verbose "+Verbose);
-				System.out.println("-Passes "+TwoPasses);
-				
-				if (AddPads)
-					System.out.println("-Pads ON");
-				else
-					System.out.println("-Pads OFF");
-				
-				System.out.println("-Output "+OutputOptions.format());
-				
-				System.out.println();
-			}
-		}
+		
 		
 		
 		public FFOptionsImpl(String outputFormat, File outputFolder, boolean isVerbose){
 			
 			Verbose=isVerbose;
 			
-			OutputOptions=new FFOutputOptionsImpl(outputFormat,Verbose);
+			OutputOptions=new FFOutputOptionsImpl(outputFormat);
 			
 			Output=outputFolder;
 			
-			constructorInfo();
-			
-			}
+		}
 
 	public FFOptionsImpl(BufferedReader b) {
 
@@ -69,7 +50,7 @@ public class FFOptionsImpl implements FFOptions {
 		
 		
 			if (p.find("outputformat"))
-				OutputOptions=new FFOutputOptionsImpl(p.getString(),Verbose);
+				OutputOptions=new FFOutputOptionsImpl(p.getString());
 			else if (p.find("outputdir")){
 			
 				File f=new File(p.getString());
@@ -102,20 +83,27 @@ public class FFOptionsImpl implements FFOptions {
 		
 		} while (!p.isEmpty());
 		
-		constructorInfo();
 		
 		}
 
-	public void setOutPutFormat(String s){
+	public void setOutputFormat(String s){
 		
-		OutputOptions=new FFOutputOptionsImpl(s,Verbose);
+		OutputOptions=new FFOutputOptionsImpl(s);
 	}
 
+	
 	@Override
 	public String toString() {
-		return "FFOptionsImpl [AddPads=" + AddPads + ", OutputOptions="
-				+ OutputOptions + ", Passes=" + TwoPasses + ", Verbose=" + Verbose
-				+ "]";
+		return "FFOptionsImpl [" + System.getProperty("line.separator") +
+				"Output=" + Output + System.getProperty("line.separator") +
+				"TwoPasses=" + TwoPasses + System.getProperty("line.separator") +
+				"Threads=" + Threads + System.getProperty("line.separator") +
+				"AddPads=" + AddPads + System.getProperty("line.separator") +
+				"SmallFiles=" + SmallFiles + System.getProperty("line.separator") +
+				"Verbose=" + Verbose + System.getProperty("line.separator") +
+				"OutputOptions==" + OutputOptions + System.getProperty("line.separator") +
+				"]";
+
 	}
 
 	@Override

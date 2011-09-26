@@ -153,7 +153,11 @@ public class JFFStringsImpl implements JFFStrings {
 
 	private String AppFrameName;
 
-	private String TutorialFrameName; 
+	private String TutorialFrameName;
+
+	private String CreditsDialogName;
+
+	private String Credits; 
 	
 	public JFFStringsImpl(){
 		parseLanguage(new File("lang"+File.separator+Lang+".txt"));
@@ -227,6 +231,9 @@ public class JFFStringsImpl implements JFFStrings {
 			
 			else if (P.find("tutorialframename"))
 				TutorialFrameName=P.getString();
+			
+			else if (P.find("creditsdialogname"))
+				CreditsDialogName=P.getString();
 			
 			else if (P.find("allprocesses"))
 				AllProcesses=P.getString();
@@ -437,6 +444,9 @@ public class JFFStringsImpl implements JFFStrings {
 			
 			else if (P.find("ok"))
 				OK=P.getString();
+			
+			else if (P.find("credits"))
+				Credits=P.getStringWithSeparators();
 
 
 
@@ -876,6 +886,18 @@ public class JFFStringsImpl implements JFFStrings {
 	public String tutorialFrameName() {
 		
 		return TutorialFrameName;
+	}
+
+	@Override
+	public String creditsDialogName() {
+		
+		return CreditsDialogName;
+	}
+
+	@Override
+	public String credits() {
+		
+		return Credits;
 	}
 	
 	

@@ -17,14 +17,13 @@ public class FFCommandLineImpl implements FFCommandLine {
 	private FFOptions Options;
 	private Vector<String> CommandLine;
 	private Vector<String> CommandLine2;
-	private boolean Verbose;
 	
 	private int OptimizedWidth;
 	private int OptimizedHeight;
 	private int XPad;
 	private int YPad;
 	
-	public FFCommandLineImpl(VideoFile f, FFOptions options, boolean isVerbose){
+	public FFCommandLineImpl(VideoFile f, FFOptions options){
 	
 		CommandLine=new Vector<String>();
 		CommandLine2=new Vector<String>();
@@ -32,12 +31,10 @@ public class FFCommandLineImpl implements FFCommandLine {
 		String s=System.getProperty( "os.name" );
 		
 		if (s.matches("(.*)(?i)linux(.*)")){
-			System.out.println("linux!!!");
 			CurrentOS=OS.LINUX;
 		}
 		
 		if (s.matches("(.*)(?i)windows(.*)")){
-			System.out.println("windows!!!");
 			CurrentOS=OS.WINDOWS;
 		}
 			
@@ -48,9 +45,10 @@ public class FFCommandLineImpl implements FFCommandLine {
 		Input=f;
 		Output=options.outputFolder();
 		Options=options;
-		Verbose=isVerbose;
 		
 		generate();
+		
+		System.out.println(toString());
 
 	}
 
@@ -65,17 +63,6 @@ public class FFCommandLineImpl implements FFCommandLine {
 		setAVCodecs();
 		setOutput();
 
-		
-		if (Verbose){
-
-			System.out.println("Generated command line:");
-			System.out.println(CommandLine);
-			
-			if (Options.twoPasses()){
-				System.out.println("Generated command line for second pass:");
-				System.out.println(CommandLine2);
-			}
-		}
 	}
 
 
@@ -148,40 +135,44 @@ public class FFCommandLineImpl implements FFCommandLine {
 	
 	private void setBitrateAndFPS() {
 
-		int doubleMaxBitrate=2*Integer.parseInt(Options.outputOptions().videoMaxBitrate());
 		
-		CommandLine.add("-b");
-		CommandLine.add(Options.outputOptions().videoBitrate()+"k");
-		CommandLine.add("-maxrate");
-		CommandLine.add(Options.outputOptions().videoMaxBitrate()+"k");
-		CommandLine.add("-bufsize");
-		CommandLine.add(new Integer(doubleMaxBitrate).toString()+"k");
-		CommandLine.add("-r");
-		CommandLine.add(Options.outputOptions().videoFPS());
-		CommandLine.add("-g");
-		CommandLine.add(Options.outputOptions().videoKeyFPS());
+		Vector<String> tmp=new Vector<String>();
 		
-		if (Options.twoPasses()){
-
-			CommandLine2.add("-b");
-			CommandLine2.add(Options.outputOptions().videoBitrate()+"k");
-			CommandLine2.add("-maxrate");
-			CommandLine2.add(Options.outputOptions().videoMaxBitrate()+"k");
-			CommandLine2.add("-bufsize");
-			CommandLine2.add(new Integer(doubleMaxBitrate).toString()+"k");
-			CommandLine2.add("-r");
-			CommandLine2.add(Options.outputOptions().videoFPS());
-			CommandLine2.add("-g");
-			CommandLine2.add(Options.outputOptions().videoKeyFPS());
-
+		if(Options.outputOptions().videoBitrateFound()){
+			tmp.add("-b");
+			tmp.add(Options.outputOptions().videoBitrate()+"k");
 		}
 		
+		if(Options.outputOptions().videoMaxBitrateFound()){
+			int doubleMaxBitrate=2*Integer.parseInt(Options.outputOptions().videoMaxBitrate());
+						
+			tmp.add("-maxrate");
+			tmp.add(Options.outputOptions().videoMaxBitrate()+"k");
+			tmp.add("-bufsize");
+			tmp.add(new Integer(doubleMaxBitrate).toString()+"k");
+		}
+		
+		if(Options.outputOptions().videoFPSFound()){
+			tmp.add("-r");
+			tmp.add(Options.outputOptions().videoFPS());
+		}
+		
+		if(Options.outputOptions().videoKeyFPSFound()){
+			tmp.add("-g");
+			tmp.add(Options.outputOptions().videoKeyFPS());
+		}
+
+		if (Options.twoPasses())
+			CommandLine2.addAll(new Vector<String>(tmp));
+		
+		CommandLine.addAll(tmp);
+				
 	}
 	
 	private void adjustPAR() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("par pecca");
+		System.out.println("par different from 1:1 ");
 		
 	}
 	
@@ -232,16 +223,6 @@ public class FFCommandLineImpl implements FFCommandLine {
 			XPad-=XPad%2;
 			YPad-=YPad%2;
 		
-			if(Verbose){
-				System.out.println("Calculated optimal Width for the Output: "+OptimizedWidth);
-				System.out.println("Calculated optimal Height for the Output: "+OptimizedHeight);
-    		
-				if (Options.pads()){
-					System.out.println("Calculated x pad for the Output: "+XPad);
-					System.out.println("Calculated y pad for the Output: "+YPad);
-				}
-			}
-		
 		} else{
 			
 			OptimizedWidth=Input.width()-Input.width()%2;
@@ -291,33 +272,37 @@ public class FFCommandLineImpl implements FFCommandLine {
 			Input.height();//i call these methods so if there isn't data on width and height
 						   //the exception will be called now
 			
-			adjustDimensions();
+			if(Options.outputOptions().videoWidthFound()&&Options.outputOptions().videoHeightFound()){
+				
+				adjustDimensions();
 			
 			
-			CommandLine.add("-s");
-			CommandLine.add(new Integer(OptimizedWidth).toString()+"x"+new Integer(OptimizedHeight).toString());
+				CommandLine.add("-s");
+				CommandLine.add(new Integer(OptimizedWidth).toString()+"x"+new Integer(OptimizedHeight).toString());
 			
 
-			if (Options.twoPasses()){
-				
-				CommandLine2.add("-s");
-				CommandLine2.add(new Integer(OptimizedWidth).toString()+"x"+new Integer(OptimizedHeight).toString());
-			}
-			
-			
-			if (Options.pads()&&((XPad!=0)||(YPad!=0))){// pads smallfiles===no pads because it will always be XPad==0 and YPad==0
-				
-				CommandLine.add("-vf"); //-vf pad=totalW:totalH:xpad:ypad   (you can add ":color" but here default color= black is enough)
-				CommandLine.add("pad="+new Integer(Options.outputOptions().videoWidth()).toString()+":"+new Integer(Options.outputOptions().videoHeight()).toString()+":"+new Integer(XPad).toString()+":"+new Integer(YPad).toString());
-					
 				if (Options.twoPasses()){
-						
-					CommandLine2.add("-vf");
-					CommandLine2.add("pad="+new Integer(Options.outputOptions().videoWidth()).toString()+":"+new Integer(Options.outputOptions().videoHeight()).toString()+":"+new Integer(XPad).toString()+":"+new Integer(YPad).toString());
-					}
 				
-			}
+					CommandLine2.add("-s");
+					CommandLine2.add(new Integer(OptimizedWidth).toString()+"x"+new Integer(OptimizedHeight).toString());
+				}
 			
+				
+			
+				if (Options.pads()&&((XPad!=0)||(YPad!=0))){// pads smallfiles===no pads because it will always be XPad==0 and YPad==0
+				
+					CommandLine.add("-vf"); //-vf pad=totalW:totalH:xpad:ypad   (you can add ":color" but here default color= black is enough)
+					CommandLine.add("pad="+new Integer(Options.outputOptions().videoWidth()).toString()+":"+new Integer(Options.outputOptions().videoHeight()).toString()+":"+new Integer(XPad).toString()+":"+new Integer(YPad).toString());
+					
+					if (Options.twoPasses()){
+						
+						CommandLine2.add("-vf");
+						CommandLine2.add("pad="+new Integer(Options.outputOptions().videoWidth()).toString()+":"+new Integer(Options.outputOptions().videoHeight()).toString()+":"+new Integer(XPad).toString()+":"+new Integer(YPad).toString());
+						}
+				
+				}
+			
+			}
 			
 					
 			/* ************************ filters not installed 
@@ -359,21 +344,26 @@ public class FFCommandLineImpl implements FFCommandLine {
 			                 ****************************** */
 		} catch (ValueNotFoundException v){
 			
-			//input width and height not found, it's to decide what to do in this case 
+			//input width and height not found, i decided to try with the output dimensions and aspect, and no pads  
 			
-			//a sad conclusion should be:
-			CommandLine.add("-s");
-			CommandLine.add("960x640");
-			CommandLine.add("-aspect");
-			CommandLine.add("3:2");
+			Vector<String> tmp=new Vector<String>();
 			
-			if (Options.twoPasses()){
-				
-				CommandLine2.add("-s");
-				CommandLine2.add("960x640");
-				CommandLine2.add("-aspect");
-				CommandLine2.add("3:2");
+			if(Options.outputOptions().videoWidthFound()&&Options.outputOptions().videoHeightFound()){
+		
+				tmp.add("-s");
+				tmp.add(Options.outputOptions().videoWidth()+"x"+Options.outputOptions().videoHeight());
 			}
+			
+			if(Options.outputOptions().videoAspectFound()){
+				
+				tmp.add("-aspect");
+				tmp.add("3:2");
+			}
+			
+			if (Options.twoPasses())
+				CommandLine2.addAll(new Vector<String>(tmp));					
+			
+			CommandLine.addAll(tmp);
 			
 		}
 
@@ -382,13 +372,19 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 	private void setVPreset() {
 	
-		CommandLine.add("-vpre");
-		CommandLine.add(Options.outputOptions().videoPreset());
+		if (Options.outputOptions().videoPresetFound()){
+		
+			CommandLine.add("-vpre");
+			CommandLine.add(Options.outputOptions().videoPreset());
+		}
 		
 		if (Options.twoPasses()){
-			
-			CommandLine2.add("-vpre");
-			CommandLine2.add(Options.outputOptions().videoPreset());
+		
+			if (Options.outputOptions().videoPresetFound()){
+				
+				CommandLine2.add("-vpre");
+				CommandLine2.add(Options.outputOptions().videoPreset());
+			}
 		}
 		
 }
@@ -407,29 +403,35 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 		//beware, if in 2 passes mode, you haven't got to convert audio in first pass
 		
-		if (!Options.twoPasses()){
-			
-			CommandLine.add("-ac");
-			CommandLine.add(Options.outputOptions().audioChannels());
-			CommandLine.add("-ar");
-			CommandLine.add(Options.outputOptions().audioSamplingFrequency());
-			CommandLine.add("-ab");
-			CommandLine.add(Options.outputOptions().audioBitrate()+"k");
-			
+		Vector<String> tmp=new Vector<String>();
+	
 
+		if (Options.outputOptions().audioChannelsFound()){
+		
+			tmp.add("-ac");
+			tmp.add(Options.outputOptions().audioChannels());
 		}
+			
+		if (Options.outputOptions().audioSamplingFrequencyFound()){
+			
+			tmp.add("-ar");
+			tmp.add(Options.outputOptions().audioSamplingFrequency());
+		}
+		
+		if (Options.outputOptions().audioBitrateFound()){
+			
+			tmp.add("-ab");
+			tmp.add(Options.outputOptions().audioBitrate()+"k");
+		}
+		
+		
+		if (!Options.twoPasses())
+			CommandLine.addAll(tmp);
 		
 		if (Options.twoPasses()){// se i passi sono 2 l'audio non va convertito nel primo
 			
 			CommandLine.add("-an");
-
-			CommandLine2.add("-ac");
-			CommandLine2.add(Options.outputOptions().audioChannels());
-			CommandLine2.add("-ar");
-			CommandLine2.add(Options.outputOptions().audioSamplingFrequency());
-			CommandLine2.add("-ab");
-			CommandLine2.add(Options.outputOptions().audioBitrate()+"k");
-
+			CommandLine2.addAll(tmp);
 		}
 	}
 
@@ -438,30 +440,39 @@ public class FFCommandLineImpl implements FFCommandLine {
 		
 		//beware, if in 2 passes mode, you haven't got to convert audio in first pass
 		
-		if (!Options.twoPasses()){
+		Vector<String> tmp=new Vector<String>();
+		
+		if (Options.outputOptions().videoCodecFound()){
 			
-			CommandLine.add("-vcodec");
-			CommandLine.add(Options.outputOptions().videoCodec());
-		//	CommandLine.add("-acodec");
-		//	CommandLine.add(Options.outputOptions().audioCodec());
+			tmp.add("-vcodec");
+			tmp.add(Options.outputOptions().videoCodec());
 		}
+
+		if (Options.outputOptions().audioCodecFound()){
+			
+			tmp.add("-acodec");
+			tmp.add(Options.outputOptions().audioCodec());
+		}
+		
+		
+		if (!Options.twoPasses())	
+			CommandLine.addAll(tmp);
+		
 
 		if (Options.twoPasses()){//se i passi sono 2 non serve codec audio tanto non lo converte
 			
-			CommandLine.add("-vcodec");
-			CommandLine.add(Options.outputOptions().videoCodec());
+			if (Options.outputOptions().videoCodecFound()){
 			
-			CommandLine2.add("-vcodec");
-			CommandLine2.add(Options.outputOptions().videoCodec());
-		//	CommandLine2.add("-acodec");
-		//	CommandLine2.add(Options.outputOptions().audioCodec());
+				CommandLine.add("-vcodec");
+				CommandLine.add(Options.outputOptions().videoCodec());
+			}
+			
+			CommandLine2.addAll(tmp);
 		}
 	}
 	
 	private void setOutput() {
-		//stringa coò nome meno l'estensione (si suppone che abbia estensione)
-		
-		System.out.println(Input.file().getName());
+		//stringa con nome meno l'estensione (si suppone che abbia estensione)
 		
 
 			if (!Options.twoPasses()){
@@ -487,8 +498,13 @@ public class FFCommandLineImpl implements FFCommandLine {
 	
 	@Override
 	public String toString() {
-		return "FFCommandLineImpl [Input=" + Input + ", Options=" + Options
-				+ ", Output=" + Output + "]";
+		return "FFCommandLineImpl [" + System.getProperty("line.separator") + System.getProperty("line.separator") +
+				"Input=" + Input.detailedToString() + System.getProperty("line.separator") + System.getProperty("line.separator") +
+				"Options=" + Options + System.getProperty("line.separator") + System.getProperty("line.separator") +
+				"Output=" + Output + System.getProperty("line.separator") + System.getProperty("line.separator") +
+				"Commandline =" + CommandLine +
+				(Options.twoPasses()?(System.getProperty("line.separator") + System.getProperty("line.separator") + "CommandLine2=" + CommandLine2):"") + System.getProperty("line.separator") + System.getProperty("line.separator") +
+				"]";
 	}
 
 	@Override
@@ -505,9 +521,14 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 	@Override
 	public File output() {
-		String newName=Input.file().getName().split("\\.")[0];
 		
-		return new File(Output.getAbsolutePath()+File.separator+newName+"."+Options.outputOptions().outputExtension());
+		if (Options.outputOptions().outputExtensionFound()){
+			String newName=Input.file().getName().split("\\.")[0];
+		
+			return new File(Output.getAbsolutePath()+File.separator+newName+"."+Options.outputOptions().outputExtension());
+		} else
+			return new File(Output.getAbsolutePath()+File.separator+Input.file().getName());
+	
 	}
 
 	@Override

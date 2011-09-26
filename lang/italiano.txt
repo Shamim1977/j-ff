@@ -4,6 +4,7 @@
 
 appframename: j-ff
 tutorialframename: tutorial
+creditsdialogname: info sviluppatori
 
 !!main
 
@@ -95,3 +96,8 @@ odebug: debug
 executing: in corso
 inpause: in pausa
 ok: ok
+
+!!credits
+
+credits: <html><div align="center">Sviluppato da:<br />Francesco Fornasini<br /><br /><i>info e contatti su<br /> <u>http://code.google.com/p/j-ff<br /></u></i></div></html>
+			    

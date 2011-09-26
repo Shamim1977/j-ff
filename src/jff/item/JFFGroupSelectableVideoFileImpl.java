@@ -38,7 +38,7 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 			File f=new File(p.getString());
 			
 			if (f.isFile())
-				Files.add(new JFFSelectableVideoFileImpl(f,true));
+				Files.add(new JFFSelectableVideoFileImpl(f));
 		}
 		
 		} while (!p.isEmpty());

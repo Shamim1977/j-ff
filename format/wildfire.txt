@@ -1,14 +1,14 @@
-!! settings for the iphone4 format
+!! settings for the wildfire format
 
 !!video
 
-videocodec: libx264 
-videopreset: iphone 
-videowidth: 960
-videoheight: 640
+videocodec: mpeg4
+!!videopreset: iphone
+videowidth: 320
+videoheight: 240
 videoaspect: 3:2
-videobitrate: 768
-videomaxbitrate: 2000
+videobitrate: 192
+videomaxbitrate: 384
 !!Frame Rate - for 29.97 use 30000/1001 and for 23.976 use 24000/1001
 videofps: 30000/1001
 videokeyfps: 30

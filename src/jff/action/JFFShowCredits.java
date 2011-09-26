@@ -10,11 +10,14 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
+import jff.translation.JFFStrings;
 
 @SuppressWarnings("serial")
 public class JFFShowCredits extends AbstractAction {
 
 	static Icon I=new ImageIcon("img/info.png");
+	
+	private JFFStrings S;
 	
 	private Component Parent;
 	
@@ -22,7 +25,7 @@ public class JFFShowCredits extends AbstractAction {
 		super(items.S.showCredits(),I);
 	
 		Parent=p;
-		
+		S=items.S;
 		putValue(SHORT_DESCRIPTION, items.S.showCreditsDescription());  // Will appear as tooltip text.
         
 	}
@@ -31,9 +34,7 @@ public class JFFShowCredits extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		JOptionPane.showMessageDialog(Parent,
-			    "Programmato da:"+System.getProperty("line.separator")+System.getProperty("line.separator")+"Francesco Fornasini",
-			    "Info sviluppatori",
-			    JOptionPane.INFORMATION_MESSAGE,
+			    S.credits(),S.creditsDialogName(),JOptionPane.INFORMATION_MESSAGE,
 			    I);
 
 		

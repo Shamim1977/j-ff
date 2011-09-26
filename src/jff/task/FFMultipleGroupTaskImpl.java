@@ -1,5 +1,6 @@
 package jff.task;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,18 +9,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
+import jff.item.JFFSelectableVideoFileImpl;
 import jff.translation.JFFStrings;
+import jff.utility.JFFParser;
+import jff.utility.JFFParserImpl;
 import jff.utility.JFFTime;
 
 public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 
-	
+	private static final String DEBUGINFOTASKS="debug_info_tasks.txt";
 	
 	private Vector<FFGroupTask> Tasks;
 	
 	private boolean Running=false;
 	private JFFStrings S;
-	private boolean Verbose=true;
+	private boolean Verbose=false;
 	
 	
 	public FFMultipleGroupTaskImpl(JFFStrings strings){
@@ -34,15 +38,36 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 	}
 
 	
+	public FFMultipleGroupTaskImpl(JFFStrings strings, BufferedReader b) {
+		Tasks=new Vector<FFGroupTask>();
+		S=strings;
+		
+		JFFParser p;
+		
+		do{
+		
+		try {
+			p=new JFFParserImpl(b.readLine());
+		} catch (IOException e) {
+			
+			p=new JFFParserImpl(null);
+			e.printStackTrace();
+		}
+		
+		if (p.find("appdebug"))
+			Verbose=p.getBoolean();
+		
+		} while (!p.isEmpty());
+		
+
+	}
+
 	@Override
 	public String toString() {
 		return S.allProcesses()+" ["+Tasks.size()+"]"+" ["+(Running?S.executing():S.inPause())+"]";
 	}
 
 
-	public FFMultipleGroupTaskImpl(){
-		Tasks=new Vector<FFGroupTask>();
-	}
 
 	@Override
 	public void add(FFGroupTask t) {
@@ -91,7 +116,7 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 			
 			if (Verbose) try {
 			
-				FileWriter fstream = new FileWriter("debug_info_tasks.txt",true);
+				FileWriter fstream = new FileWriter(DEBUGINFOTASKS,true);
 				out= new BufferedWriter(fstream);
 				out.write("== All Tasks ==");
 				out.newLine();
@@ -109,7 +134,9 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 			
 			for (int i=0;i<Tasks.size()&&!Thread.currentThread().isInterrupted();i++){
 					
-				Tasks.get(i).setOutputDebugInfo(out);
+				if (Verbose)
+					Tasks.get(i).setOutputDebugInfo(out);
+				
 				t=new Thread(Tasks.get(i));
 				t.start();
 				

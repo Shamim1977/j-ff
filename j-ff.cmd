@@ -1,0 +1,3 @@
+@echo off
+
+start javaw -cp bin jff/main/JFFGUI
