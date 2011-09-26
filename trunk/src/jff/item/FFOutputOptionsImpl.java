@@ -58,7 +58,7 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 		}
 		************************** */
 		
-		public FFOutputOptionsImpl(String format, boolean isVerbose){
+		public FFOutputOptionsImpl(String format){
 		
 			Format=format;
 			
@@ -132,8 +132,6 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 				e.printStackTrace();
 			}
 			
-			if (isVerbose)
-				System.out.println(toString());
 		}
 		
 		
@@ -145,18 +143,24 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 		
 		@Override
 		public String toString() {
-			return "FFOutputOptionsImpl [Format=" + Format + ", VideoCodec="
-					+ VideoCodec + ", VideoPreset=" + VideoPreset
-					+ ", VideoWidth=" + VideoWidth + ", VideoHeight="
-					+ VideoHeight + ", VideoAspect=" + VideoAspect
-					+ ", VideoBitrate=" + VideoBitrate
-					+ ", VideoMaxBitrate=" + VideoMaxBitrate
-					+ ", VideoFPS=" + VideoFPS + ", VideoKeyFPS="
-					+ VideoKeyFPS + ", AudioCodec=" + AudioCodec
-					+ ", AudioChannels=" + AudioChannels
-					+ ", AudioBitrate=" + AudioBitrate
-					+ ", AudioSamplingFrequency=" + AudioSamplingFrequency
-					+ ", OutputExtension=" + OutputExtension + "]";
+			return "FFOutputOptionsImpl [" + System.getProperty("line.separator") +
+					"Format=" + Format + System.getProperty("line.separator") +
+					"VideoCodec=" + VideoCodec + System.getProperty("line.separator") +
+					"VideoPreset=" + VideoPreset + System.getProperty("line.separator") +
+					"VideoWidth=" + VideoWidth + System.getProperty("line.separator") +
+					"VideoHeight=" + VideoHeight + System.getProperty("line.separator") +
+					"VideoAspect=" + VideoAspect + System.getProperty("line.separator") +
+					"VideoBitrate=" + VideoBitrate + System.getProperty("line.separator") +
+					"VideoMaxBitrate=" + VideoMaxBitrate + System.getProperty("line.separator") +
+					"VideoFPS=" + VideoFPS + System.getProperty("line.separator") +
+					"VideoKeyFPS=" + VideoKeyFPS + System.getProperty("line.separator") +
+					"AudioCodec=" + AudioCodec + System.getProperty("line.separator") +
+					"AudioChannels=" + AudioChannels + System.getProperty("line.separator") +
+					"AudioBitrate=" + AudioBitrate + System.getProperty("line.separator") +
+					"AudioSamplingFrequency=" + AudioSamplingFrequency + System.getProperty("line.separator") +
+					"OutputExtension=" + OutputExtension + System.getProperty("line.separator") +
+					"]";
+
 		}
 
 		@Override
@@ -247,6 +251,104 @@ public class FFOutputOptionsImpl implements FFOutputOptions {
 		public String videoWidth() {
 		
 			return VideoWidth;
+		}
+
+
+		@Override
+		public boolean videoCodecFound() {
+			
+			return !(VideoCodec==null||VideoCodec.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoPresetFound() {
+			
+			return !(VideoPreset==null||VideoPreset.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoWidthFound() {
+
+			return !(VideoWidth==null||VideoWidth.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoHeightFound() {
+			
+			return !(VideoHeight==null||VideoHeight.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoAspectFound() {
+			
+			return !(VideoAspect==null||VideoAspect.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoBitrateFound() {
+			
+			return !(VideoBitrate==null||VideoBitrate.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoMaxBitrateFound() {
+			
+			return !(VideoMaxBitrate==null||VideoMaxBitrate.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoFPSFound() {
+			
+			return !(VideoFPS==null||VideoFPS.isEmpty());
+		}
+
+
+		@Override
+		public boolean videoKeyFPSFound() {
+			
+			return !(VideoKeyFPS==null||VideoKeyFPS.isEmpty());
+		}
+
+
+		@Override
+		public boolean audioCodecFound() {
+			
+			return !(AudioCodec==null||AudioCodec.isEmpty());
+		}
+
+
+		@Override
+		public boolean audioChannelsFound() {
+			
+			return !(AudioChannels==null||AudioChannels.isEmpty());
+		}
+
+
+		@Override
+		public boolean audioBitrateFound() {
+			
+			return !(AudioBitrate==null||AudioBitrate.isEmpty());
+		}
+
+
+		@Override
+		public boolean audioSamplingFrequencyFound() {
+			
+			return !(AudioSamplingFrequency==null||AudioSamplingFrequency.isEmpty());
+		}
+
+
+		@Override
+		public boolean outputExtensionFound() {
+			
+			return !(OutputExtension==null||OutputExtension.isEmpty());
 		}
 }
 	

@@ -101,7 +101,9 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 				
 				if (!Tasks.get(i).isDone()){
 				
-					Tasks.get(i).setOutputDebugInfo(DebugFile);
+					if (Verbose)
+						Tasks.get(i).setOutputDebugInfo(DebugFile);
+					
 					t=new Thread(Tasks.get(i)); 
 					t.start();
 				

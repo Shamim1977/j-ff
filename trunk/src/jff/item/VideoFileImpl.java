@@ -14,8 +14,7 @@ public class VideoFileImpl implements VideoFile {
 	private OS CurrentOS=null;
 	
 	
-	private File Path; 
-	private boolean Verbose=false;
+	private File Path;
 	
 	private int Width;
 	private int Height;
@@ -28,21 +27,14 @@ public class VideoFileImpl implements VideoFile {
 	private int Duration;
 	private boolean GotDuration=false;
 	
+	
 	public VideoFileImpl(File f){
 		
-		Path=f;	
-		checkData();
-	}
-	
-	public VideoFileImpl(File f, boolean isVerbose){
-		
 		Path=f;
-		Verbose=isVerbose;
 		
 		String s=System.getProperty( "os.name" );
 		
 		if (s.matches("(.*)(?i)linux(.*)")){
-			System.out.println("linux!!!");
 			CurrentOS=OS.LINUX;
 		}
 		
@@ -92,15 +84,7 @@ public class VideoFileImpl implements VideoFile {
 		    	line = in.readLine();
 		    } 
 		            
-		    if(Verbose){
-		    	
-		    	System.out.println("Aspect ratio detected: "+Width+" x "+Height);
-		    	System.out.println("PAR detected: "+PAR);
-		    	System.out.println("DAR detected: "+DAR);
-		    	System.out.println("Duration detected: "+Duration);
-		    	
-		    }
-		            
+		    		            
 		} catch (IOException e) {  
 			e.printStackTrace();  
 		}  	
@@ -114,23 +98,26 @@ public class VideoFileImpl implements VideoFile {
 	public String toString() {
 		return "["+Duration+" , "+Width+"x"+Height+" , " + PAR + " , " + DAR+"]";
 	}
+	
+	@Override
+	public String detailedToString() {
+		return "VideoFileImpl [" + System.getProperty("line.separator") +
+				"Path=" + Path + System.getProperty("line.separator") +
+				"Width=" + Width + System.getProperty("line.separator") +
+				"Height=" + Height + System.getProperty("line.separator") +
+				"PAR=" + PAR + System.getProperty("line.separator") +
+				"DAR=" + DAR + System.getProperty("line.separator") +
+				"Duration=" + Duration + System.getProperty("line.separator") +
+				"]";
+	}
 
 	private void checkDuration(String line){
 		
 		if (line.contains("Duration:")){// line where width and height are stored
         	
-        	if(Verbose){
-        		System.out.println("Duration Data Input found:");
-        		System.out.println(line);
-        	}
-        	
         	String hMS=line.split(",")[0].trim().split(" ")[1]; //taglio nel formato h:m:s
-        	System.out.println(hMS);
         	
         	String[] hoursMinsSecs=hMS.split(":");
-        	System.out.println(hoursMinsSecs[0]);
-        	System.out.println(hoursMinsSecs[1]);
-        	System.out.println(hoursMinsSecs[2]);	
         	Duration=Integer.parseInt(hoursMinsSecs[0])*3600+
         	Integer.parseInt(hoursMinsSecs[1])*60+
         	((int)Float.parseFloat(hoursMinsSecs[2]));
@@ -144,11 +131,6 @@ public class VideoFileImpl implements VideoFile {
 	private void checkWidthHeightPARDAR(String line){
 		
         if (line.contains("Video:")){// line where width and height are stored
-        	
-        	if(Verbose){
-        		System.out.println("Video Data Input found:");
-        		System.out.println(line);
-        	}
         	
         	String[] videoParams=line.split(",");
         	

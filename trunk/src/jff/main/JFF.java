@@ -20,25 +20,22 @@ public class JFF {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		/*
 		FFCommandLine f1=new FFCommandLineImpl(
 				new VideoFileImpl(new File("/home/francesco/Scaricati/input R.flv"),true),
-				new FFOptionsImpl("IPOD", new File("/home/francesco/Scaricati"), true),
-				true
+				new FFOptionsImpl("IPOD", new File("/home/francesco/Scaricati"), true)
 				);
 	
 		FFCommandLine f2=new FFCommandLineImpl(
 				new VideoFileImpl(new File("/home/francesco/Scaricati/input B1.mp4"),true),
 				new FFOptionsImpl("IPOD",new File("/home/francesco"),
-						true),
-				true
+						true)
 				);
 		
 		FFCommandLine f3=new FFCommandLineImpl (
 						new VideoFileImpl(new File("/home/francesco/Scaricati/input B2.3gp"),true),
 						new FFOptionsImpl("IPOD",new File("/home/francesco/Scaricati"),
-								true),
-						true
+								true)
 						);
 	
 		
@@ -63,6 +60,8 @@ public class JFF {
 			}
 			System.out.println("TOTAL="+fff.progressPercent());
 		}
+		
+		*/
 	}
 
 }

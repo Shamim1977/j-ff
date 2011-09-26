@@ -2,6 +2,7 @@ package jff.task;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -83,11 +84,6 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 
 	private void updateStats(String l) {
 		
-		System.out.println(l);
-		System.out.println(this.progressPercentOfTheFirstPass());
-		System.out.println(this.progressPercentOfTheSecondPass());
-		System.out.println(this.progressPercentOfTheTask());
-		
 		String parsedL="0.0";
 		
 		for (int i=0;i<l.split(" ").length;i++)
@@ -116,7 +112,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 		
 			Running=true;
 			
-			if (Verbose) try {
+			if (Verbose) try {//task debug
 				
 				DebugFile.write(T+"** File "+CommandLine.input().file().getAbsolutePath()+" **");
 				DebugFile.newLine();
@@ -126,6 +122,24 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 				DebugFile.write(T+"Started at "+JFFTime.now());
 				DebugFile.newLine();
 			  
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			BufferedWriter out=null;
+			
+			if (CommandLine.options().verbose()) try {// conversion debug
+			
+				FileWriter fstream = new FileWriter(CommandLine.output()+".txt");
+				out= new BufferedWriter(fstream);
+				out.write(CommandLine.toString());
+				out.newLine();
+				out.newLine();
+				out.write("FFmpeg started at "+JFFTime.now());
+				out.newLine();
+				out.write("FFmpeg output:");
+				out.newLine();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -146,14 +160,25 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 
 					            
 		    while (line!=null&&!Thread.currentThread().isInterrupted() ) { 
-		            	
+		    	
+		    	if (CommandLine.options().verbose()) try {// conversion debug
+					
+					out.write(line);
+					out.newLine();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    	
 		    	updateStats(line);		                        
 		    	line = in.readLine();
 		    }
 
 		    if (Thread.currentThread().isInterrupted()){
+
 		    	p.destroy();
 		    	updateStats("time=00:00:00.00");
+
 		    }
 			
 		
@@ -170,6 +195,20 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 		if (CommandLine.options().twoPasses()&&!Thread.currentThread().isInterrupted())
 			try {
 				
+				if (CommandLine.options().verbose()) try {// conversion debug
+					
+					out.newLine();
+					out.write("FFmpeg second pass started at "+JFFTime.now());
+					out.newLine();
+					out.write("FFmpeg output:");
+					out.newLine();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				
+				
 				ProcessBuilder pb = new ProcessBuilder(CommandLine.getCommandLine(2));
 				pb.redirectErrorStream(true);
 			    
@@ -183,14 +222,25 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			            
 
 			    while (line!=null&&!Thread.currentThread().isInterrupted() ) { 
-			            	
+			           
+			    	if (CommandLine.options().verbose()) try {// conversion debug
+						
+						out.write(line);
+						out.newLine();
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+			    	
 			    	updateStats(line);		                        
 			    	line = in.readLine();
 			    }
 			
 			    if (Thread.currentThread().isInterrupted()){
+			    
 			    	p.destroy();
 			    	updateStats("time=00:00:00.00");
+			  
 			    }
 			
 			} catch (IOException e) {
@@ -213,6 +263,20 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 				e1.printStackTrace();
 			}
 				
+
+		    	if (CommandLine.options().verbose()) try {// conversion debug
+					
+		    		out.newLine();
+					out.write("Interrupted at "+JFFTime.now());
+					out.newLine();
+					out.close();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    	
+		    	
+				
 			}
 			
 			
@@ -227,6 +291,20 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+
+	    	if (CommandLine.options().verbose()&&!Thread.currentThread().isInterrupted()) try {// conversion debug
+				
+	    		out.newLine();
+				out.write("Ended at "+JFFTime.now());
+				out.newLine();
+				out.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	    	
+	    	
 		}
 	}
 

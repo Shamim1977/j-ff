@@ -18,6 +18,7 @@ import javax.swing.border.TitledBorder;
 
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 
+@SuppressWarnings("serial")
 public class JFFTutorialFrameImpl extends JFrame implements JFFTutorialFrame {
 
 	private JScrollPane Panel;

@@ -4,7 +4,7 @@ import java.io.File;
 
 public interface FFOptions {
 
-	public void setOutPutFormat(String s);
+	public void setOutputFormat(String s);
 	
 	public boolean twoPasses();
 	public boolean pads();
@@ -23,5 +23,6 @@ public interface FFOptions {
 
 	public boolean smallFiles();
 	public void setSmallFiles(boolean b);
+
 	
 }

@@ -115,30 +115,20 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 			
 				b.close();
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			try {
-				
-				FileReader fstream=new FileReader(filePath);
-				BufferedReader b1=new BufferedReader(fstream);
+				FileReader fstream1=new FileReader(filePath);
+				BufferedReader b1=new BufferedReader(fstream1);
 			
 				Files=new JFFGroupSelectableVideoFileImpl(b1);
 			
 				b1.close();
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				FileReader fstream2=new FileReader(filePath);
+				BufferedReader b2=new BufferedReader(fstream2);
 			
-			Tasks=new FFMultipleGroupTaskImpl(S); 
-			
-			try {
-			
+				Tasks=new FFMultipleGroupTaskImpl(S,b2); 
+				
+				b2.close();
+				
 				FileReader fstream3=new FileReader(filePath);
 				BufferedReader b3=new BufferedReader(fstream3);
 			

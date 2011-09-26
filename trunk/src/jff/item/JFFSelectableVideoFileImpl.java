@@ -6,8 +6,8 @@ public class JFFSelectableVideoFileImpl extends VideoFileImpl implements JFFSele
 	
     private boolean Checked=true;
     	
-    public JFFSelectableVideoFileImpl(File f, boolean isVerbose){
-    	super(f,isVerbose);
+    public JFFSelectableVideoFileImpl(File f){
+    	super(f);
     }
     
     @Override
