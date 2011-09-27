@@ -1,10 +1,13 @@
 package jff.task;
 
 import java.io.BufferedWriter;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Vector;
 
-public interface FFGroupTask extends Runnable {
+import jff.translation.JFFStrings;
+
+public interface FFGroupTask extends Runnable, Serializable {
 
 	public FFSingleTask get(int i);
 	public int size();
@@ -19,5 +22,6 @@ public interface FFGroupTask extends Runnable {
 	
 	
 	public final static String T="    ";
+	public void setLanguage(JFFStrings strings);
 	
 }

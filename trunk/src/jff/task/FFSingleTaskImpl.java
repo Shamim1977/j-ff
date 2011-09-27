@@ -14,16 +14,21 @@ import jff.utility.JFFTime;
 
 public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private FFCommandLine CommandLine;
 	
-	private boolean Running=false;
+	private transient boolean Running=false;
 	private boolean Converted=false;	
-	private int CurrentPass=1;
+	private transient int CurrentPass=1;
 	private float ConvertedTime=0;
 
 	private boolean Verbose=false;
 
-	private BufferedWriter DebugFile=null;
+	private transient BufferedWriter DebugFile=null;
 	
 	public FFSingleTaskImpl(FFCommandLine c){
 		
@@ -41,35 +46,54 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 	@Override
 	public float progressPercentOfTheFirstPass() {
 		
-		if (CurrentPass==1)
+		if(Converted)//already finished
+			return 100;
+		
+		
+		if (!Converted&&!Running)//waiting for start the task
+			return 0;
+
+		if (Running&&CommandLine.options().twoPasses()&&CurrentPass==2)//first pass finished and second pass in course
+			return 100;
+		
+		
+		if (Running&&CurrentPass==1)
 			try {
+			
 				return ConvertedTime/CommandLine.input().Duration()*100;
 			} catch (ValueNotFoundException ve){
+			
 				return 0; // if the duration of the input file is unknown it will return 0 (awful solution) 
 			}
-			else {
-				if (CommandLine.options().twoPasses())
-					return 100;
-				else
-					return 0;//it never happens ("only one pass option" and "executing pass 2" )
-		}
+			
+		return 0;//it hopefully never happens
+		
 	}
 
 	@Override
 	public float progressPercentOfTheSecondPass() {
-		if (CommandLine.options().twoPasses()&&(CurrentPass==2))
+		
+		if(Converted)//already finished
+			return 100;
+		
+		
+		if (!Converted&&!Running)//waiting for start the task
+			return 0;
+
+		if (Running&&CurrentPass==1)//first pass started but already in course
+			return 0;
+		
+		if (Running&&CommandLine.options().twoPasses()&&(CurrentPass==2))//second pass time
 			try {
+		
 				return ConvertedTime/CommandLine.input().Duration()*100;
 			} catch (ValueNotFoundException ve){
+		
 				return 0; // if the duration of the input file is unknown it will return 0 (awful solution) 
 			}
-			else{ 	
-				if (Converted==true)
-					return 100;
-				else
-					return 0;
+		
+		return 0;//it hopefully never happens
 			
-		}
 	}
 	
 	

@@ -3,8 +3,12 @@ package jff.task;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
@@ -15,14 +19,20 @@ import jff.utility.JFFParser;
 import jff.utility.JFFParserImpl;
 import jff.utility.JFFTime;
 
+
 public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static final String DEBUGINFOTASKS="debug_info_tasks.txt";
 	
 	private Vector<FFGroupTask> Tasks;
 	
-	private boolean Running=false;
-	private JFFStrings S;
+	private transient boolean Running=false;
+	private transient JFFStrings S;// useless to save the translation
 	private boolean Verbose=false;
 	
 	
@@ -40,6 +50,29 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 	
 	public FFMultipleGroupTaskImpl(JFFStrings strings, BufferedReader b) {
 		Tasks=new Vector<FFGroupTask>();
+		
+		try {
+			
+			FileInputStream fis = new FileInputStream(new File("tasks"));
+			ObjectInputStream in = new ObjectInputStream(fis);
+			Tasks.addAll(((FFMultipleGroupTaskImpl)in.readObject()).groupTasks());
+			
+			for (int i=0;i<Tasks.size();i++)
+				Tasks.get(i).setLanguage(strings);
+				
+			
+			
+			in.close();
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		catch(ClassNotFoundException ex)
+		{
+			ex.printStackTrace();
+		}
+		
 		S=strings;
 		
 		JFFParser p;
@@ -62,6 +95,10 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 
 	}
 
+	public void setLanguage(JFFStrings strings){
+		S=strings;
+	}
+	
 	@Override
 	public String toString() {
 		return S.allProcesses()+" ["+Tasks.size()+"]"+" ["+(Running?S.executing():S.inPause())+"]";

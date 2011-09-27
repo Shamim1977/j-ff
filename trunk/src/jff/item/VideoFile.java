@@ -1,8 +1,9 @@
 package jff.item;
 
 import java.io.File;
+import java.io.Serializable;
 
-public interface VideoFile {
+public interface VideoFile extends Serializable {
 
 	public void checkData();
 	

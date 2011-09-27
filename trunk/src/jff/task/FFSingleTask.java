@@ -1,10 +1,11 @@
 package jff.task;
 
 import java.io.BufferedWriter;
+import java.io.Serializable;
 
 import jff.item.FFCommandLine;
 
-public interface FFSingleTask extends Runnable {
+public interface FFSingleTask extends Runnable, Serializable {
 
 	float progressPercentOfTheSecondPass();
 	float progressPercentOfTheFirstPass();
