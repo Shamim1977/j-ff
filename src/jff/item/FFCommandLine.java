@@ -1,9 +1,10 @@
 package jff.item;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Vector;
 
-public interface FFCommandLine {
+public interface FFCommandLine extends Serializable {
 
 	public VideoFile input();
 	public File output();

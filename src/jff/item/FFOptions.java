@@ -1,8 +1,9 @@
 package jff.item;
 
 import java.io.File;
+import java.io.Serializable;
 
-public interface FFOptions {
+public interface FFOptions extends Serializable {
 
 	public void setOutputFormat(String s);
 	

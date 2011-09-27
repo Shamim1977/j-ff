@@ -2,6 +2,10 @@ package jff.action;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -30,6 +34,28 @@ public class JFFQuit extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
+		new JFFPauseTasks(Items).actionPerformed(null);
+		
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(new File("tasks"));
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+		
+			out.writeObject(Items.Tasks);
+			out.close();
+		
+		} catch(IOException ex) {
+		
+			ex.printStackTrace();
+		}
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 
 }

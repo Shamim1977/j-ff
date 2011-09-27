@@ -3,23 +3,30 @@ package jff.task;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
 import jff.translation.JFFStrings;
+import jff.translation.JFFStringsImpl;
 import jff.utility.JFFTime;
 
 public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Vector<FFSingleTask> Tasks;
-	private boolean Running=false;
+	private transient boolean Running=false;
 	private boolean Converted=false;	
 	private int ConvertedFiles=0;
 	private String Name="";
 	private boolean Verbose=false;
-	private BufferedWriter DebugFile=null;
-	private JFFStrings S;
+	private transient BufferedWriter DebugFile=null;
+	private transient JFFStrings S;
 	
 	public FFGroupTaskImpl(JFFStrings strings, String n){
 		Tasks=new Vector<FFSingleTask>();
@@ -27,6 +34,11 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		S=strings;
 	}
 	
+	@Override
+	public void setLanguage(JFFStrings strings){
+		S=strings;
+	}
+		
 	@Override
 	public String toString() {
 		
@@ -61,10 +73,26 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 
 	@Override
 	public float progressPercent() {
-		if (ConvertedFiles<Tasks.size())
-			return (((float)ConvertedFiles)/Tasks.size())*100+Tasks.get(ConvertedFiles).progressPercentOfTheTask()/Tasks.size();
-		else
+		
+		if(Converted)//already finished
 			return 100;
+		
+		int tmp=0;
+		int wgt= (int)(((float)1)/Tasks.size()*100);
+		
+		for (int i=0;i<Tasks.size();i++){
+		
+			if (Tasks.get(i).isRunning())
+				tmp+=(int)(Tasks.get(i).progressPercentOfTheTask()/Tasks.size());
+			else if (Tasks.get(i).isDone())
+				tmp+=wgt;
+		}
+		//if (ConvertedFiles>=0&&ConvertedFiles<Tasks.size())
+			//return (((float)ConvertedFiles)/Tasks.size())*100+Tasks.get(ConvertedFiles).progressPercentOfTheTask()/Tasks.size();
+		//else
+			//return 100;
+		
+		return tmp;
 	}
 
 	@Override
@@ -114,6 +142,8 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 						t.interrupt();
 
 						ConvertedFiles--;
+						System.out.println("-1");
+						
 						
 						if (Verbose) try {
 							
@@ -136,6 +166,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 					}
 				
 					ConvertedFiles++;
+					System.out.println("+1");
 				}
 			}
 		

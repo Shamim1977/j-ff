@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,6 +33,7 @@ import javax.swing.border.TitledBorder;
 import jff.action.JFFAddFiles;
 import jff.action.JFFAddTask;
 import jff.action.JFFDeleteFiles;
+import jff.action.JFFQuit;
 import jff.gui.tabbedpane.JFFTabbedPane;
 import jff.gui.tabbedpane.JFFTabbedPaneImpl;
 import jff.gui.table.JFFTable;
@@ -166,8 +169,11 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	public JFFMainFrameImpl(){
 			
 			super();
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+			
+			
+			
 	      //Create the app items
 	        
 			
@@ -177,7 +183,12 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 				Items=new JFFBundledItems();	        
 
 	        setTitle(Items.S.appFrameName());
-	        
+
+	        addWindowListener(new WindowAdapter() {
+				  public void windowClosing(WindowEvent we) {
+					  new JFFQuit(Items).actionPerformed(null);
+				  }
+				});
 	      //Create the Table
 	        Table = new JFFTableImpl(Items);
 	        ((JFFTableImpl)Table).rebuild();

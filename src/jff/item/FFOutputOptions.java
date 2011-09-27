@@ -1,6 +1,8 @@
 package jff.item;
 
-public interface FFOutputOptions {
+import java.io.Serializable;
+
+public interface FFOutputOptions extends Serializable {
 
 	public boolean is(String format);
 	public String format();

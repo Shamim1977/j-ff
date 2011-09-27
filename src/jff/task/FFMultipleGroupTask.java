@@ -1,8 +1,12 @@
 package jff.task;
 
+import java.io.Externalizable;
+import java.io.Serializable;
 import java.util.Vector;
 
-public interface FFMultipleGroupTask extends Runnable {
+import jff.translation.JFFStrings;
+
+public interface FFMultipleGroupTask extends Runnable, Serializable {
 
 	void add(FFGroupTask t);
 
@@ -22,5 +26,6 @@ public interface FFMultipleGroupTask extends Runnable {
 
 	public void remove(FFGroupTask r);
 	public void removeAll();
-
+	public void setLanguage(JFFStrings s);
+	
 }
