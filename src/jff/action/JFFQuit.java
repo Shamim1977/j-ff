@@ -49,12 +49,19 @@ public class JFFQuit extends AbstractAction {
 			ex.printStackTrace();
 		}
 		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+try {
+			
+			FileOutputStream fos = new FileOutputStream(new File("videofiles"));
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+		
+			out.writeObject(Items.Files);
+			out.close();
+		
+		} catch(IOException ex) {
+		
+			ex.printStackTrace();
 		}
+		
 		System.exit(0);
 	}
 

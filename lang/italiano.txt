@@ -100,4 +100,7 @@ ok: ok
 !!credits
 
 credits: <html><div align="center">Sviluppato da:<br />Francesco Fornasini<br /><br /><i>info e contatti su<br /> <u>http://code.google.com/p/j-ff<br /></u></i></div></html>
-			    
+
+!!error
+
+duplicateapperror: L'applicazione è gia in esecuzione		    

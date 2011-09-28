@@ -100,3 +100,7 @@ ok: ok
 !!credits
 
 credits: <html><div align="center">Developed by:<br />Francesco Fornasini<br /><br /><i>info and contacts at<br /> <u>http://code.google.com/p/j-ff<br /></u></i></div></html>
+
+!!error
+
+duplicateapperror: Application is already running

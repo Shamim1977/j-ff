@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -30,6 +31,7 @@ public class JFFTableImpl extends JTable implements JFFTable {
 		Items=items;
 		setColW();
 		
+		
 	}
 	
 	
@@ -53,11 +55,10 @@ public class JFFTableImpl extends JTable implements JFFTable {
 	}
 	
 	public void rebuild(){
-		
+
 		setModel(new JFFTableModelImpl(Items));
 		setColW();
-		
-		
+			
 	}
 	
 	@Override
@@ -65,6 +66,8 @@ public class JFFTableImpl extends JTable implements JFFTable {
 		
 		return new JFFTableModelImpl();
 	}
+	
+
 	
 	@Override
 	public TableCellRenderer getCellRenderer(int row, int column) {

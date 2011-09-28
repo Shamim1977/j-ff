@@ -51,6 +51,30 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 	public FFMultipleGroupTaskImpl(JFFStrings strings, BufferedReader b) {
 		Tasks=new Vector<FFGroupTask>();
 		
+		S=strings;
+		
+		JFFParser p;
+		boolean loadFile=false;
+		
+		do{
+		
+		try {
+			p=new JFFParserImpl(b.readLine());
+		} catch (IOException e) {
+			
+			p=new JFFParserImpl(null);
+			e.printStackTrace();
+		}
+		
+		if (p.find("appdebug"))
+			Verbose=p.getBoolean();
+		
+		else if (p.find("tasks"))
+			loadFile=p.getBoolean();
+		
+		} while (!p.isEmpty());
+		
+		if (loadFile)
 		try {
 			
 			FileInputStream fis = new FileInputStream(new File("tasks"));
@@ -73,24 +97,6 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 			ex.printStackTrace();
 		}
 		
-		S=strings;
-		
-		JFFParser p;
-		
-		do{
-		
-		try {
-			p=new JFFParserImpl(b.readLine());
-		} catch (IOException e) {
-			
-			p=new JFFParserImpl(null);
-			e.printStackTrace();
-		}
-		
-		if (p.find("appdebug"))
-			Verbose=p.getBoolean();
-		
-		} while (!p.isEmpty());
 		
 
 	}

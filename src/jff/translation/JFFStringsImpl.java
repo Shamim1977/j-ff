@@ -157,7 +157,9 @@ public class JFFStringsImpl implements JFFStrings {
 
 	private String CreditsDialogName;
 
-	private String Credits; 
+	private String Credits;
+
+	private String DuplicateAppError; 
 	
 	public JFFStringsImpl(){
 		parseLanguage(new File("lang"+File.separator+Lang+".txt"));
@@ -447,6 +449,9 @@ public class JFFStringsImpl implements JFFStrings {
 			
 			else if (P.find("credits"))
 				Credits=P.getStringWithSeparators();
+			
+			else if (P.find("duplicateapperror"))
+				DuplicateAppError=P.getString();
 
 
 
@@ -898,6 +903,12 @@ public class JFFStringsImpl implements JFFStrings {
 	public String credits() {
 		
 		return Credits;
+	}
+
+	@Override
+	public String duplicateAppError() {
+		
+		return DuplicateAppError;
 	}
 	
 	

@@ -497,7 +497,7 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 	
 	@Override
-	public String toString() {
+	public String detailedToString() {
 		return "FFCommandLineImpl [" + System.getProperty("line.separator") + System.getProperty("line.separator") +
 				"Input=" + Input.detailedToString() + System.getProperty("line.separator") + System.getProperty("line.separator") +
 				"Options=" + Options + System.getProperty("line.separator") + System.getProperty("line.separator") +
@@ -507,6 +507,12 @@ public class FFCommandLineImpl implements FFCommandLine {
 				"]";
 	}
 
+	@Override
+	public String toString(){
+		return Input.toString();
+	}
+	
+	
 	@Override
 	public VideoFile input() {
 		
@@ -543,5 +549,9 @@ public class FFCommandLineImpl implements FFCommandLine {
 		return null;
 	}
 	
+	@Override
+	public String getOptimizedDimension(){
+		return (new Integer(OptimizedWidth).toString())+"x"+(new Integer(OptimizedHeight).toString());
+	}
 	
 }

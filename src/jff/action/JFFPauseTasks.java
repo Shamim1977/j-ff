@@ -33,10 +33,15 @@ public class JFFPauseTasks extends AbstractAction {
 		
 		
 		if (Tasks.isRunning()){
-			System.out.println("interrompimi");
 			Executor.interrupt();
 		}
 
+		try {//this stuff has to be executed on another thread to avoid the gui freeze
+			Executor.getThread().join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		Refresher.interrupt();
 
 	}

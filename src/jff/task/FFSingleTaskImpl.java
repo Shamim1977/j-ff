@@ -156,7 +156,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 			
 				FileWriter fstream = new FileWriter(CommandLine.output()+".txt");
 				out= new BufferedWriter(fstream);
-				out.write(CommandLine.toString());
+				out.write(CommandLine.detailedToString());
 				out.newLine();
 				out.newLine();
 				out.write("FFmpeg started at "+JFFTime.now());

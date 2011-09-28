@@ -1,6 +1,8 @@
 package jff.item;
 
-public interface JFFSelectableVideoFile extends VideoFile {
+import java.io.Serializable;
+
+public interface JFFSelectableVideoFile extends VideoFile, Serializable {
 
 	public boolean isSelected();
 
