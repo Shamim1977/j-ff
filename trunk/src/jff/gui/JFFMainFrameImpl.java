@@ -96,6 +96,9 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		public void interrupt(){
 			T.interrupt();
 		}
+		public Thread getThread(){
+			return T;
+		}
 	}
 	
 	public class JFFBundledItems {

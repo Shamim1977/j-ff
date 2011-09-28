@@ -10,6 +10,7 @@ import javax.swing.event.TreeModelListener;
 
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
 import jff.gui.treetable.structure.AbstractTreeTableModel;
+import jff.item.FFCommandLine;
 import jff.task.FFGroupTask;
 import jff.task.FFMultipleGroupTask;
 import jff.task.FFSingleTask;
@@ -29,8 +30,6 @@ import jff.translation.JFFStrings;
 
 public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFFTreeTableModel {
 
-    // Names of the columns.
-    static protected String[]  columnNames = {"Processi", "Files", "Progresso", "Info"};
 
     private JFFStrings S;
     
@@ -59,7 +58,7 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     	if (node instanceof FFSingleTask ){
     	
     		Vector<Object> obv=new Vector<Object>();
-    		obv.add(((FFSingleTask)node).commandLine().input());
+    		obv.add(((FFSingleTask)node).commandLine());
     		return obv;
     	}
     	
@@ -91,7 +90,7 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     @Override
     public int getColumnCount() {
 
-    	return columnNames.length;
+    	return 4;
     }
     
     @Override
@@ -134,27 +133,49 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     	
     	
     	
-    	if (node instanceof FFGroupTask ){
+    	else if (node instanceof FFGroupTask ){
     	
     		if (column==1)
     	   		return ((FFGroupTask)node).size();
     		else if (column==2)
     	   		return ((FFGroupTask)node).progressPercent();
     		else if (column==3)
-    	   		return null;//info
+    	   		return ((FFGroupTask)node).doneTasks()+" "+S.ok()+", "+
+    	   				((FFGroupTask)node).runningTasks()+" "+S.executing()+", "+
+	   			   ((FFGroupTask)node).waitingTasks()+" "+S.inPause();
     	}
     	
     	
-    	if (node instanceof FFSingleTask ){
+    	else if (node instanceof FFSingleTask ){
     	
     		if (column==1)
     	   		return ((FFSingleTask)node).isDone()?S.ok():null;
     		else if (column==2)
     	   		return ((FFSingleTask)node).progressPercentOfTheTask();
-    		else if (column==3)
-    	   		return null;//info
+    		else if (column==3){
+    			
+    	   		String tmp=(((FFSingleTask)node).commandLine().options().twoPasses()?S.optionsTwoPassesTag()+", ":"") +
+    	   				(((FFSingleTask)node).commandLine().options().pads()?S.optionsPadsTag()+", ":"") +
+    	   				(((FFSingleTask)node).commandLine().options().smallFiles()?S.optionsSmallTag()+", ":"") +
+    	   				(((FFSingleTask)node).commandLine().options().verbose()?S.optionsDebugTag()+", ":"");
+    	   		
+    		if (tmp.equals(""))
+    			return null;
+    		else
+    			return tmp.substring(0,tmp.length()-2);
+    		
+    		}
+ 
     	}
     	
+    	else if (node instanceof FFCommandLine ) {
+    		
+    		if (column==3)
+    	   		return "["+((FFCommandLine)node).getOptimizedDimension()+"]";
+    		
+    		
+    		
+    	}
     	
 	   	return null;
     }

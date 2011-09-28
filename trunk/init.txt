@@ -3,19 +3,22 @@
 !!modify this at your own risk.
 !!delete the file itself for a fresh start. 
 
+!! load file options
+
+videofiles: true 
+tasks: true 
 
 
-file: /home/francesco/Scaricati/input R.flv
-file: /home/francesco/Scaricati/input B2.3gp
-
-file: /topolino
-
-outputformat: iphone4
-outputdir: /home/francesco/Scaricati/final
+!! application options
 
 language: english
 appdebug: true
 
+
+!! output options
+
+outputformat: iphone4
+outputdir: /home/francesco/Scaricati/final
 optionthreads: 4
 optiontwopasses: true
 optionpads: false

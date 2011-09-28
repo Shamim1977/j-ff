@@ -45,7 +45,7 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		if ((!Tasks.isEmpty())&&Name.isEmpty())
 			Name=Tasks.get(0).commandLine().output().getParent();
 			
-		return Name+" ["+Tasks.size()+"] ["+(Running?S.executing():S.inPause())+"]";
+		return Name+" ["+(Running?S.executing():S.inPause())+"]";
 	}
 
 	public FFGroupTaskImpl(JFFStrings strings){
@@ -213,6 +213,30 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		
 		Verbose=true;
 		DebugFile=bw;
+	}
+
+	@Override
+	public int doneTasks() {
+		
+		return ConvertedFiles;
+	}
+
+	@Override
+	public int runningTasks() {
+		
+		int tmp=0;
+		
+		for (int i=0;i<Tasks.size();i++)
+			if (Tasks.get(i).isRunning())
+				tmp++;
+		
+		return tmp;
+	}
+	
+	@Override
+	public int waitingTasks() {
+		
+		return Tasks.size()-doneTasks()-runningTasks();
 	}
 	
 	

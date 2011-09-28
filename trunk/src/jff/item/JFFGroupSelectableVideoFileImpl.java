@@ -2,9 +2,12 @@ package jff.item;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Vector;
 
+import jff.task.FFMultipleGroupTaskImpl;
 import jff.utility.JFFParser;
 import jff.utility.JFFParserImpl;
 
@@ -22,6 +25,7 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 		Files=new Vector<JFFSelectableVideoFile>();
 		
 		JFFParser p;
+		boolean loadFile=false;
 		
 		do{
 		
@@ -33,17 +37,37 @@ public class JFFGroupSelectableVideoFileImpl implements JFFGroupSelectableVideoF
 			e.printStackTrace();
 		}
 		
-		if (p.find("file")){
-			
-			File f=new File(p.getString());
-			
-			if (f.isFile())
-				Files.add(new JFFSelectableVideoFileImpl(f));
-		}
+		if (p.find("videofiles"))
+			loadFile=p.getBoolean();
 		
 		} while (!p.isEmpty());
 		
-
+		if (loadFile)
+			try {
+				
+				FileInputStream fis = new FileInputStream(new File("videofiles"));
+				ObjectInputStream in = new ObjectInputStream(fis);
+				
+				JFFGroupSelectableVideoFileImpl tmp=((JFFGroupSelectableVideoFileImpl)in.readObject());
+				
+				for (int i=0;i<tmp.size();i++)
+					if (tmp.get(i).file().isFile()){
+						//trusting old parameters it should be Files.add(tmp.get(i));
+						Files.add(new JFFSelectableVideoFileImpl(tmp.get(i).file()));
+					}
+					
+				
+				
+				in.close();
+			}
+			catch(IOException ex)
+			{
+				ex.printStackTrace();
+			}
+			catch(ClassNotFoundException ex)
+			{
+				ex.printStackTrace();
+			}
 		
 	}
 

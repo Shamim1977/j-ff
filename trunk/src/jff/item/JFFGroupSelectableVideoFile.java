@@ -1,8 +1,9 @@
 package jff.item;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public interface JFFGroupSelectableVideoFile {
+public interface JFFGroupSelectableVideoFile extends Serializable {
 
 	public void add(JFFSelectableVideoFile t);
 	public JFFSelectableVideoFile get(int i);

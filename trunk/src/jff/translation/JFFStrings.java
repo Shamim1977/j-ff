@@ -107,5 +107,8 @@ public interface JFFStrings {
 	//credits
 	public String credits();
 	
+	//error
+	public String duplicateAppError();
+		
 
 }

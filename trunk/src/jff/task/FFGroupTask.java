@@ -24,4 +24,8 @@ public interface FFGroupTask extends Runnable, Serializable {
 	public final static String T="    ";
 	public void setLanguage(JFFStrings strings);
 	
+	public int doneTasks();
+	public int waitingTasks();
+	public int runningTasks();
+	
 }
