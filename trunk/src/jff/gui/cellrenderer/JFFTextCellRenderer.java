@@ -17,6 +17,8 @@ public class JFFTextCellRenderer extends DefaultTableCellRenderer {
 	super.getTableCellRendererComponent(table, value, isSelected,
 	hasFocus, row, column);
 	setHorizontalAlignment(SwingConstants.CENTER);
+	if (this.getText().length()>5)
+		this.setToolTipText(this.getText());
 	return this;
 	}
 	}

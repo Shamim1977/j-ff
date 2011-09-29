@@ -4,6 +4,7 @@ import java.awt.Component;
 
 import javax.swing.Action;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,7 +39,7 @@ public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 	
 	private JButton Add;
 	private JButton DeleteFiles;
-	private JButton PlayVLC;
+	private JButton PlayFile;
 	
 	private JButton DeleteTask;
 	private JButton Play;
@@ -59,33 +60,43 @@ public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 		
 		Add=new JButton(new JFFAddFiles(Parent, Table, items));
 		Add.setText(null);
+		Add.setIcon(new ImageIcon("img/addbig.png"));
 		DeleteFiles=new JButton(new JFFDeleteFiles(Table, items));
 		DeleteFiles.setText(null);
-		PlayVLC=new JButton(new JFFPlayFile(Table, items));
-		PlayVLC.setText(null);
+		DeleteFiles.setIcon(new ImageIcon("img/deletebig.png"));
+		PlayFile=new JButton(new JFFPlayFile(Table, items));
+		PlayFile.setText(null);
+		PlayFile.setIcon(new ImageIcon("img/playfilebig.png"));
 		
 		DeleteTask=new JButton(new JFFDeleteGroupTask(TreeTable,items));
 		DeleteTask.setText(null);
+		DeleteTask.setIcon(new ImageIcon("img/deletetaskbig.png"));
 		Play=new JButton(new JFFAddTask(Table,TreeTable,items));
 		Play.setText(null);
+		Play.setIcon(new ImageIcon("img/addtaskbig.png"));
 		DeleteAllTasks=new JButton(new JFFDeleteAllTasks(TreeTable, items));
 		DeleteAllTasks.setText(null);
+		DeleteAllTasks.setIcon(new ImageIcon("img/deletetasksbig.png"));
 		PauseAllTasks=new JButton(new JFFPauseTasks(items));
 		PauseAllTasks.setText(null);
+		PauseAllTasks.setIcon(new ImageIcon("img/pausetasksbig.png"));
 		ResumePlay=new JButton(new JFFStartTasks(items));
 		ResumePlay.setText(null);
+		ResumePlay.setIcon(new ImageIcon("img/playtasksbig.png"));
 		
 		add(Add);
 		add(DeleteFiles);
-		add(PlayVLC);
+		add(PlayFile);
 		this.addSeparator();
 		
 		
-		add(DeleteTask);
 		add(Play);
 		this.addSeparator();
 		
+		add(DeleteTask);
 		add(DeleteAllTasks);
+		this.addSeparator();
+		
 		add(PauseAllTasks);
 		add(ResumePlay);
 		add(Box.createHorizontalGlue());

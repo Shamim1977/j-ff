@@ -55,12 +55,12 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     	if (node instanceof FFGroupTask )
     		return new Vector<Object>(((FFGroupTask)node).tasks());
     	
-    	if (node instanceof FFSingleTask ){
+    	//if (node instanceof FFSingleTask ){
     	
-    		Vector<Object> obv=new Vector<Object>();
-    		obv.add(((FFSingleTask)node).commandLine());
-    		return obv;
-    	}
+    		//Vector<Object> obv=new Vector<Object>();
+    		//obv.add(((FFSingleTask)node).commandLine());
+    		//return obv;
+    	//}
     	
 		return new Vector<Object>();
 	 
@@ -125,8 +125,9 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     		if (column==1)
     	   		return ((FFMultipleGroupTask)node).sizeInFiles();
     		else if (column==2)
-    	   		return ((FFMultipleGroupTask)node).runningTasks()+" "+S.executing()+", "+
-    	   			   ((FFMultipleGroupTask)node).pausedTasks()+" "+S.inPause();
+    	   		return ((FFMultipleGroupTask)node).doneTasks()+" "+S.ok()+", "+
+    	   			((FFMultipleGroupTask)node).runningTasks()+" "+S.executing()+", "+
+	   			   ((FFMultipleGroupTask)node).waitingTasks()+" "+S.inPause();
     		else if (column==3)
     	   		return null;//info
     	}
@@ -160,22 +161,22 @@ public class JFFTreeTableModelImpl extends AbstractTreeTableModel implements JFF
     	   				(((FFSingleTask)node).commandLine().options().verbose()?S.optionsDebugTag()+", ":"");
     	   		
     		if (tmp.equals(""))
-    			return null;
+    			return "["+((FFSingleTask)node).commandLine().getOptimizedDimension()+"]";
     		else
-    			return tmp.substring(0,tmp.length()-2);
+    			return tmp.substring(0,tmp.length()-2)+" "+((FFSingleTask)node).commandLine();
     		
     		}
  
     	}
     	
-    	else if (node instanceof FFCommandLine ) {
+    	//else if (node instanceof FFCommandLine ) {
     		
-    		if (column==3)
-    	   		return "["+((FFCommandLine)node).getOptimizedDimension()+"]";
+    		//if (column==3)
+    	   		//return "["+((FFCommandLine)node).getOptimizedDimension()+"]";
     		
     		
     		
-    	}
+    	//}
     	
 	   	return null;
     }

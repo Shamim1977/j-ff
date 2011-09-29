@@ -27,5 +27,6 @@ public interface FFGroupTask extends Runnable, Serializable {
 	public int doneTasks();
 	public int waitingTasks();
 	public int runningTasks();
+	public boolean isDone();
 	
 }

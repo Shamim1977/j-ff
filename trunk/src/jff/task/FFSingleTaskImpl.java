@@ -39,7 +39,7 @@ public class FFSingleTaskImpl implements FFSingleTask, Runnable {
 	
 	@Override
 	public String toString() {
-		return CommandLine.input().file().getName();
+		return CommandLine.input().file().getName();//+" "+CommandLine;
 	}
 
 

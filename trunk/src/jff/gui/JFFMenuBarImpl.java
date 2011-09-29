@@ -118,8 +118,8 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
         File.add(DeleteFile);
 
         File.addSeparator();
-        File.add(HideFiles);
         File.add(ShowFiles);
+        File.add(HideFiles);
 
         File.addSeparator();
         File.add(PlayFile);
@@ -135,10 +135,11 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
         
         
         Task.add(AddTask);
-        Task.add(DeleteTask);
         Task.addSeparator();
         Task.add(PlayTasks);
         Task.add(PauseTasks);
+        Task.addSeparator();
+        Task.add(DeleteTask);
         Task.add(ClearTasks);
         
         

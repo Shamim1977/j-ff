@@ -58,7 +58,6 @@ public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer
 			setBackground(table.getBackground());
    
 		visibleRow = row;
-		
 		return this;
 	}
 
