@@ -374,16 +374,16 @@ public class FFCommandLineImpl implements FFCommandLine {
 	
 		if (Options.outputOptions().videoPresetFound()){
 		
-			CommandLine.add("-vpre");
-			CommandLine.add(Options.outputOptions().videoPreset());
+			CommandLine.add("-fpre");
+			CommandLine.add(new File("preset").getAbsolutePath()+File.separator+Options.outputOptions().videoPreset()+".ffpreset");
 		}
 		
 		if (Options.twoPasses()){
 		
 			if (Options.outputOptions().videoPresetFound()){
 				
-				CommandLine2.add("-vpre");
-				CommandLine2.add(Options.outputOptions().videoPreset());
+				CommandLine2.add("-fpre");
+				CommandLine2.add(new File("preset").getAbsolutePath()+File.separator+Options.outputOptions().videoPreset()+".ffpreset");
 			}
 		}
 		
@@ -509,7 +509,34 @@ public class FFCommandLineImpl implements FFCommandLine {
 
 	@Override
 	public String toString(){
-		return Input.toString();
+		String par;
+		String dar;
+		String wxh;
+		int dur;
+		
+		try{
+			par=Input.PAR();
+		}catch (ValueNotFoundException ve){
+			par="???";
+		}
+		
+		try{
+			dar=Input.DAR();
+		}catch (ValueNotFoundException ve){
+			dar="???";
+		}
+		try{
+			dur=Input.Duration();
+		}catch (ValueNotFoundException ve){
+			dur=0;
+		}
+		
+		try{
+			wxh=Input.width()+"x"+Input.height();
+		}catch (ValueNotFoundException ve){
+			wxh="???";
+		}
+		return "["+(dur==0?"???":dur)+", "+ wxh +">"+this.getOptimizedDimension()+", " + par + " , " + dar +"]";
 	}
 	
 	

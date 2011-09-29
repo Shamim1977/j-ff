@@ -15,14 +15,13 @@ import jff.translation.JFFStrings;
 @SuppressWarnings("serial")
 public class JFFShowCredits extends AbstractAction {
 
-	static Icon I=new ImageIcon("img/info.png");
 	
 	private JFFStrings S;
 	
 	private Component Parent;
 	
 	public JFFShowCredits(Component p, JFFBundledItems items){
-		super(items.S.showCredits(),I);
+		super(items.S.showCredits(),new ImageIcon("img/info.png"));
 	
 		Parent=p;
 		S=items.S;
@@ -35,7 +34,7 @@ public class JFFShowCredits extends AbstractAction {
 		
 		JOptionPane.showMessageDialog(Parent,
 			    S.credits(),S.creditsDialogName(),JOptionPane.INFORMATION_MESSAGE,
-			    I);
+			    new ImageIcon("img/infobig.png"));
 
 		
 	}

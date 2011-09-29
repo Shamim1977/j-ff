@@ -238,6 +238,12 @@ public class FFGroupTaskImpl implements FFGroupTask, Runnable {
 		
 		return Tasks.size()-doneTasks()-runningTasks();
 	}
+
+	@Override
+	public boolean isDone() {
+		
+		return doneTasks()==Tasks.size();
+	}
 	
 	
 }

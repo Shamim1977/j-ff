@@ -19,13 +19,16 @@ public interface FFMultipleGroupTask extends Runnable, Serializable {
 	int sizeInTasks();
 	int sizeInFiles();
 	
-	int runningTasks();
-	int pausedTasks();
+	
 
 	Vector<FFGroupTask> groupTasks();
 
 	public void remove(FFGroupTask r);
 	public void removeAll();
 	public void setLanguage(JFFStrings s);
+
+	public int waitingTasks();
+	public int runningTasks();
+	public int doneTasks();
 	
 }

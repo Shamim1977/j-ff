@@ -3,6 +3,7 @@ package jff.gui.cellrenderer;
 import java.awt.Component;
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -28,7 +29,7 @@ public class JFFProgressBarCellRenderer extends DefaultTableCellRenderer {
 		
 		PB.setValue(((Float)value).intValue());
 		PB.setStringPainted(true);
-	
+		PB.setBorder(BorderFactory.createEmptyBorder());
 		return PB;
 		
 		} else

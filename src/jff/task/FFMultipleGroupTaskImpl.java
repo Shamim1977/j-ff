@@ -251,11 +251,19 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 
 
 	@Override
-	public int pausedTasks() {
+	public int waitingTasks() {
+			
+		return Tasks.size()-runningTasks()-doneTasks();
+		
+		
+	}
+
+	@Override
+	public int doneTasks() {
 int tmp=0;
 		
 		for (int i=0;i<Tasks.size();i++)
-			if (!Tasks.get(i).isRunning())
+			if (!Tasks.get(i).isDone())
 				tmp++;
 			
 		return tmp;
