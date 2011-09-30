@@ -11,8 +11,6 @@ import java.util.Calendar;
  * 
  * @author Francesco Fornasini
  *
- * 
- *
  */
 public class JFFTime {
 	

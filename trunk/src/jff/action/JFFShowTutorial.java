@@ -1,6 +1,7 @@
 package jff.action;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -10,8 +11,6 @@ import javax.swing.ImageIcon;
 import jff.gui.JFFMainFrame;
 import jff.gui.JFFMainFrameImpl;
 import jff.gui.JFFMainFrameImpl.JFFBundledItems;
-import jff.gui.JFFTutorialFrame;
-import jff.gui.JFFTutorialFrameImpl;
 
 @SuppressWarnings("serial")
 public class JFFShowTutorial extends AbstractAction {
@@ -30,19 +29,13 @@ public class JFFShowTutorial extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-			/* ****
-		
+			
 		 	java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 
 	        if( desktop.isSupported( java.awt.Desktop.Action.BROWSE ) ) {
 
-                java.net.URI uri;
-				try {
-					uri = new java.net.URI("http://code.google.com/p/j-ff/wiki/HowToInstall");
-					desktop.browse( uri );
-				} catch (URISyntaxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+                try {
+					desktop.browse(new File("tutorial/help-"+Items.S.lang()+".html").toURI());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -50,10 +43,7 @@ public class JFFShowTutorial extends AbstractAction {
                 
             
 	        }
-
-	        		**** */
-		
-		JFFTutorialFrame tf=new JFFTutorialFrameImpl(Items);
+	        
 	}
 
 }

@@ -1,0 +1,136 @@
+<html>
+
+<div align="center"><h2>j-ff Tutorial</h2></div>
+
+<h3>Index</h3>
+<ul>
+<li><a href="#intro"><b>Introduction</b></a></li>
+<li><a href="#terminology"><b>Terminology</b></a></li>
+<li><a href="#addfiles"><b>Add Video Files</b></a></li>
+<li><a href="#setoptions"><b>Setting the Conversion Options</b></a></li>
+<li><a href="#createtask"><b>Create a Task</b></a></li>
+<li><a href="#starttasks"><b>Start the Tasks</b></a></li>
+<li><a href="#issues"><b>Common issues</b></a></li>
+</ul>
+
+<a name="intro"></a>
+<h3>Introduction:</h3>
+With j-ff you will have the ability to convert your video files in the simplest way:
+<ul>
+<li>first select your video files</li>
+<li>then select the output folder and the settings (predefined for the most common devices)</li>
+<li>finally start the conversion and let the program do all the work!</li>
+</ul>
+In this tutorial we will explain the common usage of j-ff and we provide the solution from the most common problems
+
+<a name="terminology"></a>
+<h3>Terminology:</h3>
+<ul>
+<li><b>Video file</b>: a video file that you want convert</li>
+<li><b>Task</b>: a work scheduled for the program that consist in a group of Videofiles to be converted with defined options</li>
+<li><b>Process</b>:Synonim for Task</li>
+<li><b>Conversion</b>:Synonim for Task</li>
+<li><b>Options</b>:the set of options available for the Task. It consists of
+<ul>
+<li>an output folder</li>
+<li>an output format</li>
+<li>a set of hardware options, such as the number of cpu you want to use</li>
+<li>a set of conversion options such as <i>add pads</i> or <i>two passes</i></li>
+</ul></li>
+
+</ul>
+
+<a name="addfiles"></a>
+<h3>Add Video Files</h3>
+You can add your video files either with the first button of the toolbar or the menu voice File>AddFile.
+Open the files from the filechooser (multiple selection is allowed) and they will appear in the upper table.
+The upper table (aka the Video Files Table) show the opened files and display the most important parameters such as
+<i>duration, dimensions, pixel aspect ratio and display aspect ratio</i>. That should present different cases:
+<ul>
+<li>If all this data will be showed correctly it means
+that the file you have opened is a perfect candidate for conversion</li>
+<li>If pixel aspect ratio and display aspect ratio (PAR and DAR) are "???" then the converted file should present
+problem on the final aspect ratio</li>
+<li>If all the data are "???" it should be that:
+<ul>
+<li>or the Video File is in an unknown format and it probably will results unconvertible</li>
+<li>or ffmpeg hasn't been found. See Common issues about that</li>
+</ul></li>
+</ul>
+
+<h4>Tips:</h4>
+<ul>
+<li>To delete a Video File from the Video Files Table yust select it and press the second button of the toolbar or the menu voice File>Delete File.
+This wont affect the real file on your Hard Disk.</li>
+<li>The Select voice on the menu bar will help you make your selections faster.</li>
+<li>The third button on the toolbar will play the evidentiated Video File with the default System player</li> 
+<li>You can show and hide the Video Files Table anytime using the menu voices File>show/hide files. This is useful to have more space to display the other elements</li>
+</ul>
+<a name="setoptions"></a>
+<h3>Setting the Conversion Options</h3>
+Once you have done a good selection of Video Files in the Video Files Table, you have to set the Conversion options.
+In the middle of the frame there is a tabbed panel (the Option tabbed pane) that give you the possibility to do so.
+You can set:
+<ul>
+<li>first panel: the folder in which your converted files will be saved</li>
+<li>second panel: the output format from a list of predefined formats</li>
+<li>third panel: the number of threads every single file will create to be converted (it should be equal to your CPU number)</li>
+<li>fourth panel:<ul>
+<li>two passes option: it takes more time but it will do a much accurate conversion with a double pass mode</li>
+<li>pads option: add pads to the final video to preserve the output format aspect ratio</li>
+<li>small files option: if the output format dimension is too big it will avoid to do a file bigger than the original, changing only the aspect ratio to fit the output format</li>
+<li>debug option: if the conversion fails you can have a look at the ffmpeg output in a txt file created in the same folder as the output file</li>
+</ul>
+</li>
+</ul>
+<h4>Tips:</h4>
+<ul>
+<li>As the Video Files Table you can show and hide the Options Tabbed Panel anytime using the menu voices Options>show/hide options. This is useful to have more space to display the other elements</li>
+</ul>
+
+<a name="createtask"></a>
+<h3>Create a Task</h3>
+Once you have set the Options it's time to create the Task: simply press the corresponding button on the toolbar or the menu Tasks>Create Task.
+Now the selected files will disappear from the Video Files Table and in the latter part of the frame the Task Table will show your yust-created Task.
+this task will have the name of the output folder and clicking on it you will see all the involved Video File names.
+The progress column will show the progress percent of the total conversion in the row of the Task name and the single file progress percent in the row of the corresponding file name
+<h4>Tips:</h4>
+<ul>
+<li>Never create a Task with the output folder equal to the folder where the input Video Files are. It should permanently corrupt your files! </li>
+<li>The output folder should be choosen with caution: files with the same name as the output files will be overwritten permanently!</li>
+<li>You can delete a Task or all Tasks with the corresponding buttons on the toolbar or the menu voices in Task>Delete Task/Delete All Tasks (Only if they aren't running)</li>
+</ul>
+
+<a name="starttasks"></a>
+<h3>Start the Tasks</h3>
+If you have uncompleted tasks in the Tasks Table you can start them simply clicking on the play button on the toolbar or in the menu Task>Play Tasks.
+Now the Task Table will show the progress of the Conversions: when they arrive at 100% your files are ready!   
+<h4>Tips:</h4>
+<ul>
+<li>You can interrupt your Tasks anytime pressing the pause task button(or Tasks>Pause Tasks) or simply closing the application. It will cause no problem at all!</li>
+</ul>
+
+<a name="issues"></a>
+<h3>Common issues</h3>
+<h4>Q: All my Video Files gets only "???" in the Video File Table and i can't convert them</h4>
+A: You have problems with ffmpeg:
+<ul>
+<li>In Windows you have to download the latest static build of ffmpeg and copy the file ffmpeg.exe in the j-ff folder.
+<li>In Linux you have to install the package ffmpeg> 8.6.2. 
+</ul>
+
+<h4>Q: All my output files are 0b and Tasks immediately ends</h4>
+A1: see first question's answer<br />
+A2: the conversion has got problems; with debug option on you can see what has happened. Ffmpeg doesn't support all types of files
+so something like this can happen with particular input formats and output options 
+
+<h4>Q: My Tasks works but the Task Table don't show proper progress status</h4>
+A: you have an old version of ffmpeg installed; this program is compatible only with ffmpeg >8.6.2
+
+<h4>Q: This program interacts with my internet connection?? WTF!</h4>
+A: We aren't doing anything bad. This program use the class "java.net.ServerSocket" to control at launch that only a single instance of the application exists.
+For more informations see the code at src/jff/main/jffgui.java<br />
+<br />
+<i>Hoping this program will be useful and time sparing!</i> F.F.
+
+</html>
