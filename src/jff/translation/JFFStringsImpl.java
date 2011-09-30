@@ -8,163 +8,118 @@ import java.io.IOException;
 
 import jff.utility.JFFParser;
 import jff.utility.JFFParserImpl;
+import jff.utility.JFFPath;
 
+/**
+ * An implementation of {@link JFFStrings}.<br />
+ * When created, an instance of JFFStringsImpl will check in the INITFILE the language specified,
+ * then it will search in the LANGFOLDER a file with this name (with .txt as extension) and load the language written in it, using a {@link JFFParser} 
+ * 
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 public class JFFStringsImpl implements JFFStrings {
 
+	/**
+	 * The default language name
+	 */
 	private String Lang="english";
 	
 	private JFFParser P;
 	
 	private String AllProcesses;
-	
 	private String OpenedFiles;
 	private String Processes;
 	private String Options;
-
 	private String AddFiles;
-
 	private String AddFilesDescr;
-
 	private String AddTask;
-
 	private String DeleteAllTasks;
-
 	private String DeleteFiles;
-
 	private String DeleteGroupTask;
-
 	private String HideOptions;
-
 	private String ShowOptions;
-
 	private String PauseTasks;
-
 	private String Quit;
-
 	private String ShowCredits;
-
 	private String ShowTutorial;
-
 	private String StartTasks;
-
 	private String PlayFile;
-
 	private String AddTaskDescr;
-
 	private String DeleteAllTasksDescr;
-
 	private String DeleteFilesDescr;
-
 	private String DeleteGroupTaskDescr;
-
 	private String HideOptionsDescr;
-
 	private String ShowOptionsDescr;
-
 	private String PauseTasksDescr;
-
 	private String QuitDescr;
-
 	private String ShowCreditsDescr;
-
 	private String ShowTutorialDescr;
-
 	private String StartTasksDescr;
-
 	private String PlayFileDescr;
-
 	private String FileMenu;
-
 	private String OptionMenu;
-
 	private String TaskMenu;
-
 	private String InfoMenu;
-
 	private String TableSel;
-
 	private String TableName;
-
 	private String TableLength;
-
 	private String TableFormat;
-
 	private String TablePAR;
-
 	private String TableDAR;
-
 	private String TTableProcesses;
-
 	private String TTableFiles;
-
 	private String TTableProgress;
-
 	private String TTableInfo;
-
 	private String OptionsDestFolder;
-
 	private String OptionsChangeDestFolder;
-
 	private String OptionsOutputFormat;
-
 	private String OptionsOutputFormatTag;
-
 	private String OptionsHardware;
-
 	private String OptionsThreadsTag;
-
 	private String OptionsConvertOptions;
-
 	private String OptionsTwoPassesTag;
-
 	private String OptionsPadsTag;
-
 	private String OptionsSmallTag;
-
 	private String OptionsDebugTag;
-
 	private String Executing;
-
 	private String InPause;
-
 	private String OK;
-
 	private String HideFiles;
-
 	private String ShowFiles;
-
 	private String HideFilesDescr;
-
 	private String ShowFilesDescr;
-
 	private String InvertSelection;
-
 	private String SelectAll;
-
 	private String SelectNone;
-
 	private String SelectMenu;
-
 	private String InvertSelectionDescr;
-
 	private String SelectAllDescr;
-
 	private String SelectNoneDescr;
-
 	private String AppFrameName;
-
 	private String TutorialFrameName;
-
 	private String CreditsDialogName;
-
 	private String Credits;
-
 	private String DuplicateAppError; 
 	
+	/**
+	 * It will load the default language, "english" defined in {@link #Lang}
+	 * 
+	 */
 	public JFFStringsImpl(){
-		parseLanguage(new File("lang"+File.separator+Lang+".txt"));
+		parseLanguage(new File(JFFPath.LANGFOLDER+File.separator+Lang+".txt"));
 	}
 		
+	/**
+	 * 
+	 * It will load the language with the name defined in the INITFILE in the line <br />
+	 * language: name<br />
+	 * from the file LANGFOLDER/name.txt
+	 * 
+	 * @param b the BufferedReader associated with the init file
+	 */
 	public JFFStringsImpl(BufferedReader b){
 		
 		JFFParser p;

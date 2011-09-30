@@ -1,7 +1,18 @@
 package jff.utility;
 
+/**
+ * An implementation of {@link JFFParser}
+ * 
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 public class JFFParserImpl implements JFFParser {
 
+	/**
+	 * The String to be parsed
+	 */
 	private String Line; 
 	
 	public JFFParserImpl(String line){

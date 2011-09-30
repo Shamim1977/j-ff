@@ -16,89 +16,75 @@ import jff.gui.JFFMainFrame;
 import jff.gui.JFFMainFrameImpl;
 import jff.translation.JFFStrings;
 import jff.translation.JFFStringsImpl;
+import jff.utility.JFFPath;
 
 /**
- * The class that starts the application GUI. It has only the method {@link #main(String[])} 
+ * The class that starts the application GUI. 
  * 
  * @version %I%
  * 
  * @author Francesco Fornasini
  *
+ *
  */
-public class JFFGUI {
+public class jffgui {
 
 	/**
-	 * Sets the Look and feel of the UI, then starts the application GUI
+	 * Sets the Look and feel of the UI, then starts the application GUI.
+	 * If the GUI is already running it will launch an error dialogue
 	 * 
 	 * @param args no params accepted
 	 */
 	public static void main(String[] args) {
 		
-		try {
+		try {//tries to set the system look and feel 
+			
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		/* *simple way
+		/* simple way
 		JFFMainFrame f=new JFFMainFrameImpl();
 		Thread.currentThread().setName("jff gui");
-		*** */
+		*/
 	
-		/* *single instance way* */ 
+		/* single instance way */ 
 	
-		try
+		try	{
 
-		{
+			//create an object of server socket and bind to port 15486
+			new ServerSocket(15486);
 
-		//creating object of server socket and bind to some port number
-
-			ServerSocket serverSocket = new ServerSocket(15486);
-
-		////do not put common port number like 80 etc.
-
-		////Because they are already used by system
-
-			JFFMainFrame f=new JFFMainFrameImpl();
+			new JFFMainFrameImpl();
 			
-		}
-
-		catch (BindException exc)
-
-		{
+		} catch (BindException exc){
 			createAlreadyRunningDialog();
-
 		}
-
-		catch (IOException exc)
-
-		{
-
+		  catch (IOException exc){
 			createAlreadyRunningDialog();
-		
 		}
 
-		
-	
 	}
 
+	
+	/**
+	 * Creates the error dialogue with the language specified in the file
+	 */
 	private static void createAlreadyRunningDialog() {
+		
 		FileReader fstream=null;
 		try {
-			fstream = new FileReader(new File("init.txt").getAbsolutePath());
+			fstream = new FileReader(new File(JFFPath.INITFILE).getAbsolutePath());
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		BufferedReader b=new BufferedReader(fstream);
@@ -108,13 +94,11 @@ public class JFFGUI {
 		try {
 			b.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		JOptionPane.showMessageDialog(null, s.duplicateAppError(), s.appFrameName(), JOptionPane.ERROR_MESSAGE);
 
-		
 	}
 
 }

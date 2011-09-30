@@ -11,7 +11,7 @@ tasks: true
 
 !! application options
 
-language: english
+language: italiano
 appdebug: true
 
 

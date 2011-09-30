@@ -1,7 +1,21 @@
 package jff.translation;
 
+/**
+ * A collection of all the Strings displayed in the application.<br />
+ * Implemented to give a flexible translation system
+ * 
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 public interface JFFStrings {
 
+	/**
+	 * The name of the language
+	 * 
+	 * @return the name of the language
+	 */
 	public String lang();
 	
 	//frame names

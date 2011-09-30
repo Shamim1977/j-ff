@@ -56,6 +56,7 @@ import jff.task.FFSingleTask;
 import jff.task.FFSingleTaskImpl;
 import jff.translation.JFFStrings;
 import jff.translation.JFFStringsImpl;
+import jff.utility.JFFPath;
 
 
 
@@ -170,18 +171,12 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	}
 	
 	public JFFMainFrameImpl(){
-			
 			super();
-	        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			
-			
-			
 	      //Create the app items
-	        
-			
-	        if (new File("init.txt").isFile())
-				Items=new JFFBundledItems("init.txt");
+		
+	        if (new File(JFFPath.INITFILE).isFile())
+				Items=new JFFBundledItems(JFFPath.INITFILE);
 	        else
 				Items=new JFFBundledItems();	        
 
@@ -224,11 +219,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	      
 	        add((JToolBar) ToolBar);
 	        
-	       
 	      
-	        
-	        //add(Box.createVerticalGlue());
-	        
 	        TabbedPanePane=new JPanel();
 	        TabbedPanePane.setLayout(new BoxLayout(TabbedPanePane,BoxLayout.X_AXIS));
 			TitledBorder tb=BorderFactory.createTitledBorder(Items.S.options());
@@ -237,8 +228,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 			
 			
 			TabbedPanePane.add((JTabbedPane) TabbedPane);
-			//TabbedPanePane.add(Box.createHorizontalGlue());
-	        
+			
 			
 			//add the panes in the main layout
 
@@ -246,17 +236,8 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 			add(TabbedPanePane);
 			add(TreeTablePane);
 			
-	//        myPanelAdder=new PanelAdderImpl(this);
-	        
-	//        ((JPanel)myPanelAdder).setAlignmentX(LEFT_ALIGNMENT);
-	        
 	        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 	        
-	//        getContentPane().add((JPanel) myPanelAdder);
-	        
-	//        myFFTaskGroup=new FFTaskGroupImpl();
-	//        myPanelTaskGroup=new PanelTaskGroupImpl();
-
 	        //Display the window.
 
 	        this.setPreferredSize(new Dimension(960,640));
@@ -269,7 +250,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 	        
 		}
 
-
+	@Override
 	public void hideOptions(){
 		
 		TabbedPanePane.setVisible(false);
@@ -277,6 +258,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		repaint();
 	}	
 
+	@Override
 	public void hideFiles(){
 		
 		TablePane.setVisible(false);
@@ -284,6 +266,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		repaint();
 	}	
 
+	@Override
 	public void showOptions(){
 		
 		TabbedPanePane.setVisible(true);
@@ -291,6 +274,7 @@ public class JFFMainFrameImpl extends JFrame implements JFFMainFrame {
 		repaint();
 	}	
 
+	@Override
 	public void showFiles(){
 		
 		TablePane.setVisible(true);
