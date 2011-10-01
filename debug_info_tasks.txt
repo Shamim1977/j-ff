@@ -12,3 +12,92 @@ Started at 2011-09-30 19:20:07
 
 Ended at 2011-09-30 19:20:07
 
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-09-30 19:37:01
+
+Ended at 2011-09-30 19:37:01
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-10-01 15:06:21
+
+Ended at 2011-10-01 15:06:21
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-10-01 15:08:59
+
+Ended at 2011-10-01 15:08:59
+
+== All Tasks ==
+[number of Tasks: 4 ]
+[number of Files: 6 ]
+Started at 2011-10-01 15:10:11
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-10-01 15:10:11
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-10-01 15:10:11
+        Ended at 2011-10-01 15:10:46
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-10-01 15:10:46
+        Ended at 2011-10-01 15:11:27
+
+    Ended at 2011-10-01 15:11:27
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 1 ]
+    Started at 2011-10-01 15:11:27
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-10-01 15:11:27
+        Ended at 2011-10-01 15:12:03
+
+    Ended at 2011-10-01 15:12:03
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 1 ]
+    Started at 2011-10-01 15:12:03
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-10-01 15:12:03
+        Ended at 2011-10-01 15:12:43
+
+    Ended at 2011-10-01 15:12:43
+
+    -- Task /home/francesco/Scaricati/final --
+    [number of Files: 2 ]
+    Started at 2011-10-01 15:12:43
+
+        ** File /home/francesco/Scaricati/input B2.3gp **
+        [.....]
+        Started at 2011-10-01 15:12:43
+        Ended at 2011-10-01 15:13:19
+
+        ** File /home/francesco/Scaricati/input R.flv **
+        [.....]
+        Started at 2011-10-01 15:13:19
+        Ended at 2011-10-01 15:14:00
+
+    Ended at 2011-10-01 15:14:00
+
+Ended at 2011-10-01 15:14:00
+
+== All Tasks ==
+[number of Tasks: 0 ]
+[number of Files: 0 ]
+Started at 2011-10-01 15:36:20
+
+Ended at 2011-10-01 15:36:20
+
