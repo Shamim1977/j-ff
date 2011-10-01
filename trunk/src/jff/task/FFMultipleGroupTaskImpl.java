@@ -260,10 +260,11 @@ public class FFMultipleGroupTaskImpl implements FFMultipleGroupTask, Runnable {
 
 	@Override
 	public int doneTasks() {
-int tmp=0;
+
+		int tmp=0;
 		
 		for (int i=0;i<Tasks.size();i++)
-			if (!Tasks.get(i).isDone())
+			if (Tasks.get(i).isDone())
 				tmp++;
 			
 		return tmp;

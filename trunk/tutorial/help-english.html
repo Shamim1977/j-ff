@@ -127,6 +127,9 @@ so something like this can happen with particular input formats and output optio
 <h4>Q: My Tasks works but the Task Table don't show proper progress status</h4>
 A: you have an old version of ffmpeg installed; this program is compatible only with ffmpeg >8.6.2
 
+<h4>Q: Why subtitles sometimes disappear on my output files?</h4>
+A: Ffmpeg has it's own limitations, subtitles in their own streams usually can't be converted. Hardsubbed videos will have no problems     
+
 <h4>Q: This program interacts with my internet connection?? WTF!</h4>
 A: We aren't doing anything bad. This program use the class "java.net.ServerSocket" to control at launch that only a single instance of the application exists.
 For more informations see the code at src/jff/main/jffgui.java<br />

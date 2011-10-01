@@ -61,37 +61,33 @@ public class JFFAddTask extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		FFGroupTask gT=new FFGroupTaskImpl(S);
 		
-		FFSingleTask f;
+		if (Files.getSelected().size()>0){
 		
-		for (int i=0;i<Files.getSelected().size();i++){
+			FFGroupTask gT=new FFGroupTaskImpl(S);
+			FFSingleTask f;
+		
+			for (int i=0;i<Files.getSelected().size();i++){
 			
-			f=new FFSingleTaskImpl(
+				f=new FFSingleTaskImpl(
 					
-					new FFCommandLineImpl(
+						new FFCommandLineImpl(
 							Files.getSelected().get(i),
 							Options.createDuplicate()
-					)
-			);
+								)
+					);
 			
-			gT.add(f);
+				gT.add(f);
 			
+			}
+		
+
+			Tasks.add(gT);
+			Files.removeSelected();
+		
+			((JFFTreeTableImpl)TreeTable).rebuild();
+			((JFFTableImpl)Table).rebuild();
 		}
-		
-
-		Tasks.add(gT);
-		
-
-		
-		Files.removeSelected();
-		
-			
-		((JFFTreeTableImpl)TreeTable).rebuild();
-
-		
-		((JFFTableImpl)Table).rebuild();
-		
 	}
 
 }
