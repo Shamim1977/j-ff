@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import jff.gui.JFFMainFrame;
 import jff.gui.JFFMainFrameImpl;
 import jff.translation.JFFStrings;
 import jff.translation.JFFStringsImpl;
