@@ -2,7 +2,6 @@ package jff.gui.cellrenderer;
 
 import java.awt.Component;
 import java.awt.Graphics;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -12,22 +11,37 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeModel;
 
 import jff.gui.treetable.JFFTreeTable;
-import jff.gui.treetable.JFFTreeTableImpl;
-import jff.task.FFGroupTask;
-import jff.task.FFMultipleGroupTask;
-import jff.task.FFSingleTask;
 
-//
-// The renderer used to display the tree nodes, a JTree.  
-//
 
+/**
+ * 
+ * A cell renderer used to represent the tree cells
+ * 
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 @SuppressWarnings("serial")
 public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer {
 
 	
-	protected int visibleRow;
+	/**
+	 * the row to be displayed
+	 */
+	protected int VisibleRow;
+	
+	/**
+	 * the table to display
+	 */
 	private JFFTreeTable TreeTable;
 
+	/**
+	 * Constructs the cell renderer with the icons IMAGEPATH/leaf.png e IMAGEPATH/task.png 
+	 * 
+	 * @param tt the table with the tree
+	 * @param model the model of the tree
+	 */
 	public JFFTreeTableCellRenderer(JFFTreeTable tt, TreeModel model) { 
 		super(model);
     
@@ -39,17 +53,22 @@ public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer
 	}
 
 
+	@Override
 	public void setBounds(int x, int y, int w, int h) {
-	
-		super.setBounds(x, 0, w, ((JFFTreeTableImpl) TreeTable).getHeight());
+		super.setBounds(x,0,w,TreeTable.getHeight());
 	}
 
+	@Override
 	public void paint(Graphics g) {
 	
-		g.translate(0, -visibleRow * getRowHeight());
+		g.translate(0,-VisibleRow*getRowHeight());
 		super.paint(g);
 	}
 
+	/**
+	 * sets the cell background color to the same color as the table line
+	 */
+	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
 		if (isSelected)
@@ -57,7 +76,7 @@ public class JFFTreeTableCellRenderer extends JTree implements TableCellRenderer
 		else
 			setBackground(table.getBackground());
    
-		visibleRow = row;
+		VisibleRow=row;
 		return this;
 	}
 

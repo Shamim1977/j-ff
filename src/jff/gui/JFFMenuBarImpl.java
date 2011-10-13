@@ -2,7 +2,6 @@ package jff.gui;
 
 import java.awt.Component;
 
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -30,14 +29,79 @@ import jff.gui.tabbedpane.JFFTabbedPane;
 import jff.gui.table.JFFTable;
 import jff.gui.treetable.JFFTreeTable;
 
+/**
+ * The implementation of the menu bar of the application.<br />
+ * It consists of 5 menus with these menu items:<br />
+ * <ul>
+ * 
+ * <li>
+ * File
+ * <ul>
+ * <li>AddFile</li>
+ * <li>DeleteFile</li>
+ * <li>ShowFiles</li>
+ * <li>HideFiles</li>
+ * <li>PlayFile</li>
+ * <li>Quit</li>
+ * </ul>
+ * </li>
+ * <li>
+ * Select
+ * <ul>
+ * <li>SelectAll</li>
+ * <li>SelectNone</li>
+ * <li>InvertSelection</li>
+ * </ul>
+ * </li>
+ * <li>
+ * Options
+ * <ul>
+ * <li>ShowOptions</li>
+ * <li>HideOptions</li>
+ * </ul>
+ * </li>
+ * <li>
+ * Tasks
+ * <ul>
+ * <li>AddTask</li>
+ * <li>DeleteTask</li>
+ * <li>PlayTasks</li>
+ * <li>PauseTasks</li>
+ * <li>ClearTasks</li>
+ * </ul>
+ * </li>
+ * <li>
+ * Info
+ * <ul>
+ * <li>Help</li>
+ * <li>Credits</li>
+ * </ul>
+ * </li>
+ * 
+ * </ul>
+ * 
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 @SuppressWarnings("serial")
 public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 
+	/**
+	 * the parent frame
+	 */
 	private Component Parent;
 	
+	/**
+	 * the files table
+	 */
 	private JFFTable Table;
+	
+	/**
+	 * the task table
+	 */
 	private JFFTreeTable TreeTable;
-	private JFFTabbedPane TabbedPane;
 	
 	private JMenu File;
 	private JMenu Select;
@@ -66,6 +130,15 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 	private JMenuItem PlayFile;
 	
 	
+	/**
+	 * Create the menu bar connecting the menu voices to their respective actions
+	 * 
+	 * @param c the parent frame
+	 * @param b the files table
+	 * @param p the options tabbed pane
+	 * @param tb the tasks table
+	 * @param items the application items
+	 */
 	public JFFMenuBarImpl(Component c, JFFTable b,JFFTabbedPane p, JFFTreeTable tb, JFFBundledItems items){
 		super();
 		
@@ -73,7 +146,6 @@ public class JFFMenuBarImpl extends JMenuBar implements JFFMenuBar {
 		
 		Table=b;
 		TreeTable=tb;
-		TabbedPane=p;
 		
 		File=new JMenu(items.S.fileMenu()); 
 		Select=new JMenu(items.S.selectMenu()); 

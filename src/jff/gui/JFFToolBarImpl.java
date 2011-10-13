@@ -28,13 +28,43 @@ import jff.item.FFOptions;
 import jff.item.JFFGroupSelectableVideoFile;
 import jff.task.FFMultipleGroupTask;
 
+/**
+ * The implementation of the tool bar of the application.<br />
+ * It consists of these buttons:<br />
+ * 
+ * <ul>
+ * <li>Add</li>
+ * <li>DeleteFiles</li>
+ * <li>PlayFile</li>
+ * <li>DeleteTask</li>
+ * <li>Play</li>
+ * <li>DeleteAllTasks</li>
+ * <li>PauseAllTasks</li>
+ * <li>ResumePlay</li>
+ * </ul>
+ * 
+ *  
+ * @version %I%
+ * 
+ * @author Francesco Fornasini
+ *
+ */
 @SuppressWarnings("serial")
 public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 
-
+	/**
+	 * the parent frame
+	 */
 	private Component Parent;
 	
+	/**
+	 * the files table
+	 */
 	private JFFTable Table;
+	
+	/**
+	 * the task table
+	 */
 	private JFFTreeTable TreeTable;
 	
 	private JButton Add;
@@ -49,6 +79,14 @@ public class JFFToolBarImpl extends JToolBar implements JFFToolBar {
 	private JButton ResumePlay;
 	
 	
+	/**
+	 * Create the tool bar connecting the menu voices to their respective actions and setting the bigger image icon
+	 * 
+	 * @param c the parent frame
+	 * @param b the files table
+	 * @param tb the tasks table
+	 * @param items the application items
+	 */
 	public JFFToolBarImpl(Component c, JFFTable b, JFFTreeTable tb, JFFBundledItems items){
 		super();
 		setFloatable(false);
